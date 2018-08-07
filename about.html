@@ -5,6 +5,7 @@
 </script>
 
 <html>
+
 <head runat="server">
     <title>Michael's Website - About</title>
 
@@ -28,33 +29,28 @@
     </script>
     <link rel="stylesheet" type="text/css" href="Styles/StyleSheet.css" />
 </head>
+
 <body>
     <form id="form1" runat="server">
-        <div id="wrapper">
+        <div id="banner"></div>
 
-            <div id="banner"></div>
+        <div id="navigation">
+            <ul id="nav">
+                <!-- About -->
+                <li><a href="about.html">About</a></li>
 
-            <div id="navigation">
-                <ul id="nav">
-                    <!-- Home -->
-                    <li><a href="index.html">Home</a></li>
+                <!-- Home -->
+                <li><a href="index.html">Home</a></li>
+            </ul>
+        </div>
 
-                    <!-- About -->
-                    <li><a href="about.html">About</a></li>
+        <div id="titletext">About</div>
+        <div id="titletext2">Who is Michael ?</div>
 
-                    <!-- Dev Playground -->
-                    <li><a href="devpg.html">Dev Playground</a></li>
-                </ul>
-            </div>
-
-            <div id="content_area">
-                <p>
-                    This is the About page ! This page probably has outdated styles that need to be updated !
-                </p>
-            </div>
-
-            <div id="footer">
-            </div>
+        <div id="content_area">
+            <p>
+                Michael is some awesome kid who made this site from scratch for fun ;)
+            </p>
         </div>
     </form>
 </body>
