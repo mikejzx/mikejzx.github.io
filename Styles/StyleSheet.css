@@ -1,6 +1,6 @@
 ﻿body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #011520
+    background-color: #fff;
 }
 
 #toppart {
@@ -16,20 +16,19 @@
 }
 
 #banner {
-    height: 300px;
+    height: 60px;
     width: auto;
-    border: 0px solid #e3e3e3;
-    background-image: url(../Images/banner_cropped.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-color: #011520;
+    margin: -10px;
 }
 
 #navigation {
-    height: 40px;
-    width: auto;
-    border: 0px solid #e3e3e3;
-    margin-top: -16px;
-    background-image: url(../Images/nav_bar.jpg);
+    height: 60px;
+    width: 1140px;
+    background-color: #011520;
+    margin-top: -76px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #nav {
@@ -45,14 +44,20 @@
 }
 
 #nav li {
-    font-size: 24px;
-    float: left;
+    font-size: 20px;
+    float: right;
     position: relative;
     width: fit-content;
-    height: auto;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 5px;
+    height: 60px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 0px;
+    background-color: unset;
+}
+
+#nav li:hover {
+    transition: background-color 0.2s;
+    background-color: #010f16;
 }
 
 #nav li ul li {
@@ -64,30 +69,34 @@
 }
 
 #nav a:link, #nav a:active, #nav a:visited {
-    display: block;
-    color: #fff;
+    transition: color 0.25s, background-size 0.1s ease-in, text-shadow 0.3s;
+    display: inline-block;
+    color: #c4c4c4;
     text-decoration: none;
+    background-image: linear-gradient(120deg, #fff 0%, #fff 100%);
+    background-repeat: no-repeat;
+    background-size: 0% 0.05em;
+    background-position: 50% 55%;
+    text-shadow: none;
+    height: 60px;
+    padding-top: 16px;
 }
 
 #nav a:hover {
-    color: lightblue;
+    transition: color 0.25s, background-size 0.1s ease-out, text-shadow 0.3s;
+    color: #fff;
+    background-size: 100% 0.05em;
+    text-shadow: -1px -1px 0 #c7c7c7, 1px -1px 0 #c7c7c7, -1px 1px 0 #c7c7c7, 1px 1px 0 #c7c7c7;
 }
 
 #content_area {
-    float: initial;
-    width: auto;
+    float: none;
+    width: 1080px;
     min-height: 350px;
-    margin: 20px 0 20px 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
     padding: 10px;
-    border: 3px solid #e3e3e3;
-}
-
-#sidebar {
-    float: right;
-    width: 250px;
-    height: 400px;
-    margin: 20px 10px 20px 10px;
-    border: 3px solid #e3e3e3;
 }
 
 #footer {
@@ -96,4 +105,24 @@
     height: 40px;
     margin-top: 20px;
     background-image: url(../Images/bar_background.jpg);
+}
+
+#titletext {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    text-align: center;
+    font-size: 32px;
+    width: auto;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#titletext2 {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0px;
+    text-align: center;
+    font-size: 18px;
+    width: auto;
+    font-family: 'Open Sans', sans-serif;
 }
