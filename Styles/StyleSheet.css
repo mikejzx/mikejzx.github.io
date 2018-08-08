@@ -24,6 +24,7 @@
 
 html {
 	overflow-x: hidden;
+    outline: none;
 }
 
 #toppart {
@@ -257,4 +258,9 @@ html {
 .tooltip:hover .tooltiptext {
     opacity: 1;
     transition: opacity 0.25s ease-in;
+}
+
+/* Removes annoying focus outlines */
+a:focus {
+    outline: 1px solid rgba(0, 0, 0, 0.0);
 }
