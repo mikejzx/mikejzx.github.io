@@ -17,20 +17,6 @@
     margin-top: 60px;
 }
 
-.navbarImgContainer {
-    background-image: url("../Images/bg_nurburgring_top.jpg");
-    -webkit-filter: blur(12px);
-    z-index: 0;
-    position: fixed;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: 50% -33.5%;
-    width: 100%;
-    height: 100%;
-    margin-left: -10px;
-    margin-top: 0px;
-}
-
 .content {
     z-index: 10;
     position: relative;
@@ -48,10 +34,16 @@ html {
     height: 60px;
     width: auto;
     margin: -10px;
+
+    background-image: url("../Images/bg_nurburgring_top_blurred.jpg");
+    background-color: white;
+    background-size: 100% 300%;
+    background-position-y: bottom;
+    background-position-x: center;
 }
 
 #bluroverlay {
-    background-color: rgba(64, 255, 225, 0.15);
+    background-color: rgba(200, 215, 230, 0.15);
     width: auto;
     height: 60px;
     margin -10px;
@@ -87,12 +79,13 @@ html {
     padding-left: 20px;
     padding-right: 20px;
     margin-top: 0px;
+    transition: background-color 0.2s;
     background-color: unset;
 }
 
 #nav li:hover {
     transition: background-color 0.2s;
-    background-color: #2a2a2a;
+    background-color: rgba(16, 30, 26, 0.3);
 }
 
 #nav li ul li {
@@ -121,7 +114,7 @@ html {
     transition: color 0.25s, background-size 0.1s ease-out, text-shadow 0.3s;
     color: #fff;
     background-size: 100% 0.05em;
-    text-shadow: -1px -1px 0 #c7c7c7, 1px -1px 0 #c7c7c7, -1px 1px 0 #c7c7c7, 1px 1px 0 #c7c7c7;
+    text-shadow: -1px -1px 0 rgba(255, 255, 255, 0.2), 1px -1px 0 rgba(255, 255, 255, 0.2), -1px 1px 0 rgba(255, 255, 255, 0.2), 1px 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 #content_area {
@@ -134,7 +127,8 @@ html {
     margin-bottom: 0px;
     padding: 10px;
     background-color: #202020;
-    border: 3px solid rgba(64, 255, 225, 0.15);
+    border: 3px solid rgba(200, 215, 230, 0.15);
+    background-clip: padding-box;
 }
 
 #footer {
@@ -173,4 +167,89 @@ html {
     font-size: 18px;
     width: auto;
     font-family: 'Open Sans', sans-serif;
+}
+
+#navl {
+    list-style: none;
+}
+
+#navl ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    display: none;
+}
+
+#navl li {
+    font-size: 20px;
+    float: left;
+    position: relative;
+    width: fit-content;
+    height: 60px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 0px;
+    transition: background-color 0.2s;
+    background-color: unset;
+}
+
+#navl li:hover {
+    transition: background-color 0.2s;
+    background-color: rgba(16, 30, 26, 0.3);
+}
+
+#navl li a {
+    display: block;
+}
+
+#navl li a img {
+    width: 60px;
+    height: 60px;
+}
+
+#navlimg {
+    background-image: url("../Images/logo_yt.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60px 60px;
+    width: 60px;
+    height: 60px;
+    -webkit-transition: -webkit-filter 0.25s;
+    -webkit-filter: grayscale(80%);
+}
+
+#navlimg:hover {
+    -webkit-transition: -webkit-filter 0.25s;
+    -webkit-filter: grayscale(0%);
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 7px 5px;
+    border-radius: 6px;
+    position: absolute;
+    font-size: 12px;
+
+    z-index: 12;
+    width: 120px;
+    top: 110%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.25s ease-out;
+}
+
+.tooltip:hover .tooltiptext {
+    opacity: 1;
+    transition: opacity 0.25s ease-in;
 }
