@@ -91,7 +91,7 @@ html {
     transition: background-color 0.2s;
     background-color: rgba(16, 30, 26, 0.3);
 }
-
+    
 #nav li ul li {
     background-image: url(../Images/bar_background.jpg);
     background-repeat: no-repeat;
@@ -108,9 +108,9 @@ html {
     background-image: linear-gradient(120deg, #fff 0%, #fff 100%);
     background-repeat: no-repeat;
     background-size: 0% 0.05em;
-    background-position: 50% 55%;
-    text-shadow: none;
-    height: 60px;
+    background-position: 50% 70%;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.8);
+    height: 44px;
     padding-top: 16px;
 }
 
@@ -214,7 +214,7 @@ html {
     height: 60px;
 }
 
-#navlimgyt {
+#navlimg {
     background-image: url("../Images/logo_yt.png");
     background-repeat: no-repeat;
     background-position: center;
@@ -225,7 +225,7 @@ html {
     -webkit-filter: grayscale(80%);
 }
 
-#navlimgyt:hover {
+#navlimg:hover {
     -webkit-transition: -webkit-filter 0.3s;
     -webkit-filter: grayscale(0%);
 }
@@ -263,4 +263,30 @@ html {
 /* Removes annoying focus outlines */
 a:focus {
     outline: 1px solid rgba(0, 0, 0, 0.0);
+}
+
+/* Used for test game 1 */
+#gameCanvas {
+    border: 3px solid #011520;
+}
+
+.cursorfollow {
+    display: inline-block;
+    height: 60px;
+    width: 100%;
+    border: 1px solid #011520;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-image: radial-gradient(closest-side circle, #fff, transparent);
+    background-position: var(--x) var(--y);
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    opacity: 0.0;
+    transition: opacity 0.3s ease-out;
+}
+
+.cursorfollow:hover {
+    opacity: 1;
+    transition: opacity 0.2s ease-in;
 }

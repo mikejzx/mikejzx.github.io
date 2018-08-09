@@ -8,42 +8,8 @@
 
 <head runat="server">
     <script type="text/javascript" src="JavaScript/jquery-1.3.2.min.js"></script>
-    <script type="text/javascript">
-        function mainMenu() {
-            $("#nav ul").css({ display: "none" }); // Opera fix
-            $("#nav li").hover(
-                function () {
-                    $(this).find('ul:first').css({ visibility: "visible", display: "none" }).show(400);
-                },
-                function () {
-                    $(this).find('ul:first').css({ visibility: "hidden" });
-                }
-            );
-        }
+    <script type="text/javascript" src="JavaScript/mainstuff.js"></script>
 
-        function perspectiveBg() {
-            var movementStrength = 25;
-            var height = movementStrength / $(window).height();
-            var width = movementStrength / $(window).width();
-            $("body").mousemove(function (e) {
-                var pageX = e.pageX - ($(window).width() / 2);
-                var pageY = e.pageY - ($(window).height() / 2);
-                var newvalueX = width * pageX * -1 - 25;
-                var newvalueY = height * pageY * -1 - 50;
-
-                // Move bg
-                $('.imageContainer').css("background-position", newvalueX + "px     " + (newvalueY + 37) + "px");
-
-                // Move nav-bar img (the offsets are pretty approximate)
-                $('#banner').css("background-position", (newvalueX - 20) + "px     " + (newvalueY - 60) + "px");
-            });
-        }
-
-        $(document).ready(function () {
-            mainMenu();
-            perspectiveBg();
-        });
-    </script>
     <link rel="stylesheet" type="text/css" href="Styles/StyleSheet.css" />
     <link rel="shortcut icon" type="image/x-icon" href="Images/favicon.ico" />
 
