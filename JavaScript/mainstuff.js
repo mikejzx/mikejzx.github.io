@@ -17,8 +17,15 @@ function perspectiveBg() {
     $("body").mousemove(function (e) {
         var pageX = e.pageX - ($(window).width() / 2);
         var pageY = e.pageY - ($(window).height() / 2);
+
+        // Clamp values
+        pageY = clamp(pageY, -430, 430);
+
         var newvalueX = width * pageX * -1 - 25;
         var newvalueY = height * pageY * 1 - 50;
+
+        // Debug values:
+        //document.getElementById("debugthing").innerHTML = "X: " + pageX + ", Y: " + pageY;
 
         // Move bg
         $('.imageContainer').css("background-position", newvalueX + "px     " + (newvalueY + 37) + "px");
@@ -26,6 +33,12 @@ function perspectiveBg() {
         // Move nav-bar img (the offsets are pretty approximate)
         $('#banner').css("background-position", (newvalueX - 20) + "px     " + (newvalueY - 57) + "px");
     });
+}
+
+function clamp(val, mi, ma) {
+    if (val > ma) { return ma; }
+    if (val < mi) { return mi; }
+    return val;
 }
 
 // Unused
