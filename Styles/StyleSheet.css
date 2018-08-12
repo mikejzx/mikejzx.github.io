@@ -72,11 +72,15 @@ html {
 }
 
 #bluroverlay {
-    background-color: #808080;
-    background-color: rgba(128, 128, 128, 0.15);
+    background-color: #808080; /* Fallback */
+    background-color: rgba(128, 128, 128, 0.0); /* Used to be 0.15 alpha */
     width: 100%;
     height: 100%;
     z-index: 2;
+    background-image: url("../Images/Skeuo/bluroverlay.png");
+    background-repeat: repeat-x;
+    background-size: 100% 100%;
+    background-position: center;
 }
 
 #navigation {
@@ -99,32 +103,29 @@ html {
     display: none;
 }
 
-#nav li {
+/* List buttons */
+li {
     font-size: 20px;
     float: right;
     position: relative;
     width: fit-content;
-    height: 60px;
+    height: 50px;
     padding-left: 20px;
     padding-right: 20px;
-    margin-top: 0;
-    transition: background-color 0.2s;
-    background-color: unset;
+    margin-top: 5px;
     border-radius: 6px;
+    transition: background-color 0.1s ease-in, box-shadow 0.1s ease-in;
+    background-color: unset;
+    /*background-image: url("../Images/Skeuo/button_normal.png");
+    background-position: center;
+    background-size: 100% 100%;*/
 }
 
-#nav li:hover {
-    transition: background-color 0.2s;
+li:hover {
+    transition: background-color 0.1s ease-out, box-shadow 0.1s ease-out;
     background-color: #101E1A; /* Fallback */
-    background-color: rgba(16, 30, 26, 0.3);
-}
-    
-#nav li ul li {
-    background-image: url(../Images/bar_background.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    border: 3px solid #e3e3e3;
-    padding-left: 10px;
+    background-color: rgba(68, 77, 76, 0.5); /* rgba(16, 30, 26, 0.28); */
+    box-shadow: -1px -1px 3px rgba(0, 0, 0, 0.5), 1px 1px 3px rgba(255, 255, 255, 0.2);
 }
 
 #nav a:link, #nav a:active, #nav a:visited {
@@ -138,7 +139,7 @@ html {
     background-position: 50% 70%;
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.8);
     height: 44px;
-    padding-top: 16px;
+    padding-top: 11px;
 }
 
 #nav a:hover {
@@ -165,7 +166,7 @@ html {
 	font-size: 12px;
 	vertical-align: middle;
 	color: #fff; /*#545454*/
-}
+    }
 
 #titletext {
     margin-left: auto;
@@ -201,28 +202,9 @@ html {
     display: none;
 }
 
-#navl li {
-    font-size: 20px;
-    float: left;
-    position: relative;
-    width: fit-content;
-    height: 60px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-top: 0;
-    transition: background-color 0.2s;
-    background-color: unset;
-    border-radius: 6px;
-}
-
-#navl li:hover {
-    transition: background-color 0.2s;
-    background-color: #101E1A; /* Fallback */
-    background-color: rgba(16, 30, 26, 0.3);
-}
-
 #navl li a {
     display: block;
+    margin-top: -5px;
 }
 
 #navl li a img {
