@@ -3,13 +3,12 @@ setInterval(tick, (1.0 / 60.0) * 20.0);
 
 $(document).ready(function () {
     var fr = new Date(Date.now());
-    var to = new Date(fr.getUTCFullYear(), 11, 31, 24, 59, 59, 999999999999999);
-    var doyFr = getDayOfYear(fr);
-    var doyTo = getDayOfYear(to);
-    var dayDiff = doyTo - doyFr;
+    var to = new Date(fr.getUTCFullYear(), 11, 31, 24, 59, 59, 0);
+    var secDiff = Math.abs(to.getTime() - fr.getTime()) / 1000;
+    var wholeDays = Math.floor(secDiff / 86400);
 
     var col = "turquoise";
-    if (dayDiff < 7) {
+    if (wholeDays < 7) {
         col = "red";
     }
 
