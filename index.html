@@ -8,12 +8,14 @@
 
 <head runat="server">
     <!-- Main JavaScript's -->
-    <script type="text/javascript" src="JavaScript/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="JavaScript/lib/jquery-1.3.2.min.js"></script>
     <script type="text/javascript" src="JavaScript/mainstuff.js"></script>
+    <script type="text/javascript" src="JavaScript/miscstuff.js"></script>
 
     <!-- CSS Style-sheets -->
     <link rel="stylesheet" type="text/css" href="Styles/StyleSheet.css" />
     <link rel="stylesheet" type="text/css" href="Styles/StyleSheetContent.css" />
+    <link rel="stylesheet" type="text/css" href="Styles/StyleSheetMisc.css" />
     <link rel="shortcut icon" type="image/x-icon" href="Images/favicon.ico" />
 
     <title>Michael's Website - Home</title>
@@ -48,25 +50,34 @@
                     <ul id="navl">
                         <!-- Yt -->
                         <li style="float: left;">
-                            <a href="#" class="tooltip">
+                            <a href="https://www.youtube.com/channel/UC1GxdcxqF1OpE3aV4sCCh3A" class="tooltip" target="_blank">
                                 <div id="navlimg" class="ytimg"></div>
                                 <span class="tooltiptext">My YouTube channel</span>
                             </a>
                         </li>
 
-                        <!-- Fb -->
+                        <!-- Fb
                         <li style="float: left;">
                             <a href="#" class="tooltip">
                                 <div id="navlimg" class="fbimg"></div>
-                                <span class="tooltiptext">FaceBook page</span>
+                                <span class="tooltiptext">FaceBook page (Non-existant)</span>
                             </a>
                         </li>
+                        -->
 
                         <!-- E-mail -->
                         <li style="float: left;">
-                            <a href="#" class="tooltip">
+                            <a href="mailto:mikejzx03@gmail.com" class="tooltip">
                                 <div id="navlimg" class="emimg"></div>
-                                <span class="tooltiptext">Click for my e-mail</span>
+                                <span class="tooltiptext">Click to e-mail me !</span>
+                            </a>
+                        </li>
+
+                        <!-- Github -->
+                        <li style="float: left;">
+                            <a href="https://github.com/mikejzx/mikejzx.github.io" class="tooltip" target="_blank">
+                                <div id="navlimg" class="ghimg"></div>
+                                <span class="tooltiptext">This sites GitHub repository</span>
                             </a>
                         </li>
 
@@ -82,20 +93,38 @@
 
             <!-- Top content area thing -->
             <div id="content_area">
+                <div style="text-align: center;">
+                    Main Content:
+                </div>
                 <p>
-                    Welcome to Michael's website! (Last edit: ~20:22 11.08.2018)<hr>Tell Michael what you think should go on this site !
+                    Welcome to Michael's website! (Last edit: ~20:22 11.08.2018)<br>Tell Michael what you think should go on this site !
                 </p>
                 <!--<div id="debugthing">PAGEX: PAGEY:</div>-->
             </div>
 
             <!-- Side bar -->
             <div id="sidebar_right">
-
+                <div style="text-align: center;">
+                    Useless Sidebar ?
+                </div>
             </div>
 
             <!-- Under all that shit -->
             <div id="content_area_bottom">
-                Random Shit Here:
+                <div style="text-align: center;">
+                    Random Shit Here:
+                </div>
+                <p>
+                    <div>
+                        Time left to end of Year:
+                        <a id="countdowndays">0</a> Days,
+                        <a id="countdownhours">0</a> hours,
+                        <a id="countdownmins">0</a> Minutes, and
+                        <a id="countdownsecs">0</a> seconds !
+                    </div>
+                    ^^ Is it even accurate ?
+                </p>
+                <hr>
                 <p>
                     My PC specifications:
                     <br>OS: Windows 8.1 (64-bit)
@@ -114,9 +143,9 @@
             <!-- Pushes everything up by a few px (Only needed when bgColourBottom doesn't exist) -->
             <!-- <div id="contentoffsetbottom"></div>-->
 
-    <div id="footer"><a>Written from scratch in HTML and CSS by Michael.</a></div>
+        <div id="footer"><a>Written from scratch in HTML and CSS by Michael.</a></div>
 
-    <!--Colour for things: #011520-->
+        <!--Colour for things: #011520-->
         </div>
     </form>
 </body>

@@ -108,14 +108,15 @@ li {
     font-size: 20px;
     float: right;
     position: relative;
-    width: fit-content;
     height: 50px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
     margin-top: 5px;
     border-radius: 6px;
     transition: background-color 0.1s ease-in, box-shadow 0.1s ease-in;
     background-color: unset;
+    box-shadow: -1px -1px 2px rgba(0, 0, 0, 0.0), 1px 1px 2px rgba(255, 255, 255, 0.0);
+
     /*background-image: url("../Images/Skeuo/button_normal.png");
     background-position: center;
     background-size: 100% 100%;*/
@@ -125,7 +126,7 @@ li:hover {
     transition: background-color 0.1s ease-out, box-shadow 0.1s ease-out;
     background-color: #101E1A; /* Fallback */
     background-color: rgba(68, 77, 76, 0.5); /* rgba(16, 30, 26, 0.28); */
-    box-shadow: -1px -1px 3px rgba(0, 0, 0, 0.5), 1px 1px 3px rgba(255, 255, 255, 0.2);
+    box-shadow: -1px -1px 2px rgba(0, 0, 0, 0.5), 1px 1px 2px rgba(255, 255, 255, 0.2);
 }
 
 #nav a:link, #nav a:active, #nav a:visited {
@@ -166,7 +167,7 @@ li:hover {
 	font-size: 12px;
 	vertical-align: middle;
 	color: #fff; /*#545454*/
-    }
+}
 
 #titletext {
     margin-left: auto;
@@ -217,8 +218,9 @@ li:hover {
     background-position: center;
     background-size: 45px 45px;
     height: 60px;
-    -webkit-transition: -webkit-filter 0.3s;
-    -webkit-filter: grayscale(80%);
+    -webkit-transition: -webkit-filter 0.3s, opacity 0.2s ease-in;
+    -webkit-filter: grayscale(70%);
+    opacity: 0.72;
 }
 
 /* Youtube bg */
@@ -239,33 +241,16 @@ li:hover {
     width: 30px;
 }
 
+/* Github bg */
+.ghimg {
+    background-image: url("../Images/logo_git.png");
+    width: 50px;
+}
+
 #navlimg:hover {
-    -webkit-transition: -webkit-filter 0.3s;
+    -webkit-transition: -webkit-filter 0.3s, opacity 0.2s ease-out;
     -webkit-filter: grayscale(0%);
-}
-
-/* E-mail  */
-#navlemail:link, #navlemail:active, #navlemail:visited {
-	transition: color 0.25s, background-size 0.1s ease-in, text-shadow 0.3s;
-    height: 44px;
-	text-align: center;
-	padding-top: 16px;
-	display: inline-block;
-	
-	color: #c4c4c4;
-    text-decoration: none;
-    background-image: linear-gradient(120deg, #fff 0%, #fff 100%);
-    background-repeat: no-repeat;
-    background-size: 0 0.05em;
-    background-position: 50% 70%;
-    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.8);
-}
-
-#navlemail:hover {
-	transition: color 0.25s, background-size 0.1s ease-out, text-shadow 0.3s;
-    color: #fff;
-    background-size: 100% 0.05em;
-    text-shadow: -1px -1px 0 rgba(255, 255, 255, 0.2), 1px -1px 0 rgba(255, 255, 255, 0.2), -1px 1px 0 rgba(255, 255, 255, 0.2), 1px 1px 0 rgba(255, 255, 255, 0.2);
+    opacity: 1;
 }
 
 .tooltip {
