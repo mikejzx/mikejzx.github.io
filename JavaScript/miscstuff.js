@@ -1,5 +1,9 @@
 
-setInterval(tick, (1.0 / 60.0) * 20.0);
+var inter = setInterval(tick, (1.0 / 60.0) * 20.0);
+
+function stopTimer() {
+    clearInterval(inter);
+}
 
 $(document).ready(function () {
     var fr = new Date(Date.now());
@@ -46,7 +50,10 @@ function tick() {
     document.getElementById("countdowndays").innerHTML = wholeDays;
     document.getElementById("countdownhours").innerHTML = hours;
     document.getElementById("countdownmins").innerHTML = mins;
-    document.getElementById("countdownsecs").innerHTML = padZeros(secDiff.toString(), 18);
+    var baseSecs = padZeros(secDiff.toString(), 18);
+    var leftSecs = baseSecs.substring(0, 6);
+    var rightSecs = baseSecs.substring(12, 17);
+    document.getElementById("countdownsecs").innerHTML = leftSecs + rightSecs;
 }
 
 function isLeapYear(date) {
