@@ -9,6 +9,7 @@
 <head runat="server">
     <!-- Main JavaScript's -->
     <script type="text/javascript" src="JavaScript/lib/jquery-1.3.2.min.js"></script>
+	<script type="text/javascript" src="JavaScript/lib/html-importer.js"></script>
     <script type="text/javascript" src="JavaScript/mainstuff.js"></script>
     <script type="text/javascript" src="JavaScript/miscstuff.js"></script>
 
@@ -33,59 +34,8 @@
         <!-- CONTENT -->
         <div class="content">
 
-            <!-- Banner -->
-            <div id="banner">
-                <div id="bluroverlay"></div>
-
-                <!-- Navigation bar -->
-                <div id="navigation">
-                    <ul id="nav">
-                        <!-- About about.html -->
-                        <li><a href="#">About</a></li>
-
-                        <!-- Home -->
-                        <li><a href="index.html">Home</a></li>
-                    </ul>
-
-                    <ul id="navl">
-                        <!-- Yt -->
-                        <li style="float: left;">
-                            <a href="https://www.youtube.com/channel/UC1GxdcxqF1OpE3aV4sCCh3A" class="tooltip" target="_blank">
-                                <div id="navlimg" class="ytimg"></div>
-                                <span class="tooltiptext">My YouTube channel</span>
-                            </a>
-                        </li>
-
-                        <!-- Fb
-                        <li style="float: left;">
-                            <a href="#" class="tooltip">
-                                <div id="navlimg" class="fbimg"></div>
-                                <span class="tooltiptext">FaceBook page (Non-existant)</span>
-                            </a>
-                        </li>
-                        -->
-                        <!-- E-mail -->
-                        <li style="float: left;">
-                            <a href="mailto:mikejzx03@gmail.com" class="tooltip">
-                                <div id="navlimg" class="emimg"></div>
-                                <span class="tooltiptext">Click to e-mail me !</span>
-                            </a>
-                        </li>
-
-                        <!-- Github -->
-                        <li style="float: left;">
-                            <a href="https://github.com/mikejzx/mikejzx.github.io" class="tooltip" target="_blank">
-                                <div id="navlimg" class="ghimg"></div>
-                                <span class="tooltiptext">This sites GitHub repository</span>
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Pushes everything down 60px -->
-            <div id="contentoffset"></div>
+			<!-- This navbar was imported with a JavaScript. -->
+			<script>HTMLImporter.import("Include/navbar.html");</script>
 
             <div id="titletext">Michael's website</div>
             <div id="titletext2">The home of legends</div>
@@ -116,7 +66,7 @@
                     <br>
                     Note: The 'Show CPU load' option does not save when the program is closed, as it is experimental, and not intended to actually be used.
                     <br><br>
-                    <a href="Downloadables/ToolsPP_v1.7.3.zip" id="hyperlink" target="_blank">Download Tools++ v1.7.2</a>
+                    <a href="Downloadables/ToolsPP_v1.7.3.zip" id="hyperlink" target="_blank">Download Tools++ v1.7.3</a>
                     <br>
                     Preview images:
                     <br>
@@ -126,7 +76,6 @@
                     <br>Left image: The UI of Tools++.
                     <br>Right Image: An example of an icon that can be shown on the taskbar.
                 </p>
-                <!--<div id="debugthing">PAGEX: PAGEY:</div>-->
             </div>
 
             <!-- Under all that shit -->

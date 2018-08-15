@@ -261,11 +261,11 @@ li:hover {
 /* Tooltip text */
 .tooltip .tooltiptext {
     width: 120px;
-    background-color: #555;
+    background-color: #303030;
     color: #fff;
     text-align: center;
     padding: 7px 5px;
-    border-radius: 6px;
+    border-radius: 12px;
     position: absolute;
     font-size: 12px;
 
@@ -275,6 +275,12 @@ li:hover {
     margin-left: -60px;
     opacity: 0;
     transition: opacity 0.25s ease-out;
+	text-shadow: 2px 2px 2px #000;
+	box-shadow: 2px 2px 5px rgba(17, 17, 17, 0.7);
+	
+	border: 3px solid #F5FAFF; /* Fallback */
+    border: 3px solid rgba(245, 250, 255, 0.15);
+	background-clip: padding-box;
 }
 
 .tooltip:hover .tooltiptext {
