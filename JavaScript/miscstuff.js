@@ -54,6 +54,8 @@ function tick() {
     var leftSecs = baseSecs.substring(0, 6);
     var rightSecs = baseSecs.substring(12, 17);
     document.getElementById("countdownsecs").innerHTML = leftSecs + rightSecs;
+
+    subheaderTextColourSwitcher();
 }
 
 function isLeapYear(date) {
@@ -77,4 +79,54 @@ function padZeros(str, len) {
         n += '0';
     }
     return n;
+}
+
+// Just for fun ;)
+var elements = document.getElementsByClassName("randcolour");
+var rcol = Math.random() * 255;
+var gcol = Math.random() * 255;
+var bcol = Math.random() * 255;
+var rcoltarg = Math.random() * 255;
+var gcoltarg = Math.random() * 255;
+var bcoltarg = Math.random() * 255;
+var rcolprev = Math.random() * 255;
+var gcolprev = Math.random() * 255;
+var bcolprev = Math.random() * 255;
+var lerped = 0.0;
+
+function subheaderTextColourSwitcher() {
+
+    if (lerped < 1.0) {
+        lerped += 0.007;
+    }
+    else {
+        lerped = 0.0;
+
+        rcolprev = rcoltarg;
+        gcolprev = gcoltarg;
+        bcolprev = bcoltarg;
+
+        rcoltarg = Math.random() * 255;
+        gcoltarg = Math.random() * 255;
+        bcoltarg = Math.random() * 255;
+
+        // Keeps the colour nice and bright.
+        var randa = Math.random();
+        var third = 1.0 / 3.0;
+        if (randa < third) { rcoltarg = 255; }
+        if (randa > third && randa < (third * 2.0)) { gcoltarg = 255; }
+        if (randa > (third * 2.0)) { bcoltarg = 255; }
+    }
+
+    rcol = lerp(rcolprev, rcoltarg, lerped);
+    gcol = lerp(gcolprev, gcoltarg, lerped);
+    bcol = lerp(bcolprev, bcoltarg, lerped);
+
+    for (var i = 0; i < elements.length; i++) {
+        elements[i].style.color = "rgba(" + rcol + ", " + gcol + ", " + bcol + ", 1)";
+    }
+}
+
+function lerp(a, b, c) {
+    return a * (1.0 - c) + b * c;
 }

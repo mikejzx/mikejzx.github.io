@@ -1,7 +1,7 @@
 ﻿body {
     font-family: Arial, Helvetica, sans-serif;
     color: #fff;
-    background-color: #111;
+    background-color: #011520;
 }
 
 .imageContainer {
@@ -112,10 +112,10 @@ li {
     padding-left: 10px;
     padding-right: 10px;
     margin-top: 5px;
-    border-radius: 6px;
-    transition: background-color 0.1s ease-in, box-shadow 0.1s ease-in;
-    background-color: unset;
-    box-shadow: -1px -1px 2px rgba(0, 0, 0, 0.0), 1px 1px 2px rgba(255, 255, 255, 0.0);
+    border-radius: 3px;
+    transition: background-color 0.2s ease-in, box-shadow 0.2s ease-in;
+    background-color: rgba(16, 30, 26, 0.05);
+    box-shadow: -1px -1px 2px rgba(0, 0, 0, 0.2), 1px 1px 2px rgba(0, 0, 0, 0.2);
 
     /*background-image: url("../Images/Skeuo/button_normal.png");
     background-position: center;
@@ -123,7 +123,8 @@ li {
 }
 
 li:hover {
-    transition: background-color 0.1s ease-out, box-shadow 0.1s ease-out;
+    transition: background-color 0.2s ease-out, box-shadow 0.2s ease-out;
+    
     background-color: #101E1A; /* Fallback */
     background-color: rgba(68, 77, 76, 0.5); /* rgba(16, 30, 26, 0.28); */
     box-shadow: -1px -1px 2px rgba(0, 0, 0, 0.5), 1px 1px 2px rgba(255, 255, 255, 0.2);

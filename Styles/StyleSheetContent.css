@@ -69,3 +69,12 @@
     margin-left: -10px;
     margin-top: -10px;
 }
+
+.subheadertext {
+    text-align: center; 
+    color: turquoise;
+}
+
+.randcolour {
+    text-decoration: none;
+}
