@@ -117,7 +117,6 @@ li {
     background-color: transparent; /*rgba(16, 30, 26, 0.05);*/
     /*box-shadow: -1px -1px 2px rgba(0, 0, 0, 0.2), 1px 1px 2px rgba(0, 0, 0, 0.2);*/
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8), -1px -1px 2px rgba(255, 255, 255, 0.2), 1px 1px 6px rgba(0, 0, 0, 0.3);
-    z-index: 13;
 
     /*background-image: url("../Images/Skeuo/button_normal.png");
     background-position: center;
@@ -153,7 +152,8 @@ li:hover > #buttonhover {
     transition: opacity 0.2s ease-in;
     opacity: 1;
     pointer-events: none;
-    z-index: 12;
+    position: relative;
+    z-index: 11;
 
     background-image: url("../Images/Skeuo/bluroverlay2.png");
     background-repeat: no-repeat;
@@ -172,6 +172,7 @@ li:hover > #buttonhover {
     transition: opacity 0.2s ease-in;
     opacity: 0;
     pointer-events: none;
+    position: relative;
     z-index: 11;
 
     background-image: url("../Images/Skeuo/button_hover.png");
@@ -192,7 +193,8 @@ li:hover > #buttonhover {
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.8), 1px -1px 1px #888, -1px 1px 1px #222;
     height: 44px;
     padding-top: 11px;
-    z-index: 14;
+    z-index: 15;
+    position: relative;
 }
 
 #nav a:hover {
