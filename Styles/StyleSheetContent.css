@@ -71,8 +71,9 @@
 }
 
 .subheadertext {
-    text-align: center; 
+    text-align: center;
     color: turquoise;
+    text-shadow: 1px 1px 2px #000;
 }
 
 .randcolour {
