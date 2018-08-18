@@ -28,10 +28,14 @@ function perspectiveBg() {
         //document.getElementById("debugthing").innerHTML = "X: " + pageX + ", Y: " + pageY;
 
         // Move bg
-        $('.imageContainer').css("background-position", newvalueX + "px     " + (newvalueY + 37) + "px");
+        var str = newvalueX + "px     " + (newvalueY + 37) + "px";
+        $('.imageContainer').css("background-position", str);
+        $('.imageContainerDl').css("background-position", str);
 
         // Move nav-bar img (the offsets are pretty approximate)
-        $('#banner').css("background-position", (newvalueX - 20) + "px     " + (newvalueY - 57) + "px");
+        var str2 = (newvalueX - 20) + "px     " + (newvalueY - 57) + "px";
+        $('#banner').css("background-position", str2);
+        $('#bannerDl').css("background-position", str2);
     });
 }
 

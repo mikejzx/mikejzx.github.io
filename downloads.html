@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html>
+
+<head runat="server">
+    <!-- Main JavaScript's -->
+    <script type="text/javascript" src="JavaScript/lib/jquery-1.3.2.min.js"></script>
+	<script type="text/javascript" src="JavaScript/lib/html-importer.js"></script>
+    <script type="text/javascript" src="JavaScript/mainstuff.js"></script>
+    <script type="text/javascript" src="JavaScript/miscstuff.js"></script>
+
+    <!-- CSS Style-sheets -->
+    <link rel="stylesheet" type="text/css" href="Styles/StyleSheet.css" />
+    <link rel="stylesheet" type="text/css" href="Styles/StyleSheetContent.css" />
+    <link rel="stylesheet" type="text/css" href="Styles/StyleSheetMisc.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="Images/favicon.ico" />
+
+    <title>Michael's Website - Downloads</title>
+
+    <!-- Analytical Scripts -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112479025-2"></script>
+    <script type="text/javascript" src="JavaScript/analytics.js"></script>
+</head>
+
+<body>
+    <form id="form1" runat="server">
+        <!-- BACKGROUND -->
+        <div class="imageContainerDl"></div>
+
+        <!-- CONTENT -->
+        <div class="content">
+
+            <!-- Banner -->
+            <div id="bannerDl">
+                <div id="bluroverlay"></div>
+                <!-- This navbar was imported with a JavaScript. -->
+                <script>HTMLImporter.import("Include/navbar.html");</script>
+            </div>
+
+            <!-- Pushes everything down 60px -->
+            <div id="contentoffset"></div>
+
+            <div id="titletext">Downloads</div>
+            <div id="titletext2">Cool stuff here</div>
+
+            <!-- Top content area thing -->
+            <div id="content_area" style="margin: 20px auto 0 auto;">
+                <div class="subheadertext">
+                    Downloads for my Programs
+                </div>
+                <hr>
+                <p>
+                    <span style="color: yellow;">Tools++</span>:<br>
+                    One of the larger projects of mine,
+                    this program shows a nice little RAM graph on your taskbar. The options should be pretty self-explanatory.
+                    If a setting is un-clear to you, just send me an e-mail about it and I'll try to explain it to you.<br>
+                    There are many colours to choose from, though due to the small size of the icon, it's best to choose highly-contrasting colours.
+                    <br>
+                    Note: The 'Show CPU load' option does not save when the program is closed, as it is experimental, and not intended to actually be used.
+                    <br><br>
+                    <a href="Downloadables/ToolsPP_v1.7.3.zip" id="hyperlink" target="_blank">Click To Download Tools++ v1.7.3</a>
+                    <br>
+                    Preview images:
+                    <br>
+                    <img src="Images/Display/toolspp_ui.png" width="323" height="208">
+                    <img src="Images/Display/toolspp_ico.png" width="64" height="64">
+
+                    <br>Left image: The UI of Tools++.
+                    <br>Right Image: An example of an icon that can be shown on the taskbar.
+                </p>
+            </div>
+
+            <!-- Pushes everything up by a few px (Only needed when bgColourBottom doesn't exist) -->
+            <div id="contentoffsetbottom"></div>
+            <div id="contentoffsetbottom"></div>
+            <div id="contentoffsetbottom"></div>
+            <div id="footer"><a>Written from scratch in HTML and CSS.</a>
+                <a class="randcolour" style="margin-right: 20px; float: right; text-align: center;" href="https://mikejzx.github.io">~Developed By Michael S</a>
+            </div>
+
+            <!--Colour for things: #011520-->
+        </div>
+    </form>
+</body>
+</html>

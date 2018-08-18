@@ -17,6 +17,20 @@
     margin-top: 60px;
 }
 
+
+.imageContainerDl {
+    background-image: url("../Images/bg_code.jpg");
+    z-index: 5;
+    position: fixed;
+    background-position: 0 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    margin-left: -10px;
+    margin-top: 60px;
+}
+
 .bgColourCover {
     position: fixed;
     width: 100%;
@@ -69,6 +83,21 @@ html {
     background-position-y: bottom;
     background-position-x: center;
     */
+}
+
+#bannerDl {
+    height: 60px;
+    width: 100%;
+    background-image: url("../Images/bg_code_top.jpg");
+    background-color: white;
+    background-size: 110% 300%;
+    position: fixed;
+    margin-left: -10px;
+    top: 0%;
+
+    box-shadow: 0 5px 5px rgba(17, 17, 17, 0.7);
+
+    background-position: -100px -100px;
 }
 
 #bluroverlay {
@@ -197,7 +226,7 @@ li:hover > #buttonhover {
     position: relative;
 }
 
-#nav a:hover {
+#nav li:hover > a {
     transition: color 0.25s, background-size 0.1s ease-out, text-shadow 0.3s;
     color: #fff;
     background-size: 100% 0.05em;
@@ -261,6 +290,11 @@ li:hover > #buttonhover {
     display: block;
     margin-top: -5px;
     z-index: 14;
+
+    margin-left: -10px;
+    padding-left: 10px; 
+    margin-right: -10px;
+    padding-right: 10px; 
 }
 
 #navl li a img {
@@ -305,7 +339,7 @@ li:hover > #buttonhover {
     width: 50px;
 }
 
-#navlimg:hover {
+#navl li:hover > a #navlimg {
     -webkit-transition: -webkit-filter 0.3s, opacity 0.2s ease-out;
     -webkit-filter: grayscale(0%) drop-shadow(2px 2px 1px #0009);
     opacity: 1;
