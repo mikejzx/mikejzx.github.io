@@ -5,7 +5,7 @@
 }
 
 .imageContainer {
-    background-image: url("../Images/bg_nurburgring_bottom.jpg");
+    background-image: url("../Images/bg_nurburgring_bottom.jpg"); 
     z-index: 5;
     position: fixed;
     background-position: 0 0;
@@ -146,6 +146,7 @@ li {
     background-color: transparent; /*rgba(16, 30, 26, 0.05);*/
     /*box-shadow: -1px -1px 2px rgba(0, 0, 0, 0.2), 1px 1px 2px rgba(0, 0, 0, 0.2);*/
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8), -1px -1px 2px rgba(255, 255, 255, 0.2), 1px 1px 6px rgba(0, 0, 0, 0.3);
+    z-index: 11;
 
     /*background-image: url("../Images/Skeuo/button_normal.png");
     background-position: center;
@@ -155,9 +156,11 @@ li {
 li:hover {
     transition: background-color 0.2s ease-out, box-shadow 0.2s ease-out;
     
-    background-color: #101E1A; /* Fallback */
+    background-color: #101E1A; /* Fallback */ 
     background-color: rgba(68, 77, 76, 0.5); /* rgba(16, 30, 26, 0.28); */
-    box-shadow: -1px -1px 2px rgba(0, 0, 0, 0.5), 1px 1px 2px rgba(255, 255, 255, 0.2);
+    /*box-shadow: -1px -1px 2px rgba(0, 0, 0, 0.5), 1px 1px 2px rgba(255, 255, 255, 0.2);*/
+    box-shadow: 0 0 6px 1px #ff04;
+    z-index: 13;
 }
 
 li:hover > #buttonnormal {
@@ -353,8 +356,9 @@ li:hover > #buttonhover {
 /* Tooltip text */
 .tooltip .tooltiptext {
     width: 120px;
-    background-color: #303030;
-    color: #fff;
+    /*background-color: #303030;*/
+    background-image: linear-gradient(40deg, #212323 0%, #353737 100%);
+    color: #ccc;
     text-align: center;
     padding: 7px 5px;
     border-radius: 12px;
