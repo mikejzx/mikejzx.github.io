@@ -1,0 +1,16 @@
+
+#content-area {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 5vh;
+    bottom: 0;
+}
+
+.content-box {
+    display: block;
+    padding: 1vw;
+    height: fit-content;
+    width: auto;
+    background-color: #111;
+}

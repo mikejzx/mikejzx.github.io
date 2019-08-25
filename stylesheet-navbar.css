@@ -1,0 +1,14 @@
+
+/*
+    All styles related to the navbar are
+    in this file.
+*/
+
+header {
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 5vh;
+
+    background-color: #101010;
+}
