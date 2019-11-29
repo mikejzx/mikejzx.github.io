@@ -12,8 +12,4 @@
     padding: 1vw 5vw 1vw 5vw; /* TRBL */
     height: fit-content;
     width: auto;
-    background-color: #000;
-
-    z-index: 50;
-    box-shadow: 0 -5px 10px #000;
 }

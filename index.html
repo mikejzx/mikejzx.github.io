@@ -1,11 +1,92 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>mikejzx's Webpage</title>
-    </head>
-    <body>
-        <h1>This site is currently under re-construction</h1>
-        <p>More information at <a href="https://github.com/mikejzx/mikejzx.github.io" target="_blank">https://github.com/mikejzx/mikejzx.github.io</a></p>
-        <p>Apologies for the inconvienience.</p>
-    </body>
+	<head>
+		<!-- Metadata -->
+		<meta charset="UTF-8">
+		<meta name="description" content="Michael\'s website.">
+		<meta name="keywords" content="mikejzx, mikejzx\'s, website, webpage">
+		<meta name="author" content="mikejzx">
+		<title>mikejzx's Webpage</title>
+
+		<!-- Stylesheets -->
+		<link rel="stylesheet" type="text/css" href="./stylesheet-main.css"/>
+		<link rel="stylesheet" type="text/css" href="./stylesheet-content.css"/>
+	</head>
+
+	<body>
+		<!-- Content area -->
+		<div id="content-area">
+			<!-- Header text -->
+			<h1>mikejzx's Webpage</h1>
+			<h2 style="color: #0ff;">The Home of Legends</h2>
+
+			<!-- Main content -->
+			<div class="content-box">
+				<p>Greetings.</p>
+				<p>My name is Michael - though online I usually use the alias 'mikejzx'.</p>
+				<p>
+					You've found my webpage, which contains nothing but the most arbitrary content on the web. 
+					If you've come here looking for something other than contact information, you've come to the wrong place. 
+				</p>
+				<p>
+					<b>Contact me:</b><br>
+					<ul>
+						<li id="emaddr">E-mail: Type an at-sign, followed by "protonmail.ch". Prepend the word "ceks" <b>written in reverse</b>.</li>
+						<li><a href="./uploads/mikejzx.pub.asc" target="_blank">My public PGP key (Expires 01.01.2020 !)</a></li>
+						<li><a href="https://github.com/mikejzx" target="_blank">GitHub</a></li>
+						<li><a href="https://www.youtube.com/channel/UC1GxdcxqF1OpE3aV4sCCh3A" target="_blank">YouTube</a></li>
+					</ul>
+				</p>
+				<p>
+					<b>Protect your privacy online:</b><br>
+					<ul>
+						<li>Download <a href="https://www.mozilla.org/en-US/firefox/" target="_blank">Mozilla Firefox.</a> Watch this <a href="https://www.youtube.com/watch?v=tQhWdsFMc24" target="_blank">setup guide</a> too.</li>
+						<li>Use <a href="https://duckduckgo.com/">DuckDuckGo</a> - The search engine that doesn't track you.</li>
+						<li>Use <a href="https://protonmail.com/">ProtonMail</a> - The encrypted e-mail service based in Switzerland.</li>
+						<li>If you're tech-savvy enough, try out a Linux distribution.</li>
+					</ul>
+				</p>
+				<p>
+					<b>About me:</b><br>
+					I like computers (mainly programming), music, and cars. I despise Google, Microsoft, and Apple.<br>
+					Don't like Google either? Check out this channel: <a href="https://www.youtube.com/channel/UCjr2bPAyPV7t35MvcgT3W8Q" target="_blank">The Hated One</a>.<br>
+					C++ is probably my favourite programming language. <a href="http://lists-archives.com/git/629691-convert-builin-mailinfo-c-to-use-the-better-string-library.html" target="_blank">Even if Linus Torvalds thinks otherwise.</a><br>
+				</p>
+			</div>
+
+			<!-- Prevent e-mail scraper swine from getting my address. -->
+			<!-- If JS is enabled in the browser, the element with id "emaddr" will be removed, and a better link will be added. -->
+			<!-- https://stackoverflow.com/questions/41318987/hide-email-address-from-bots-keep-mailto -->
+			<script type="text/javascript">
+				/*
+				// Basic structure:
+				<li><a 
+					href="#"
+					data-addr="c2tlY0Bwcm90b25tYWlsLmNo"
+					data-subj="UmU6IA=="
+					data-bod="R3JlZXRpbmdzLg=="
+					onfocus="this.href='mailto:' + atob(this.dataset.addr) + '?subject=' + atob(this.dataset.subj) + '&body=' + atob(this.dataset.bod)"
+					onblur="this.href='#'"
+					>
+					Click for e-mail address
+					</a>
+				</li>
+				*/
+				(function() {
+					// Delete the e-mail address tag that is put in case JS is disabled in browser.
+					var emaddr = document.getElementById("emaddr");
+					var parent = emaddr.parentNode;
+					parent.removeChild(emaddr);
+
+					// Create the nicer tag.
+					var newem = document.createElement("li");
+					newem.innerHTML = "<a href=\"#\" data-addr=\"c2tlY0Bwcm90b25tYWlsLmNo\" " + 
+						"data-subj=\"UmU6IA==\" data-bod=\"R3JlZXRpbmdzLg==\" " + 
+						"onfocus=\"this.href='mailto:' + atob(this.dataset.addr) + '?subject=' + atob(this.dataset.subj) + '&body=' + atob(this.dataset.bod);\" " +
+						"onblur=\"this.href='#'\">Click for e-mail address.</a>";
+					parent.prepend(newem);
+				})();
+			</script>
+		<div>
+	</body>
 </html>
