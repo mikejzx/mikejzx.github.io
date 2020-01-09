@@ -1,15 +1,107 @@
 
+/* Content variables here. */
+html {
+    --offset-bg-img: -35vw;
+    --bg-img-size: 100vw;
+    --bg-img-top-hei: 15vw;
+}
+
 #content-area {
     position: absolute;
     left: 0;
     right: 0;
-    top: 5vh;
+    top: 0;
     bottom: 0;
 }
 
+/* Contain is stored in here */
 .content-box {
     display: block;
     padding: 1vw 5vw 1vw 5vw; /* TRBL */
     height: fit-content;
     width: auto;
+}
+
+/* Contains the top background image. */
+#content-top-bg {
+    display: block;
+    position: relative;
+    background-image: url("./img/img_1.JPG");
+    background-position: 50% var(--offset-bg-img);
+    background-size: var(--bg-img-size) var(--bg-img-size);
+    background-repeat: no-repeat;
+    width: 100%;
+    height: var(--bg-img-top-hei);
+    /*filter: brightness(105%) sepia(50%) grayscale(50%);*/
+}
+
+/* Contains the top background image. */
+#content-body-bg {
+    display: block;
+    position: relative;
+    background-image: linear-gradient(to bottom, transparent 50%, black 90%), url("./img/img_1_b.JPG");
+    background-position: 50% calc(var(--offset-bg-img) - var(--bg-img-top-hei));
+    background-size: var(--bg-img-size) var(--bg-img-size);
+    background-repeat: no-repeat;
+    background-color: rgb(170, 205, 210);
+    background-blend-mode: multiply;
+    width: 100%;
+    height: calc(var(--bg-img-size) + var(--offset-bg-img) - var(--bg-img-top-hei));
+    /*filter: brightness(105%) sepia(50%) grayscale(50%);*/
+
+    /* Put a drop shadow and border on it for slick effect. */
+    box-shadow: 0 -1px 8px rgba(0, 0, 0, 0.8);
+    border-top: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Contains the bottom background image. This is mirrored on Y */
+/* Only enable this if we need more content on the page. */
+/*#content-foot-bg {
+    display: block;
+    position: relative;
+    background-image: linear-gradient(to top, transparent 50%, black 100%), url("./img/img_0_b.JPG");
+    background-position: 50% calc(-20vw - 20vw);
+    background-size: 100vw 100vw;
+    background-repeat: no-repeat;
+    background-color: rgb(120, 195, 210);
+    background-blend-mode: multiply;
+    width: 100%;
+    height: calc(100vw - 20vw - 20vw);
+    transform: scaleY(-1);
+}*/
+
+/* For main header */
+#main-header {
+    position: absolute;
+    top: 0;
+    color: #fff;
+	text-shadow:
+		0.1vw 0 0  rgba(0, 0, 0, 0.2),
+		0 0.1vw 0  rgba(0, 0, 0, 0.2),
+		0 -0.1vw 0 rgba(0, 0, 0, 0.2),
+		-0.1vw 0 0 rgba(0, 0, 0, 0.2),
+		0.2vw 0.1vw 0.1vw rgba(0, 0, 0, 0.4);
+    margin-top: 0;
+    padding-top: 5vw;
+    width: 100%;
+    text-align: center;
+    font-size: 2.2vw;
+}
+
+/* For sub header */
+#main-subheader {
+    position: absolute;
+    top: 0;
+    color: #fff;
+	text-shadow:
+		0.1vw 0 0  rgba(0, 0, 0, 0.2),
+		0 0.1vw 0  rgba(0, 0, 0, 0.2),
+		0 -0.1vw 0 rgba(0, 0, 0, 0.2),
+		-0.1vw 0 0 rgba(0, 0, 0, 0.2),
+		0.2vw 0.1vw 0.1vw rgba(0, 0, 0, 0.4);
+    margin-top: 5vw;
+    padding-top: 5vw;
+    width: 100%;
+    text-align: center;
+    font-size: 1.5vw;
 }

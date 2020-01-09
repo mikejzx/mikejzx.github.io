@@ -1,31 +1,64 @@
 html {
-    background-color: #050507;
+    background-color: #000;
 }
 
 body {
     padding: 0;
     margin: 0;
     color: #fff;
-    font-family: monospace; /*Arial, Helvetica, sans-serif;*/
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 15px; /* 0.8vw; */
 }
 
-a {
-    color: #0af;
+/* Set the colour of hyper-links. */
+a { color: #8bd; }
+
+/* Text */
+p, li {
+	font-size: 0.8vw;
 }
 
-/* For main header */
-h1 {
-    margin-top: 0;
-    padding-top: 5vh;
-    text-align: center;
-    font-size: 25px; /* 2.2vw; */
+/* Panels */
+.panel {
+	font-size: 0.8vw;
+	position: static;
+	border-radius: 5px;
+	border: 2px solid rgba(255, 255, 255, 0.2);
+	box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5);
+	background: rgba(0, 0, 0, 0.2);
+	padding: 1vw;
 }
 
-/* For sub header */
-h2 {
-    margin-bottom: 0;
-    padding-bottom: 10vh;
-    text-align: center;
-    font-size: 18px; /* 1.2vw; */
+/* The left panel */
+#panel-left {
+	position: absolute;
+	left: 10vw;
+	width: 37vw;
+	margin: 32px 0 0 0;
+}
+
+/* The right panel */
+#panel-right {
+	position: absolute;
+	right: 10vw;
+	width: 37vw;
+	margin: 32px 0 0 0;
+}
+
+/* Panel headers */
+.panel > h1 {
+	font-size: 1.5vw;
+}
+
+/* Sticky bottom bar */
+#bottom-bar {
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+	height: 1vw;
+	background: #000;
+	font-size: 0.8vw;
+	padding: 0.2vw;
+	color: #0ff;
+	text-align: center;
 }
