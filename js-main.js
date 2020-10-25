@@ -3,12 +3,14 @@
 // https://stackoverflow.com/questions/3665115/how-to-create-a-file-in-memory-for-user-to-download-but-not-through-server
 function download_email(filename, content_base64)
 {
-	var el = document.createElement("a");
-	el.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent("My e-mail address:\n\n" + atob(content_base64) + "\n\n\nThis file is generated on the fly using JavaScript, to prevent bots from giving my e-mail address to spammers."));
-	el.setAttribute("target", "_blank");
-	
-	el.style.display = "none";
-	document.body.appendChild(el);
-	el.click();
-	document.body.removeChild(el);
+	/* New method */
+	var tab = window.open("about:blank", "_blank");
+	tab.document.write(
+		"<body style=\"font-family: monospace; font-size: 16px; background: #000; color: #fff\">" +
+		"<span>My e-mail address:</span><br><br>" +
+		"<a style=\"color: #0af;\" href=\"mailto:" + atob(content_base64) + "?subject=Hello!\">" + atob(content_base64) + "</a>" +
+		"<br><br><span style=\"color: #888;\">Generated using JavaScript to prevent web-scrapers getting my e-mail!</span>" +
+		"</body>"
+	);
+	tab.document.close();
 }

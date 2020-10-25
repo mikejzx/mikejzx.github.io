@@ -9,9 +9,8 @@
 		<title>Michael's Webpage</title>
 
 		<!-- Stylesheets -->
-		<link rel="stylesheet" type="text/css" href="./stylesheet-main.css"/>
-		<link rel="stylesheet" type="text/css" href="./stylesheet-content.css"/>
-	
+		<link rel="stylesheet" type="text/css" href="./css/stylesheet.css"/>
+
 		<!-- JavaScripts -->
 		<script type="text/javascript" src="./js-main.js"></script>
 	</head>
@@ -27,75 +26,21 @@
 			<h2 id="main-subheader">The home of legends</h2>
 
 			<!-- Body background. -->
-			<div id="content-body-bg">
-				<!-- Left panel, main info. -->
-				<div id="panel-left" class="panel">
-					<h1>Welcome</h1>
-					<p>
-						You seem to have found my webpage out here in the mess that we like to call, "the internet".<br>
-						Here, you will find nothing but the most arbitrary content on the web. If you've come here looking for
-						something other than contact information, you've likely come to the wrong place.
-					</p><br>
-					<h1>About me</h1>
-					<p>
-						My name is Michael, I am just another person who happens to inhabit the same planet as you.<br>
-						I enjoy using GNU/Linux and classic renditions of the Windows operating system, 
-						and programming in languages such as C++, C#, Java, C, and JavaScript.<br>
-						I also take an interest in music and cars.
-					</p>
-					<p>
-						Programs I use:
-						<ul>
-							<li>Vim (gVim on Windows isn't too bad too.)</li>
-							<li>Mutt (With isync for offline mail storage, <a href="https://github.com/emersion/hydroxide" target="_blank">hydroxide</a> for ProtonMail integration, and notmuch for indexing.)</li>
-							<li>Newsboat</li>
-							<li>KeePassXC</li>
-							<li>Calcurse</li>
-							<li>VLC Media Player, of course</li>
-							<li>Paint.NET for basic image editing on Windows, GIMP on Linux.</li>
-						</ul>
-						Games I recommend:
-						<ul>
-							<li>Gran Turismo 3: A Spec</li>
-							<li>Gran Turismo 5</li>
-							<li>Grand Theft Auto: Vice City</li>
-							<li>Rise of the Tomb Raider (SOTTR isn't too bad, but quite short.)</li>
-							<li>Hacknet</li>
-							<li><a href="https://tagap.net" target="_blank">TAGAP</a> (a lesser-known, underrated game. The first two were great, and free!)</li>
-						</ul>
-						And here are some services I recommend using:
-						<ul>
-							<li><a href="https://duckduckgo.com" target="_blank">DuckDuckGo</a> for surfing the web.</li>
-							<li><a href="https://app.protonmail.ch" target="_blank">ProtonMail</a> for e-mail.</li>
-							<li><a href="https://matrix.org" target="_blank">Matrix</a> for instant-messaging. (The <a href="https://riot.im" target="_blank">Riot</a> client is great as it allows end-to-end encryption.)</li>
-							<li>uBlock Origin for Firefox. <a href="https://www.youtube.com/watch?v=2lisQQmWQkY" target="_blank">Click here for setup help.</a></li>
-						</ul>
-					</p>
-					<p>
-						Thanks for stopping by!
-					</p>
-				</div>
+			<div class="content-box">
+				<h3>Welcome</h3>
+				<p>
+					You've found my webpage out here in the World Wide Web. All you will really find here is my contact information.
+				</p>
 
-				<!-- Right panel, contact stuff. -->
-				<div id="panel-right" class="panel">
-					<h1>Links</h1>
-					<ul>
-						<li id="emaddr"><a>E-mail: Type an at-sign, followed by "protonmail", a dot, then "ch". Prepend the word "ceks" <b>written in reverse.</b></a></li>
-						<li><a href="https://github.com/mikejzx" target="_blank">GitHub</a></li>
-						<li><a href="./uploads/pub.mike.asc" target="_blank">Public GPG key</a></li>
-						<li><a href="https://www.youtube.com/channel/UC1GxdcxqF1OpE3aV4sCCh3A" target="_blank">YouTube</a></li>
-						<li><a href="https://keybase.io/skec" target="_blank">Keybase</a></li>
-					</ul>
-					<p>
-						I am not an advocate of social media, so you will not find me on Facebook, Instagram, etc.
-					</p>
-				</div>
+				<h3>Links</h3>
+				<ul>
+					<li id="emaddr"><a>E-mail: Type an at-sign, followed by "protonmail", a dot, then "ch". Prepend the word "ceks" <b>written in reverse.</b></a></li>
+					<li><a href="https://github.com/mikejzx" target="_blank">GitHub</a></li>
+					<li><a href="https://gitlab.com/mjs1" target="_blank">GitLab</a> (unused as of writing this)</li>
+					<li><a href="./uploads/pub.mike.asc" target="_blank">Public GPG encryption key</a></li>
+					<li><a href="https://www.youtube.com/channel/UC1GxdcxqF1OpE3aV4sCCh3A" target="_blank">YouTube</a></li>
+				</ul>
 			</div>
-			<!-- Bottom background. -->
-			<div id="content-foot-bg"></div>
-
-			<!-- Import bottom bar from include files: -->
-			<script type="text/javascript" src="./include/include-bottombar.js"></script>
 
 			<!-- Prevent e-mail scraper swine from getting my address. -->
 			<!-- If JS is enabled in the browser, the element with id "emaddr" will be removed, and a better link will be added. -->
@@ -109,9 +54,8 @@
 
 					// Create the nicer tag.
 					var newem = document.createElement("li");
-					newem.innerHTML = "<a href=\"#\" data-addr=\"c2tlY0Bwcm90b25tYWlsLmNo\" " + 
-						"data-subj=\"UmU6IA==\" data-bod=\"R3JlZXRpbmdzLg==\" " + 
-						"onfocus=\"this.href='mailto:' + atob(this.dataset.addr) + '?subject=' + atob(this.dataset.subj) + '&body=' + atob(this.dataset.bod);\" " +
+					newem.innerHTML = "<a href=\"#\" data-addr=\"c2tlY0Bwcm90b25tYWlsLmNo\" " +
+						"data-subj=\"UmU6IA==\" data-bod=\"R3JlZXRpbmdzLg==\" " +
 						"onblur=\"this.href='#'\" onclick=\"download_email('my_e-mail.txt', this.dataset.addr);\">Click for e-mail address.</a>";
 					parent.prepend(newem);
 				})();
