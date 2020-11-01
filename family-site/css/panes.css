@@ -1,0 +1,62 @@
+/*
+ * Styles used for paning. This is notably used
+ * on the Gallery page.
+ */
+
+.pane-container {
+	display: flex;
+	top: 0; left: 0; right: 0; bottom: 0;
+	justify-content: center;
+}
+
+/* A minimal pane */
+.pane {
+	width: 100%;
+	padding: 20px;
+}
+.pane > img { width: 100%; }
+.pane > h4 { margin: 16px 0; }
+
+/* An inner pane. This has a glossy display */
+.pane-inner {
+	color: #fff;
+	text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+	text-align: justify;
+	width: 100%;
+	height: 100%;
+	border-radius: 6px;
+	background: rgba(0, 0, 0, 0.3);
+	border: var(--navbar-border);
+	backdrop-filter: blur(5px);
+	padding: 16px;
+	box-shadow: var(--navbar-shadow);
+}
+.pane-inner > p {
+	margin-top: 4px;
+}
+
+/* An image placed in a pane */
+.pane-img {
+	border-radius: 4px;
+	margin: 8px 0 0 0;
+	width: calc(100%);
+}
+
+/* Main pane header. We just chuck it in a box and align it to the top */
+.pane-header {
+	display: flex;
+	justify-content: center;
+	vertical-align: middle;
+	top: 0;
+	width: 100%;
+	text-align: center;
+	/* background-color: rgba(32, 32, 32, 0.5); */
+	margin: 0;
+	height: 64px;
+	border-radius: 4px;
+}
+.pane-header > h2 {
+	margin: auto;
+	font-size: 32px;
+	font-weight: normal;
+}

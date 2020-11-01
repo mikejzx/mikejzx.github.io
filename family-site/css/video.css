@@ -1,0 +1,59 @@
+/*
+ * Styles for video page.
+ */
+
+/* Video list */
+.video-list {
+	width: 100%;
+}
+
+/* Video list item */
+.video-item {
+	display: flex;
+	vertical-align: middle;
+	justify-content: flex-start;
+	width: 100%;
+	text-decoration: none;
+	color: #fff;
+	padding: 16px;
+	height: 100px;
+}
+
+/* Video thumbnail */
+.video-thumb {
+	width: 150px;
+	height: 100px;
+}
+.video-thumb > img {
+	width: 100%;
+	border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+/* Video info container */
+.video-info {
+	width: 100%;
+	padding: 16px;
+}
+
+/* Video title */
+.video-title {
+	position: absolute;
+	color: #fff;
+	height: 32px;
+}
+
+/* Video description */
+.video-desc {
+	position: absolute;
+	color: #aaa;
+	margin-top: 32px;
+	font-size: 16px;
+}
+
+/* Change background on hover */
+.video-item:hover {
+	background: rgba(0, 0, 0, 0.1);
+}
+.video-item:hover > .video-info > .video-title {
+	color: var(--navbar-btn-color-hover);
+}
