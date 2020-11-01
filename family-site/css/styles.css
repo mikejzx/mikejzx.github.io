@@ -11,9 +11,8 @@ body {
 	font-family: "Open Sans", sans-serif;
 	font-weight: lighter;
 }
-a {
-	color: #f1a;
-}
+a { color: #f1a; }
+a:focus { outline: none; }
 
 /* Main text content goes here. */
 #main-cont {
