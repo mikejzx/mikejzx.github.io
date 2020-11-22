@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+<atom:link href="https://mikejzx.github.io/rss.xml" rel="self" type="application/rss+xml" />
+<title>Mikes's Blog</title>
+<description>RSS feed for Michael's blog!</description>
+<link>https://mikejzx.github.io/</link>
+<lastBuildDate>Sun, 22 Nov 2020 20:09:59 +1100</lastBuildDate>
+
+<item>
+<guid>https://mikejzx.github.io/blog/2020/new-site-and-blog.html</guid>
+<link>https://mikejzx.github.io/blog/2020/new-site-and-blog.html</link>
+<pubDate>Sat, 21 Nov 2020 19:36:47 +1100</pubDate>
+<title>New Site and Blog!</title>
+<description><![CDATA[
+
+<h1 id="New%20Site%20and%20Blog!">New Site and Blog!</h1>
+
+
+<p>Welcome to my new site!</p>
+
+<p>So these past few days I have been working on re-writing this site from the ground up, and getting a blog component implemented. I was totally inspired to do so after seeing a <a href="https://www.youtube.com/watch?v=N_ttw2Dihn8">video posted on YouTube by Wolfgang,</a> and after coming across <a href="https://tarunbatra.com/blog/x/git-before-github/">this awesome article</a> by accident. (The subject of the article is irrelevant, I just liked the way he laid out his site). I figured I&#39;d try make my own &#8220;blog&#8221;, even though I know that literally like nobody would be reading it. I just thought it be a bit entertaining.</p>
+
+<p>Thanks to Roman Zolotarev for his <a href="https://www.romanzolotarev.com/ssg.html">script</a>, which is the subject of the video I linked above. Without his work, we&#39;d all be stuck using bloated static site generators like Hexo.</p>
+
+<p>Anyway, that&#39;s all really. Don&#39;t expect me to post here very often - I have some ideas for what to do, but not sure when I&#39;ll get round to posting them.</p>
+
+]]></description>
+</item>
+</channel></rss>

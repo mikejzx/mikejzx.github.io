@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Metadata -->
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<meta name="description" content="Michael Skec's Personal Webpage"/>
+	<meta name="keywords" content="mikejzx, skec, michael, mike, blog, site"/>
+	<meta name="author" content="Michael Skec"/>
+
+	<!-- Main stuff -->
+	<title>Mike's Webpage</title>
+	<link rel="stylesheet" href="css/styles.css" type="text/css"/>
+	<link rel="stylesheet" href="../../css/styles.css" type="text/css"/>
+
+	<!-- RSS -->
+	<link rel="alternate" type="application/atom+xml" href="/rss.xml"/>
+</head>
+
+<body>
+
+<!-- Minimal navbar -->
+<header>
+	<a href="index.html">Home</a>
+	<a href="blogindex.html">Blog</a>
+	<a href="https://mikejzx.github.io/rss.xml">Subscribe</a>
+</header>
+
+<!-- Actual article content is inserted here by SSG5. -->
+<article>
+<h1 style="text-align: center; font-size: 30px; margin-bottom: 0;">Michael Skec's Webpage</h1>
+<h2 style="text-align: center; font-size: 16px;">The home of legends</h2>
+
+<p>Well, lucky you &mdash; you've found my humble webpage out here in the World Wide Web. All you will really find here is a bit of contact information (see near bottom of page), and a &ldquo;blog&rdquo; which I may occasionally post to.</p>
+
+<p>The blog section of this site runs on a modified version of <a href="https://www.romanzolotarev.com/ssg.html" target="_blank">Roman Zolotarev's epic script</a>. Big thanks to him for writing that. I'm hosting the actual site using GitHub Pages currently, since of course it's free, and I don't need any server-side code. (<a href="https://github.com/mikejzx/mikejzx.github.io" target="_blank">Site repository</a>)</p>
+
+<p>There is a small amount of (optional) JavaScript that runs on this specific page; its sole purpose is to make getting my e-mail address easier for humans, and more difficult for robots. If you choose to disable JavaScript you will see the address in a slightly less-readable form.</p>
+
+<p>Nevertheless, thanks for stopping by!</p>
+
+<h1>Contact & Links</h1>
+<ul>
+	<li><a id="ema" style="color: var(--col-fg);">E-mail: "skec", followed by an at-sign, then "protonmail" dot "ch"</a></li>
+	<li><a href="https://github.com/mikejzx" target="_blank">GitHub</a></li>
+	<li><a href="https://gitlab.com/mjs1" target="_blank">GitLab</a> (unused as of writing this)</li>
+	<li><a href="./files/pub.mike.asc" target="_blank">My public GPG encryption key</a></li>
+	<li><a href="https://mikejzx.github.io/rss.xml" target="_blank">RSS feed to my blog</a></li>
+	<li><a href="https://www.youtube.com/channel/UC1GxdcxqF1OpE3aV4sCCh3A" target="_blank">YouTube</a></li>
+</ul>
+
+<!-- Extra style for address link. -->
+<style type="text/css">
+#ema { text-decoration: underline }
+#ema a:hover { cursor: pointer }
+#ema:focus { outline: none }
+</style>
+
+<!-- A little bit of JavaScript... -->
+<script type="text/javascript">
+	// Updates e-mail address link if we have JS enabled.
+	(function() {
+		var ema = document.getElementById("ema");
+		var parent = ema.parentNode;
+		parent.removeChild(ema);
+
+		// Create the nicer tag. Yes, I know it's a mess...
+		var newem = document.createElement("li");
+		newem.innerHTML = "<div id=\"ema\"><a data-addr=\"c2tlY0Bwcm90b25tYWlsLmNo\" " +
+			"onclick=\"download_email(this.dataset.addr);\">Click to view e-mail address.</a></div>";
+		parent.prepend(newem);
+	})();
+
+	// Creates a file on the fly, containing e-mail address.
+	function download_email(content_base64)
+	{
+		var ema = document.getElementById("ema");
+		var addr = atob(content_base64);
+		ema.innerHTML = "<a href=\"mailto:" + addr + "\">" + addr + "</a>";
+	}
+
+</script>
+
+<h1>Recent Posts</h1>
+
+<ul class="articles"><li><span class="articlelist-entry-date">2020-11-21</span> <a href="blog/2020/new-site-and-blog.html" >New Site and Blog!</a></li><li><a href="blogindex.html">See all posts...</a></li></ul></article>
+
+<footer>
+</footer>
+
+</body>
+</html>

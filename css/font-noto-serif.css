@@ -1,0 +1,35 @@
+/*
+ * Noto Serif font stylesheet.
+ */
+
+/* Regular */
+@font-face {
+	font-family: "Noto Serif";
+	src: url(../fonts/NotoSerif-Regular.woff2);
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Italic */
+@font-face {
+	font-family: "Noto Serif";
+	src: url(../fonts/NotoSerif-Italic.woff2);
+	font-weight: normal;
+	font-style: italic;
+}
+
+/* Bold */
+@font-face {
+	font-family: "Noto Serif";
+	src: url(../fonts/NotoSerif-Bold.woff2);
+	font-weight: bold;
+	font-style: normal;
+}
+
+/* Bold Italic */
+@font-face {
+	font-family: "Noto Serif";
+	src: url(../fonts/NotoSerif-BoldItalic.woff2);
+	font-weight: bold;
+	font-style: italic;
+}
