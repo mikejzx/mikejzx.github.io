@@ -1,8 +1,6 @@
 /*
  * Main stylesheet for most of the site.
  */
-@import url(./font-noto-serif.css);
-@import url(./font-fira-code.css);
 
 * {
 	/* Blue colour scheme */
@@ -14,18 +12,6 @@
 	--col-link-hover: #48f;
 	--col-code-bg: #000000;
 	--col-code-fg: #bbb;
-
-	/* Old green colour scheme */
-	/*
-	--col-bg: #0c0c0c;
-	--col-fg: #eee;
-	--col-heading: #4f4;
-	--col-date: #080;
-	--col-link: #0a0;
-	--col-link-hover: #4f4;
-	--col-code-bg: #000;
-	--col-code-fg: #bbb;
-	*/
 }
 
 html {
