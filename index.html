@@ -52,7 +52,7 @@
 <!-- Extra style for address link. -->
 <style type="text/css">
 #ema { text-decoration: underline; color: var(--col-link) }
-#ema:hover { cursor: pointer }
+#ema:hover { cursor: pointer; color: var(--col-link-hover) }
 #ema:focus { outline: none }
 </style>
 
@@ -73,7 +73,6 @@
 		var addr = atob(content_base64);
 		ema.parentNode.innerHTML = "<a href=\"mailto:" + addr + "\">" + addr + "</a>";
 	}
-
 </script>
 
 <h1>Recent Posts</h1>
