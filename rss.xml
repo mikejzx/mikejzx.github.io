@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
 <atom:link href="https://mikejzx.github.io/rss.xml" rel="self" type="application/rss+xml" />
-<title>Mikes's Blog</title>
+<title>Mike Skec's Blog</title>
 <description>RSS feed for Michael's blog!</description>
 <link>https://mikejzx.github.io/</link>
-<lastBuildDate>Sun, 22 Nov 2020 20:09:59 +1100</lastBuildDate>
+<lastBuildDate>Sun, 29 Nov 2020 09:13:08 +1100</lastBuildDate>
 
 <item>
 <guid>https://mikejzx.github.io/blog/2020/new-site-and-blog.html</guid>
