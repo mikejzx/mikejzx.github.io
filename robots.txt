@@ -1,2 +1,0 @@
-user-agent: *
-sitemap: https://mikejzx.github.io/sitemap.xml
