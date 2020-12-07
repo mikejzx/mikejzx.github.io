@@ -48,7 +48,8 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
 	color: var(--col-heading);
-	font-family: "Noto Serif", serif;
+	/*font-family: "Noto Serif", serif;*/
+	font-family: serif;
 }
 
 img {
@@ -65,9 +66,14 @@ article {
 	min-height: 100%;
 	padding: 0 2rem;
 	padding-bottom: 8rem;
-	text-align: justify;
 	line-height: 1.725;
 	overflow-wrap: break-word;
+
+	text-align: justify;
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	-ms-hyphens: auto;
+	hyphens: auto;
 }
 
 article .date {
@@ -77,6 +83,12 @@ article .date {
 .articlelist-entry-date {
 	color: #888;
 	padding-right: 10px;
+}
+
+@media (max-width: 500px) {
+	article {
+		padding: 0.75rem !important;
+	}
 }
 
 /* Navbar */
@@ -103,7 +115,7 @@ pre {
 pre, code {
 	background-color: var(--col-code-bg) !important;
 	color: var(--col-code-fg);
-	font-family: "Fira Code", monospace;
+	font-family: monospace;
 	font-size: 14px;
 	line-height: 1.4;
 }
