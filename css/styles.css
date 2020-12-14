@@ -14,12 +14,17 @@
 	--col-link-hover: #72d0e5;
 	--col-code-bg: #000000;
 	--col-code-fg: #bbb;
+	--col-break: #0f383f;
 }
 
 html {
 	/* Main styles */
 	background-color: var(--col-bg);
 	color: var(--col-fg);
+}
+
+p {
+	padding: 6px 0;
 }
 
 a { color: var(--col-link) }
@@ -44,8 +49,12 @@ img {
 	max-width: 100%;
 }
 
+hr {
+	border: 1px solid var(--col-break);
+}
+
 /* Article content */
-article, header {
+article, header, footer, hr {
 	position: relative;
 	max-width: 48rem;
 	margin: 0 auto 0 auto;
@@ -53,7 +62,7 @@ article, header {
 article {
 	min-height: 100%;
 	padding: 0 2rem;
-	padding-bottom: 8rem;
+	padding-bottom: 24px;
 	line-height: 1.725;
 	overflow-wrap: break-word;
 
@@ -109,4 +118,46 @@ pre, code {
 }
 p code {
 	padding: 4px 6px;
+}
+
+/* Footer */
+footer {
+	text-align: center;
+}
+#footer-blog {
+	padding-top: 24px;
+	padding-bottom: 12rem;
+}
+#footer-blog a {
+	padding: 0 20px;
+	text-decoration: none;
+}
+
+/*
+ * Arrows
+ * https://www.w3schools.com/howto/howto_css_arrows.asp
+ */
+.arrow {
+	border: solid var(--col-fg);
+	border-width: 0 3px 3px 0;
+	display: inline-block;
+	padding: 3px;
+}
+a .arrow { border-color: var(--col-link) !important }
+a:hover .arrow { border-color: var(--col-link-hover) !important }
+.right {
+	transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+}
+.left {
+	transform: rotate(135deg);
+	-webkit-transform: rotate(135deg);
+}
+.up {
+	transform: rotate(-135deg);
+	-webkit-transform: rotate(-135deg);
+}
+.down {
+	transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
 }
