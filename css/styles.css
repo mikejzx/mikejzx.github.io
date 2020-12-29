@@ -134,32 +134,3 @@ footer {
 	padding: 0 20px;
 	text-decoration: none;
 }
-
-/*
- * Arrows
- * https://www.w3schools.com/howto/howto_css_arrows.asp
- */
-.arrow {
-	border: solid var(--col-fg);
-	border-width: 0 3px 3px 0;
-	display: inline-block;
-	padding: 3px;
-}
-a .arrow { border-color: var(--col-link) !important }
-a:hover .arrow { border-color: var(--col-link-hover) !important }
-.right {
-	transform: rotate(-45deg);
-	-webkit-transform: rotate(-45deg);
-}
-.left {
-	transform: rotate(135deg);
-	-webkit-transform: rotate(135deg);
-}
-.up {
-	transform: rotate(-135deg);
-	-webkit-transform: rotate(-135deg);
-}
-.down {
-	transform: rotate(45deg);
-	-webkit-transform: rotate(45deg);
-}
