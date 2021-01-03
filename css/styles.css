@@ -1,12 +1,6 @@
-/*
- * Main stylesheet for most of the site.
- */
-/* @import url(./font-noto-serif.css); */
-/* @import url(./font-fira-code.css); */
-
 * {
 	/* Sea-like colour scheme */
-	--col-bg: #0b292e;
+	--col-bg: #092428;
 	--col-fg: #ddffff;
 	--col-heading: #47b8e5;
 	--col-date: #8aa;
@@ -18,22 +12,16 @@
 }
 
 html {
-	/* Main styles */
 	background-color: var(--col-bg);
 	color: var(--col-fg);
 }
 
-p {
-	padding: 6px 0;
-}
-
+p { padding: 6px 0 }
 a { color: var(--col-link) }
 a:hover { color: var(--col-link-hover) }
 
 body {
-	/* font-family: "Noto Serif", serif; */
 	font-family: sans-serif;
-	/* font-family: monospace; */
 	font-size: 16px;
 	text-rendering: geometricPrecision;
 	-webkit-font-smoothing: antialiased;
@@ -41,17 +29,11 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
 	color: var(--col-heading);
-	/*font-family: "Noto Serif", serif;*/
 	font-family: serif;
 }
 
-img {
-	max-width: 100%;
-}
-
-hr {
-	border: 1px solid var(--col-break);
-}
+img { max-width: 100% }
+hr { border: 1px solid var(--col-break) }
 
 .articles { padding-bottom: 8rem }
 
@@ -85,9 +67,7 @@ article .date {
 }
 
 @media (max-width: 500px) {
-	article {
-		padding: 0.75rem !important;
-	}
+	article { padding: 0.75rem !important }
 }
 
 /* Navbar */
@@ -118,14 +98,10 @@ pre, code {
 	font-size: 14px;
 	line-height: 1.4;
 }
-p code {
-	padding: 4px 6px;
-}
+p code { padding: 4px 6px }
 
 /* Footer */
-footer {
-	text-align: center;
-}
+footer { text-align: center }
 #footer-blog {
 	padding-top: 24px;
 	padding-bottom: 12rem;
@@ -133,4 +109,9 @@ footer {
 #footer-blog a {
 	padding: 0 20px;
 	text-decoration: none;
+}
+#footer-alt { padding: 24px }
+#footer-alt-label {
+	font-size: 14px;
+	color: var(--col-date);
 }
