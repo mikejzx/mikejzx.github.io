@@ -5,7 +5,32 @@
 <title>Mike Skec's Blog</title>
 <description>RSS feed for Michael's blog!</description>
 <link>https://mikejzx.github.io/</link>
-<lastBuildDate>Mon, 14 Dec 2020 14:27:50 +1100</lastBuildDate>
+<lastBuildDate>Tue, 05 Jan 2021 16:12:13 +1100</lastBuildDate>
+
+<item>
+<guid>https://mikejzx.github.io/blog/2021/now-on-gemini.html</guid>
+<link>https://mikejzx.github.io/blog/2021/now-on-gemini.html</link>
+<pubDate>Tue, 05 Jan 2021 15:12:16 +1100</pubDate>
+<title>Now on Gemini!</title>
+<description><![CDATA[
+
+<h1 id="Now%20on%20Gemini!">Now on Gemini!</h1>
+
+
+<p>Just thought I&#39;d announce that my content is now accessible in geminispace!</p>
+
+<p>Check it out: <a href="gemini://tilde.pink/%7Emike">gemini:&#47;&#47;tilde.pink&#47;~mike</a></p>
+
+<p>I&#39;ve been playing around a bit recently with Gemini, and have been contributing a whole lot to a Gemini browser project called <a href="https://github.com/MasterQ32/kristall.git">Kristall</a>. I&#39;ve come to actually really like the protocol, and I&#39;m surprised at how many people have content over there.</p>
+
+<p>Thanks to <a href="gemini://tilde.pink">tilde.pink</a> for the free shell access!</p>
+
+<p>I should mention that my posts in geminispace are automatically converted from Markdown to Gemtext using a script I wrote. The script is a bit messy and isn&#39;t very useful unless your site setup is exactly like mine, so I won&#39;t be releasing the script anywhere currently, unless of course a lot of people request it or something.</p>
+
+<p>If you&#39;d like to learn more about what Gemini is, be sure to check the main <a href="https://gemini.circumlunar.space">project page</a>. Be sure to access the Gemini version of their page if you&#39;d like to read more, as only a small portion of their content is available via HTTP&#47;S.</p>
+
+]]></description>
+</item>
 
 <item>
 <guid>https://mikejzx.github.io/blog/2020/on-web-browsers.html</guid>

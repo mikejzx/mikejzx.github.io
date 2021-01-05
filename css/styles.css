@@ -1,14 +1,14 @@
 * {
-	/* Sea-like colour scheme */
-	--col-bg: #092428;
-	--col-fg: #ddffff;
-	--col-heading: #47b8e5;
-	--col-date: #8aa;
-	--col-link: #2b91a7;
-	--col-link-hover: #72d0e5;
-	--col-code-bg: #000000;
+	/* Better green colour scheme */
+	--col-bg: #0c0c0c;
+	--col-fg: #eee;
+	--col-heading: #4f4;
+	--col-date: #060;
+	--col-link: #0a0;
+	--col-link-hover: #4f4;
+	--col-code-bg: #000;
 	--col-code-fg: #bbb;
-	--col-break: #0f383f;
+	--col-break: #030;
 }
 
 html {
@@ -21,7 +21,7 @@ a { color: var(--col-link) }
 a:hover { color: var(--col-link-hover) }
 
 body {
-	font-family: sans-serif;
+	font-family: serif;
 	font-size: 16px;
 	text-rendering: geometricPrecision;
 	-webkit-font-smoothing: antialiased;

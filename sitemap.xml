@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<url><loc>http://mikejzx.github.io/blog/2021/now-on-gemini.html</loc><lastmod>2021-01-05</lastmod><priority>1.0</priority></url>
 <url><loc>http://mikejzx.github.io/blog/2020/switching-to-arch.html</loc><lastmod>2020-12-14</lastmod><priority>1.0</priority></url>
 <url><loc>http://mikejzx.github.io/blog/2020/new-site-and-blog.html</loc><lastmod>2020-12-14</lastmod><priority>1.0</priority></url>
 <url><loc>http://mikejzx.github.io/blog/2020/on-web-browsers.html</loc><lastmod>2020-12-14</lastmod><priority>1.0</priority></url>
-<url><loc>http://mikejzx.github.io/</loc><lastmod>2020-11-29</lastmod><priority>1.0</priority></url>
+<url><loc>http://mikejzx.github.io/</loc><lastmod>2021-01-05</lastmod><priority>1.0</priority></url>
 <url><loc>http://mikejzx.github.io/blogindex.html</loc><lastmod>2020-11-22</lastmod><priority>1.0</priority></url>
 </urlset>
