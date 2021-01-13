@@ -1,0 +1,24 @@
+diff -u -p -r linux-5.4.89/drivers/pinctrl/intel/pinctrl-baytrail.c linux-5.4.89.mod/drivers/pinctrl/intel/pinctrl-baytrail.c
+--- linux-5.4.89/drivers/pinctrl/intel/pinctrl-baytrail.c	2021-01-14 07:27:48.267000503 +1100
++++ linux-5.4.89.mod/drivers/pinctrl/intel/pinctrl-baytrail.c	2021-01-14 07:30:38.146999660 +1100
+@@ -1599,7 +1599,7 @@ static int byt_gpio_probe(struct byt_gpi
+ 	if (irq_rc && irq_rc->start) {
+ 		byt_gpio_irq_init_hw(vg);
+ 		ret = gpiochip_irqchip_add(gc, &byt_irqchip, 0,
+-					   handle_bad_irq, IRQ_TYPE_NONE);
++					   handle_simple_irq, IRQ_TYPE_NONE);
+ 		if (ret) {
+ 			dev_err(&vg->pdev->dev, "failed to add irqchip\n");
+ 			return ret;
+diff -u -p -r linux-5.4.89/drivers/pinctrl/intel/pinctrl-intel.c linux-5.4.89.mod/drivers/pinctrl/intel/pinctrl-intel.c
+--- linux-5.4.89/drivers/pinctrl/intel/pinctrl-intel.c	2021-01-13 06:16:25.000000000 +1100
++++ linux-5.4.89.mod/drivers/pinctrl/intel/pinctrl-intel.c	2021-01-14 07:30:43.386999634 +1100
+@@ -1263,7 +1263,7 @@ static int intel_gpio_probe(struct intel
+ 	}
+ 
+ 	ret = gpiochip_irqchip_add(&pctrl->chip, &pctrl->irqchip, 0,
+-				   handle_bad_irq, IRQ_TYPE_NONE);
++				   handle_simple_irq, IRQ_TYPE_NONE);
+ 	if (ret) {
+ 		dev_err(pctrl->dev, "failed to add irqchip\n");
+ 		return ret;

@@ -5,7 +5,203 @@
 <title>Mike Skec's Blog</title>
 <description>RSS feed for Michael's blog!</description>
 <link>https://mikejzx.github.io/</link>
-<lastBuildDate>Tue, 05 Jan 2021 16:12:13 +1100</lastBuildDate>
+<lastBuildDate>Thu, 14 Jan 2021 07:44:58 +1100</lastBuildDate>
+
+<item>
+<guid>https://mikejzx.github.io/blog/2021/gentoo-on-the-x205ta.html</guid>
+<link>https://mikejzx.github.io/blog/2021/gentoo-on-the-x205ta.html</link>
+<pubDate>Thu, 14 Jan 2021 07:44:57 +1100</pubDate>
+<title>Gentoo on the X205TA</title>
+<description><![CDATA[
+
+<h1 id="Gentoo%20on%20the%20X205TA">Gentoo on the X205TA</h1>
+
+
+<p>I&#39;ve had an ASUS X205TA for a few years now, and installed Lubuntu on it initially, as it was practically unusable with Windows 10 after installing a few programs. Lubuntu was great and all for me while I was just starting to use to Linux more often, and it worked fine for doing schoolwork. Just recently I felt like it was time to do a clean install of something on there. I was initially thinking of going with Arch, but I figured I&#39;d get a bit adventurous and try something different (already running Arch on two other machines). I thought, &#8220;Maybe I should try out Gentoo!&#8221; This was my first time installing Gentoo - it was also probably the most painful Linux install I&#39;ve ever put myself through! (not because of Gentoo, but because of the device hardware).</p>
+
+<p>If you&#39;ve done any searching online for guides or helpers on installing Gentoo specifically on this laptop, you&#39;ve probably realised already that there&#39;s almost no information whatsoever. You can find info for other distros which doesn&#39;t all apply since there&#39;s so much manual work required in a Gentoo installation. There&#39;s one article by <a href="https://blanktar.jp/blog/2015/02/gentoo-into-eeebook">some Japanese guy</a> which when translated has some useful stuff in it. The guy was close to getting it to work on his X205TA, but ran into the same issues that I did; kernel panics while booting, and an unusable keyboard when it actually did boot. After hours of tweaking with the kernel configuration, I managed to get the system to run real nicely. I still haven&#39;t run into any issues, freezes or anything, which is great!</p>
+
+<p>I thought I&#39;d write this little guide to help any of the other people pulling their hair out trying to install Gentoo on this system. This is not a &#8220;full installation&#8221;, but instead a set of <strong>extra&#47;notable steps</strong> that need to be taken on this device. I&#39;d recommend having this guide on the side as you follow the official guide.</p>
+
+<p>Let me just warn you now - compilation of packages on this device will usually take quite a while. If I were you I&#39;d definitely try avoiding installing any massive desktop environments, and instead take a minimal approach, with a standalone window manager, etc.</p>
+
+<p>Oh, and a little disclaimer: do this at your own risk. I&#39;m not at fault if you screw up your laptop!</p>
+
+<h2 id="Getting%20started">Getting started</h2>
+
+<p>If you&#39;ve installed Linux on an X205TA before, you&#39;re probably already aware that the device has a 64-bit CPU, and a 32-bit bootloader (if you didn&#39;t know that before you&#39;re probably wondering why this is the case; the reason is actually because ASUS are a pack of idiots). Gentoo&#39;s Live 64-bit CD ISO already comes with a 32-bit bootloader on it, so you&#39;re able to just burn it to a USB stick, plug it in, and boot right into the live environment.</p>
+
+<p>Wi-fi should work out of the box. Hop into <code>wpa_supplicant</code> and get yourself connected. If for whatever reason you cannot connect, try run <code>modprobe brcmfmac</code> to manually load the Wi-fi module.</p>
+
+<h2 id="Partitioning">Partitioning</h2>
+
+<p>The X205TA uses an eMMC as it&#39;s storage device (basically an SD card). Linux identifies it as <code>&#47;dev&#47;mmcblkX</code> and its partitions as <code>&#47;dev&#47;mmcblkpXpX</code>.</p>
+
+<p>I partitioned my drives as shown below using <code>parted</code>:</p>
+
+<pre><code>NAME          SIZE   MOUNTPOINT
+mmcblk1
+  mmcblk1p1   130M   &#47;boot&#47;EFI
+  mmcblk1p2    29G   &#47;
+</code></pre>
+
+<p>Since this is a UEFI system, we need to create an ESP (EFI System Partition), which is <code>mmcblk1p1</code> in my case. Make sure you also <strong>set the ESP to be bootable</strong>! It should have both the &#8216;boot&#8217; and &#8216;esp&#8217; flags when you run the print command in <code>parted</code>.</p>
+
+<p>If your <code>lsblk</code> output includes a bunch of other block devices, like <code>mmcblk1boot0</code> or something, just ignore them. I didn&#39;t use these at all and had no idea where they came from honestly. You might be able to delete them if you want.</p>
+
+<p>You can optionally create a separate <code>&#47;boot</code> partition if you want. I decided not to do this just to keep shit simple.</p>
+
+<p><strong>Note</strong>: the X205TA only has 2 GiB of RAM onboard. <strong>You will need some kind of swap space on the system</strong> to compile some of the larger packages or else you will run out of RAM and <code>emerge</code> will abort the compilation process (happened to me twice while compiling <code>gcc</code>). You can create a swap partition if you like. I personally created a 2 GiB swapfile, however you can use as much as you like.</p>
+
+<p>As for filesystems. The ESP must also be formatted as a FAT filesystem, so:</p>
+
+<pre><code>mkfs.fat -F 32 &#47;dev&#47;mmcblk1p1
+</code></pre>
+
+<p>You can of course use EXT4 for your root partition.</p>
+
+<p>Make sure that you <code>mount</code> all the partitions and <code>swapon</code> your swap space when you <code>chroot</code> into the system (use the method provided in the install guide). If you&#39;re partitioning the same way as me, make sure you use the same mount points I specified above.</p>
+
+<h2 id="Setting%20up%20the%20make.conf">Setting up the make.conf</h2>
+
+<p>You should be able to get away with using <code>MAKEOPTS="-j3"</code> for building most of the packages on the system (be careful when compiling large packages like <code>gcc</code> though. If you have too many jobs then you will end up writing a lot to swap instead of RAM which will make compilation very slow).</p>
+
+<p>Other things you will want to put in your make.conf:</p>
+
+<pre><code># &#39;synaptics&#39; is for touchpad support
+INPUT_DEVICES="libinput synaptics"
+
+# X205TA has Intel graphics onboard
+VIDEO_CARDS="intel"
+</code></pre>
+
+<p>You can also add the following CPU flags to it, I generated these using <code>cpuid2cpuflags</code>. If you want to be absolutely certain that these are correct for your hardware, emerge <code>cpuid2cpuflags</code> and run it yourself.</p>
+
+<pre><code>CPU_FLAGS_X86="aes mmx mmxext pclmul popcnt rdrand sse sse2 sse3 sse4_2 ssse3"
+</code></pre>
+
+<p>Finally, and this is probably one of the most important settings; like I mentioned earlier, the X205TA has an exclusively 32-bit bootloader. Make sure you put this in your make.conf if you want your machine to boot:</p>
+
+<pre><code>GRUB_PLATFORMS="efi-32"
+</code></pre>
+
+<h2 id="Kernel%20configuration">Kernel configuration</h2>
+
+<p>Okay. This is another important part; it&#39;s also where it gets pretty messy. There are a bunch of kernel options that must be included in order for your system to function properly. These should be all the important ones. If you think anything is missing, feel free to contact me and I&#39;ll correct it.</p>
+
+<p>If you don&#39;t want to configure your kernel yourself (or if you can&#39;t get your system to work properly), you can try <a href="files/x205ta-kernel.config.gz">using my config instead</a>, given that you are also running something around kernel 5.4.80.</p>
+
+<h3 id="eMMC%20support">eMMC support</h3>
+
+<p>Make sure you&#39;ve got all of these in your config, or else you will get kernel panics at boot time.</p>
+
+<pre><code>Device Drivers
+  MMC&#47;SD&#47;SDIO card support
+    &#60;*&#62; MMC block device driver
+    &#60;*&#62; Secure Digital Host Controller Interface support
+    &#60;*&#62;   SDHCI support on PCI bus
+    [*]     Ricoh MMC Controller Disabler
+    &#60;*&#62;   SDHCI support for ACPI enumerated SDHCI controllers
+    &#60;*&#62;   SDHCI platform and OF driver helper
+    &#60;*&#62; MMC&#47;SD driver for Ricoh Bay1Controllers
+</code></pre>
+
+<h3 id="Pin%20Controller">Pin Controller</h3>
+
+<pre><code>Device Drivers
+  Pin controllers
+    [*] Intel Baytrail GPIO pin control
+</code></pre>
+
+<h3 id="Wi-fi">Wi-fi</h3>
+
+<p>Thanks to the Japanese guy I mentioned earlier for mentioning these options. However we also need to include the WLAN driver so we can enable the <code>wlan0</code> interface. (Note that these are in addition to the other base options that you&#39;d normally use for networking)</p>
+
+<pre><code>Device Drivers
+  Wireless LAN
+    [*] Broadcom devices
+    &#60;M&#62;   Broadcom 43xx wireless support (mac80211 stack)
+    [*]   Broadcom 43xx SDIO device support
+    &#60;M&#62;   Broadcom FullMAC WLAN driver
+    [*]   SDIO bus interface support for FullMAC driver
+
+Networking Support
+  &#60;M&#62; cfg80211 - wireless configuration API
+  [*]   enable powersave by default
+  [*]   cfg80211 wireless extensions compatibility
+  &#60;M&#62; Generic IEEE 802.11 Networking Stack (mac80211)
+  [*] Export mac80211 internals in DebugFS
+</code></pre>
+
+<h3 id="Input">Input</h3>
+
+<p>The following need to be built into the kernel to get the keyboard working. Thanks to <a href="https://ubuntuforums.org/showthread.php?t=2254322&amp;p=13733677#post13733677">harryharryharry over at Ubuntu forums</a> for mentioning the I2C stuff (and for all of his contributions to getting Linux working on this laptop!)</p>
+
+<pre><code>Device Drivers
+  HID support
+    I2C HID support
+      &#60;*&#62; HID over I2C transport layer
+  I2C support
+    I2C Hardware Bus Support
+      &#60;*&#62; Synopsys DesignWare Platform
+      [*]   Synopsys DesignWare Slave
+      &#60;*&#62; Synopsys DesignWare PCI
+      [*] Intel Baytrail I2C semaphore support
+
+  Input device support
+    &#60;M&#62; Mouse interface
+    &#60;M&#62; Event interface
+    [*] Keyboards
+    &#60;M&#62;   (basically all keyboards)
+    [*] Mice
+    &#60;M&#62;   ELAN I2C Touchpad support
+    [*]     Enable I2C support
+    [*]     Enable SMbus support
+    &#60;*&#62;   Synaptics I2C Touchpad support
+</code></pre>
+
+<h3 id="Graphics">Graphics</h3>
+
+<pre><code>Device Drivers
+  Graphics support
+    &#60;*&#62; Intel 8xx&#47;9xx&#47;G3x&#47;G4x&#47;HD Graphics
+    [*] Enable capturing GPU state following a hang.
+    [*]   Compress GPU error state
+    [*] Always enable userptr support
+</code></pre>
+
+<h3 id="Patches">Patches</h3>
+
+<p>I&#39;m pretty sure the X205TA should be mostly usable on an unpatched kernel. However, it was mentioned in <a href="https://github.com/lopaka/instructions/blob/master/ubuntu-16.04-install-asus-x205ta.md#user-content-experimental-kernel-changes-for-audio-support">this document</a> that reverting commit <code>3ae02c1</code> should fix a keyboard malfunction issue. I applied the reverse patch just to be sure. It doesn&#39;t seem like doing so has broken anything. If you&#39;d like to try applying it too, <a href="files/x205ta-kb.patch">here is the reverse patch file</a>. You should be able to simply run <code>patch -p1 &#60; x205ta-kb.patch</code> in your source directory. If <code>patch</code> spits out a bunch of errors and rejects the changes, then you&#39;re probably running a recent kernel and the patch is likely no longer necessary. If in doubt, look at what&#39;s in the patch file and try apply it manually (use find&#47;search in your text editor to find the whereabouts of what to modify).</p>
+
+<p>I haven&#39;t tried playing any sound from the laptop just yet (getting &#8216;round to it). I&#39;ve read that apparently sound on the X205TA works out of the box on newer kernels. <a href="https://wiki.archlinux.org/index.php/Asus_x205ta#Sound">Consult the Arch Wiki</a> if you have any issues.</p>
+
+<h2 id="GRUB%20installation">GRUB installation</h2>
+
+<p>To install GRUB we have to run these two commands. Make sure you <strong>do not</strong> include a partition number in the <code>grub-install</code> command (e.g <strong>don&#39;t use</strong> <code>mmcblk1pX</code>) or else your laptop won&#39;t boot (at least in my testing). As long as the <code>&#47;boot&#47;EFI</code> directory exists, the below commands will install the bootloader just fine.</p>
+
+<pre><code>grub-install --target=i386-efi &#47;dev&#47;mmcblk1
+grub-mkconfig -o &#47;boot&#47;grub&#47;grub.cfg
+
+</code></pre>
+
+<p>Your bootloader should now appear in <code>&#47;boot&#47;EFI&#47;EFI&#47;gentoo</code>. It probably looks weird with the two EFI directories, but it seems to work perfectly like this.</p>
+
+<p>I also created an initramfs. I&#39;d say you should probably install one of these too on your machine:</p>
+
+<pre><code>genkernel --install --kernel-config=&#47;usr&#47;src&#47;linux&#47;.config initramfs
+</code></pre>
+
+<h2 id="Finishing%20up">Finishing up</h2>
+
+<p>And that&#39;s about it! If all went well - you followed the official install Gentoo instructions and applied the stuff from this guide, you should be able to unmount everything, reboot, and boot into a fresh Gentoo installation on your ASUS X205TA! You&#39;re on your own from here to decide how the rest of your system will be laid out.</p>
+
+<p>If you have any questions, comments, or problems with the information here, please feel free to e-mail me via the address on my <a href="https://mikejzx.github.io">homepage</a>.</p>
+
+<p>Have fun waiting for all your packages to compile ;)</p>
+
+]]></description>
+</item>
 
 <item>
 <guid>https://mikejzx.github.io/blog/2021/now-on-gemini.html</guid>
