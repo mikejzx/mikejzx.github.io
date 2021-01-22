@@ -39,13 +39,13 @@
 
 <p>I thought I&#39;d write this little guide to help any of the other people pulling their hair out trying to install Gentoo on this system. This is not a &#8220;full installation&#8221;, but instead a set of <strong>extra&#47;notable steps</strong> that need to be taken on this device. I&#39;d recommend having this guide on the side as you follow the official guide.</p>
 
-<p>Let me just warn you now - compilation of packages on this device will usually take quite a while. If I were you I&#39;d definitely try avoiding installing any massive desktop environments, and instead take a minimal approach, with a standalone window manager, etc.</p>
+<p>Let me just warn you now - compilation of large packages on this device will usually take quite a while. If I were you I&#39;d definitely try avoiding installing any massive desktop environments, and instead take a minimal approach, with a standalone window manager, etc.</p>
 
 <p>Oh, and a little disclaimer: do this at your own risk. I&#39;m not at fault if you screw up your laptop!</p>
 
 <h2 id="Getting%20started">Getting started</h2>
 
-<p>If you&#39;ve installed Linux on an X205TA before, you&#39;re probably already aware that the device has a 64-bit CPU, and a 32-bit bootloader (if you didn&#39;t know that before you&#39;re probably wondering why this is the case; the reason is actually because ASUS are a pack of idiots). Gentoo&#39;s Live 64-bit CD ISO already comes with a 32-bit bootloader on it, so you&#39;re able to just burn it to a USB stick, plug it in, and boot right into the live environment.</p>
+<p>If you&#39;ve installed Linux on an X205TA before, you&#39;re probably already aware that the device has a 64-bit CPU, and must have an exclusively 32-bit bootloader (if you didn&#39;t know that before you&#39;re probably wondering why this is the case; the reason is actually because ASUS are a pack of idiots). Gentoo&#39;s Live 64-bit CD ISO already comes with a 32-bit bootloader on it, so you&#39;re able to just burn it to a USB stick, plug it in, and boot right into the live environment.</p>
 
 <p>Wi-fi should work out of the box. Hop into <code>wpa_supplicant</code> and get yourself connected. If for whatever reason you cannot connect, try run <code>modprobe brcmfmac</code> to manually load the Wi-fi module.</p>
 
@@ -88,7 +88,7 @@ mmcblk1
 INPUT_DEVICES="libinput synaptics"
 
 # X205TA has Intel graphics onboard
-VIDEO_CARDS="intel"
+VIDEO_CARDS="intel i965"
 </code></pre>
 
 <p>You can also add the following CPU flags to it, I generated these using <code>cpuid2cpuflags</code>. If you want to be absolutely certain that these are correct for your hardware, emerge <code>cpuid2cpuflags</code> and run it yourself.</p>
@@ -103,9 +103,9 @@ VIDEO_CARDS="intel"
 
 <h2 id="Kernel%20configuration">Kernel configuration</h2>
 
-<p>Okay. This is another important part; it&#39;s also where it gets pretty messy. There are a bunch of kernel options that must be included in order for your system to function properly. These should be all the important ones. If you think anything is missing, feel free to contact me and I&#39;ll correct it.</p>
+<p>Okay. This is another important part; it&#39;s also where it gets pretty messy. There are a bunch of kernel options that must be included in order for your system to function properly. These should be all the important ones. If you think anything is missing, feel free to contact me and I&#39;ll correct it. I&#39;ve also probably included more options than necessary here - I don&#39;t really have the time to test every option individually, so I just went with whatever worked. If you think any of the options are completely unnecessary, just let me know and I&#39;ll remove it from here.</p>
 
-<p>If you don&#39;t want to configure your kernel yourself (or if you can&#39;t get your system to work properly), you can try <a href="files/x205ta-kernel.config.gz">using my config instead</a>, given that you are also running something around kernel 5.4.80.</p>
+<p>If you don&#39;t want to configure your kernel yourself (or if you can&#39;t get your system to work properly), you can try <a href="files/x205ta-kernel.config.gz">using my config instead</a> (no sound support), given that you are also running something around kernel 5.4.80.</p>
 
 <h3 id="eMMC%20support">eMMC support</h3>
 
@@ -127,6 +127,7 @@ VIDEO_CARDS="intel"
 <pre><code>Device Drivers
   Pin controllers
     [*] Intel Baytrail GPIO pin control
+    [*] Intel Cherryview&#47;Braswell pinctrl and GPIO driver
 </code></pre>
 
 <h3 id="Wi-fi">Wi-fi</h3>
@@ -186,15 +187,51 @@ Networking Support
     [*] Always enable userptr support
 </code></pre>
 
-<h3 id="Patches">Patches</h3>
+<h3 id="Sound">Sound</h3>
 
-<p>I&#39;m pretty sure the X205TA should be mostly usable on an unpatched kernel. However, it was mentioned in <a href="https://github.com/lopaka/instructions/blob/master/ubuntu-16.04-install-asus-x205ta.md#user-content-experimental-kernel-changes-for-audio-support">this document</a> that reverting commit <code>3ae02c1</code> should fix a keyboard malfunction issue. I applied the reverse patch just to be sure. It doesn&#39;t seem like doing so has broken anything. If you&#39;d like to try applying it too, <a href="files/x205ta-kb.patch">here is the reverse patch file</a>. You should be able to simply run <code>patch -p1 &#60; x205ta-kb.patch</code> in your source directory. If <code>patch</code> spits out a bunch of errors and rejects the changes, then you&#39;re probably running a recent kernel and the patch is likely no longer necessary. If in doubt, look at what&#39;s in the patch file and try apply it manually (use find&#47;search in your text editor to find the whereabouts of what to modify).</p>
+<p>I&#39;m adding this section after the original post date (currently 2020-01-22). I haven&#39;t tried getting sound working on the 5.4 kernel, as I&#39;m now running the latest stable 5.10.9 kernel. You can try reproduce the settings below on an older kernel, I don&#39;t know if it&#39;ll work though.</p>
 
-<p>I haven&#39;t tried playing any sound from the laptop just yet (getting &#8216;round to it). I&#39;ve read that apparently sound on the X205TA works out of the box on newer kernels. <a href="https://wiki.archlinux.org/index.php/Asus_x205ta#Sound">Consult the Arch Wiki</a> if you have any issues.</p>
+<p>These should be all the options you need to get the sound working decently. There will be just a slight hiss in the headphone output but I&#39;m sure you can live with that. Oh, and you will also need to manually switch the output from Headphones to Speakers and vice-versa, using e.g pavucontrol. You could probably set up some kind of output-toggle binding to speed up that process.</p>
+
+<pre><code>Device Drivers
+  &#60;*&#62; Sound card support
+    &#60;*&#62; ALSA
+      [*] PCI sound devices
+      &#60;M&#62; HR-timer backend support
+          HD-Audio
+          &#60;M&#62; HD Audio PCI
+          [*] Build hwdep interface for HD-audio driver
+          [*] Support initialization patch loading for HD-audio
+          &#60;M&#62; Build Realtek HD-audio codec support
+          &#60;M&#62; Build Analog devices HD-audio codec support
+      (4096) Pre-allocated buffer size for HD-audio driver
+      &#60;*&#62; ALSA for SoC audio support
+        [*] Intel ASoC SST drivers
+        &#60;*&#62;   ACPI HiFi2 (Batrail, Cherrtrail) Platforms
+        -*- Intel Machine Drivers
+          &#60;M&#62; (everything)
+        [*] Sound Open Firmware Support
+          &#60;*&#62; SOF ACPI enumeration support.
+          [*] SOF support for Intel audio DSPs
+        &#60;M&#62; ASoC Simple sound card support
+
+  (Pretty sure this is needed too):
+  HID Support
+    &#60;M&#62; User-space I&#47;O driver support for HID subsystem
+    &#60;*&#62; Generic HID driver
+</code></pre>
+
+<p>I have no idea if the microphone will work with these options. I don&#39;t really care since I don&#39;t use the microphone.</p>
+
+<p>And from here all the other kernel options (USB support, etc) should be pretty generic and obvious.</p>
+
+<h3 id="Kernel%20patches">Kernel patches</h3>
+
+<p>If you want to squeeze as much performance as possible out of your X205TA, you can apply the <a href="http://ck.kolivas.org/patches"><code>linux-ck</code> performance patches</a> to your kernel. I&#39;m running this personally and it seems to just make the system feel a bit snappier overall.</p>
 
 <h2 id="GRUB%20installation">GRUB installation</h2>
 
-<p>To install GRUB we have to run these two commands. Make sure you <strong>do not</strong> include a partition number in the <code>grub-install</code> command (e.g <strong>don&#39;t use</strong> <code>mmcblk1pX</code>) or else your laptop won&#39;t boot (at least in my testing). As long as the <code>&#47;boot&#47;EFI</code> directory exists, the below commands will install the bootloader just fine.</p>
+<p>To install GRUB we have to run these two commands. Make sure you <strong>do not</strong> include a partition number in the <code>grub-install</code> command (e.g <strong>don&#39;t use</strong> <code>mmcblk1pX</code>) or else your laptop won&#39;t boot (at least in my testing). As long as the <code>&#47;boot&#47;EFI</code> directory exists (and you&#39;ve formatted partitions the same as me), the below commands will install the bootloader just fine.</p>
 
 <pre><code>grub-install --target=i386-efi &#47;dev&#47;mmcblk1
 grub-mkconfig -o &#47;boot&#47;grub&#47;grub.cfg
@@ -210,7 +247,7 @@ grub-mkconfig -o &#47;boot&#47;grub&#47;grub.cfg
 
 <h2 id="Finishing%20up">Finishing up</h2>
 
-<p>And that&#39;s about it! If all went well - you followed the official install Gentoo instructions and applied the stuff from this guide, you should be able to unmount everything, reboot, and boot into a fresh Gentoo installation on your ASUS X205TA! You&#39;re on your own from here to decide how the rest of your system will be laid out.</p>
+<p>And that&#39;s about it! If all went well - you followed the official install Gentoo instructions and applied the stuff from this guide, you should hopefully be able to unmount everything, reboot, and boot into a fresh Gentoo installation on your ASUS X205TA! You&#39;re on your own from here to decide how the rest of your system will be laid out.</p>
 
 <p>If you have any questions, comments, or problems with the information here, please feel free to e-mail me via the address on my <a href="https://mikejzx.github.io">homepage</a>.</p>
 
