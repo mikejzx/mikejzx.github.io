@@ -111,7 +111,7 @@
 				The advantage of this approach is that it&rsquo;s just a simple CSS rule; no additional styling is needed and the HTML tags can be left alone.
 				<span class="sntc">This means that it can be used to easily achieve sentence spacing with content converted from Markdown, or even with the <code>grohtml</code> web troff driver.</span>
 				A disadvantage of this approach though is that you can&rsquo;t have precise control over how wide the sentence space should be; you can only adjust it in terms of the font&rsquo;s space character by adding more or less spaces after sentences.
-				Another problem I noticed is that there are no suitable properties for this rule that allow for whitespace preservation that also collapse new&#45;lines.
+				Another problem I noticed is that there are no suitable values for this property that both allow for whitespace preservation and collapse new&#45;lines.
 				<span class="sntc">In other words, if you set e.g., <code>white&#45;space: break&#45;spaces</code> then you will need to be mindful of any linefeed characters that you include within your paragraph tags as they will all be interpreted as explicit line breaks.</span>
 			</p>
 			<p>

@@ -270,8 +270,8 @@ web troff driver.
 A disadvantage of this approach though is that you can't have precise control
 over how wide the sentence space should be; you can only adjust it in terms of
 the font's space character by adding more or less spaces after sentences.
-Another problem I noticed is that there are no suitable properties for this
-rule that allow for whitespace preservation that also collapse new-lines.
+Another problem I noticed is that there are no suitable values for this
+property that both allow for whitespace preservation and collapse new-lines.
 In other words, if you set e.g.,
 .F "white-space: break-spaces"
 then you will need to be mindful of any linefeed characters that you include
