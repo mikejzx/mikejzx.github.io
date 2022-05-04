@@ -1,0 +1,656 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="rss.css"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+<title>Mike's blog</title>
+<description>Updates from Mike's blog</description>
+<language>en-us</language>
+<link>https://mikejzx.github.io/rss.xml</link>
+<atom:link href="https://mikejzx.github.io/rss.xml" rel="self" type="application/atom+xml" />
+<item>
+<title>New Roff-based Blog System</title>
+<guid>https://mikejzx.github.io/blog/2022/been-a-while.html</guid>
+<link>https://mikejzx.github.io/blog/2022/been-a-while.html</link>
+<pubDate>Tue, 03 May 2022 00:00:00 +1000</pubDate>
+<description><![CDATA[
+			<header>
+				New Roff&#45;based Blog System
+				<span style="float: right">2022-05-03</span>
+			</header>
+			<p>
+				So, it&rsquo;s definitely been a good while since I last wrote anything here on my site.
+				Though, fear not!
+				<span class="sntc">I am back, after having completely re&#45;written my site from the ground up, I am no longer using <code>ssg5</code> and <code>rssg</code>, but rather a new Makefile&#45;based system I built up myself, using my own scripts and programs to generate this whole thing; as the old site system was just so ugly and messy that it had become essentially unmaintainable.</span>
+				I think from hereon I&rsquo;ll try to make more of an effort to write more articles here in time&mdash;because as it stands, I feel like I am yet to have played my part in serving the web with actually interesting content&hellip;
+				Especially in our current world where the web is dominated by bloat, bombardment of obnoxious advertisements, trillion&#45;dollar corporations, social media, biased news, biased searches &#40;looking at you DuckDuckGo, for just recently hopping on the bandwagon too&#41;, SEO spam, and just plain rubbish content. I hope my site provides you with a breath of fresh air through the mostly text&#45;based content over here.
+			</p>
+			<p>
+				The new site generation system is fairly straight&#45;forward.
+				As you&rsquo;d imagine; a nice source directory with HTML files for most things, a few &lsquo;templates&rsquo;, and the &lsquo;blog&rsquo; section with it&rsquo;s source files.
+				I have general rules in the Makefile which automate most things, like updating the stylesheet, copying over new files, and re&#45;compiling articles when they change, etc.
+				I also wrote a simple script that runs when articles are added or changed, that generates a nice RSS feed of the blog.
+				However, the main new interesting thing about the blog, is that I no longer need to write it using Markdown.
+				Instead, I now write these articles using a variation of the Roff &lsquo;ms&rsquo; macros!
+				&#40;Converted my old articles to the new format, though I skipped the small useless articles that have essentially lost all their relevance now&#41;.
+				This probably sounds incredibly stupid, and possibly even masochistic, but there is I think a possibly interesting reason I chose this format of all other formats.
+				The reason essentially boils down to typography.
+				If you&rsquo;ve got eagle eyes or if you pay particularly close attention to the typographic subtleties of content you read, then you may have noticed the specific effect I aimed for here.
+			</p>
+			<p>
+				<span class="sntc">To put it explicitly, I was aiming for proper <i>sentence spacing</i> in my webpage.</span>
+				I developed somewhat of a habit at some point last year where I started putting two spaces after sentences I was writing to indicate the end of sentences more clearly &#40;e.g. in plaintext documents&#41;; I have no idea how this habit started; but in general I feel like after I discovered and realised it was a thing, I found it a lot more aesthetically pleasing than the robotic word&#45;spacing&#45;after&#45;sentences that has become ever&#45;increasingly ubiquitous in modern times.
+				<span class="sntc">Perhaps it was also due to a desire to stick to a more conservative, &lsquo;traditional&rsquo; way of formatting text, which had unfortunately faded in the last few decades due to all sorts of reasons &#40;<a href="https://www.tomsarazac.com/tom/opinions/space-after-periods.html">see</a>&#41;, most notably of which here on the web was due to some technical limitations of HTML.</span>
+				<span class="sntc">As of course, HTML normalises all whitespace between words into uniform spacing, the specification does not provide any <code>&lt;sentence&gt;</code> tag to use for this purpose, and there seemed to be very little concern for the typographic implications of this at the time.</span>
+			</p>
+			<p>
+				So to implement this new feature, my first idea was to just borrow the convention used in Roff for sentence separation, and use it in Markdown.
+				<span class="sntc">For the sake of brevity&mdash;for people who haven&rsquo;t used a Roff typesetting system before &#40;e.g. the GNU implementation, <code>groff</code>&#41;&mdash;I&rsquo;ll simply state that in Roff, you are expected to start sentences on a line of their own, to indicate to the typesetter that when a line ends with sentence&#45;ending punctuation such as a full&#45;stop, question mark, or exclamation mark, it is going to be the end of a sentence &#40;there is a workaround for situations where you <i>don&rsquo;t</i> want a line that ends with this kind of punctuation to be considered the end of a sentence, by using a zero&#45;width space escape character&#41;.</span>
+				At first glance, one would assume that using this same convention for indicating the end of a sentence should be relatively straight&#45;forward to use in Markdown.
+				<span class="sntc">And indeed, you can write a basic &ldquo;Markdown&rdquo; parser that achieves this, finding the correct ends of sentences in <i>paragraphs</i> based on where the lines start and end.</span>
+				However, the system would fall apart once list items are taken into consideration; and it was the thing I stumbled upon while I myself were having a go at writing a basic Markdown parser that did this.
+				In Markdown, lists items can only be defined on a single line.  However, in Roff, a &ldquo;list item&rdquo; is actually just an indented paragraph with a bullet point next to it, so it doesn&rsquo;t suffer from this problem.
+			</p>
+			<p>
+				I feel like this cause of this issue goes back to the roots of what Markdown really was intended to be used for.
+				<span class="sntc">I had read an article not long ago on the web by Adam Hyde, where he poses the question <a href="https://www.adamhyde.net/whats-wrong-with-markdown/">&ldquo;What&rsquo;s wrong with Markdown?&rdquo;</a>, and puts forth a few points.</span>
+				<span class="sntc">He expresses his view that Markdown generally has very limited use cases, and asserts that, &ldquo;Markdown isn&rsquo;t designed for creating HTML&rdquo;, which is a somewhat exaggerated claim, as John Gruber, the actual author of Markdown, introduces it <a href="https://daringfireball.net/projects/markdown/">on his site</a> &#40;which Hyde also links&#41; not only as &ldquo;a text&#45;to&#45;HTML conversion tool for web writers&rdquo;, but also notes that the structure of Markdown places a strong emphasis on being &ldquo;publishable as&#45;is, as plain text, without looking like it&rsquo;s been marked up with tags or formatting instructions&rdquo;, i.e. it should be possible to read a Markdown document in it&rsquo;s <i>verbatim</i> form &#40;as Hyde notes, though not to the extent that he suggests&#41;.</span>
+				This in turn creates a format that needs to make compromises in it&rsquo;s ability to be converted to HTML, to allow for easy reading of the source content.
+				This, and the lack of a proper specification, are why there are so many &ldquo;variations&rdquo;, of Markdown in the wild&mdash;it seems almost as though each website has their own additions and exclusions to the format.
+				Another thing to note is that Markdown is more often converted to HTML than it is published as&#45;is, and hence there is more incentive to add more things that help in the HTML conversions, but also then create a compromise in the verbatim reading experience of the content &#40;inline links being a notable offender here&#41; which then defeats one of the original purposes of the format.
+				This is especially a problem when &ldquo;single biggest source of inspiration for Markdown’s syntax is the format of plain text email.&rdquo;
+			</p>
+			<p>
+				I will note, that technically it could be possible to achieve this in Markdown, or any markup language for that matter; and that is through some kind of automatic sentence&#45;detection software.
+				The approach here would be to write up your document as you normally would, in Markdown or whatever, possibly generate the HTML from it to split it into paragraphs and list items and so on, then run some kind of post&#45;processor that looks at the content within each tag and attempts to split them into sentences.
+				<span class="sntc">This is definitely possible, I&rsquo;ve actually written some code for a project of mine that does this, a terminal Gemini client called <code>sr71</code> that interprets paragraphs as an array of words and applies the spacing on it&rsquo;s own; and is accurate in most cases for determining the end of sentences, via a few rules that I defined.</span>
+				<span class="sntc">&#40;I also implemented, as an experiment, various other really nice typographic features into <code>sr71</code>, like a Knuth&#45;Plass approach to line breaking, which yields really nice text&#45;justification in the terminal, with hanging punctuation too&mdash;you should check it out if you too sometimes browse Geminispace or Gopherspace!&#41;</span>
+				The obvious problem with the approach of automated sentence detection is that the software will inevitably make errors, as it&rsquo;s incredibly difficult to program a piece of software to detect literally every possible case of where a sentence would end.
+				Perhaps a solution like this is fine for reading content other people have written, but as the author of the text content, I feel like I should have the ability to specify where my sentences end.
+			</p>
+			<p>
+				<span class="sntc">Another possible method of achieving this in Markdown or other languages, that <i>does</i> give the writer control over the situation, would be to define some kind of &lsquo;sentence&#45;end&rsquo; escape sequence.</span>
+				This would work fine to achieve the desired effect, but in my opinion I think it&rsquo;d end up really detracting from the writing experience and in the case of Markdown, would contribute to the whole problem mentioned earlier about &lsquo;adding features to improve HTML output at the cost of readability in the source format&rsquo;.
+				I think it&rsquo;d be more trouble than it&rsquo;s worth and best to just leave something like Markdown behind, and focus on using a more versatile format.
+			</p>
+			<p>
+				After establishing that Markdown was unsuitable for my needs, I immediately turned to the alternative I had considered beforehand, even before I started writing my parser program.
+				Roff had always been a system that I quite enjoyed writing in; being a traditional Unix document preparation system, it has a very nice and old&#45;school feel to it, and in some sense is designed to be compatible with the Unix computing ethos, having source formats that are very easily &lsquo;greppable&rsquo;, and compatible with other tools on Unix&#45;like systems.
+				However, while I enjoyed using Roff, I found that my uses for it had diminished somewhat after discovering LaTeX.
+				Using Roff over LaTeX when LaTeX was just as easily available at my fingertips was a bit like, in lieu of a better analogy; a sports car owner deciding to take his wife&rsquo;s family sedan to a drag strip; sure it might be fun in a while, but if you want a good performance you&rsquo;d instead take the latter.
+			</p>
+			<p>
+				<span class="sntc">Obviously, my system isn&rsquo;t a &lsquo;real&rsquo; Roff system&mdash;I&rsquo;m using a parser I wrote myself, instead of an actual Roff system like <code>groff</code>, which is actually a system with many more layers to it than one would think, and my macro set isn&rsquo;t an &lsquo;official&rsquo; one; it just takes heavy inspiration from the &lsquo;ms&rsquo; macros and includes my own additions to make it more usable for web writing and excludes things that I don&rsquo;t have a use for just yet.</span>
+				Of course, we just criticised Markdown for this very thing; not being standardised and having loads of variations, but I think it&rsquo;s a lot more acceptable with Roff, as the system is somewhat intended to be used in this manner and you don&rsquo;t create any compromises that contradict the original purposes of the format, such as plaintext readability &#40;which doesn&rsquo;t at all seem to be a goal of any Roff macro packages&#41;.
+				The macros that are exclusive to my macro set can easily be recreated in a true Roff system, so it should be a reasonably trivial process to compile the source documents to other formats such as to plaintext, PDFs, etc.
+				<span class="sntc">One thing I should mention in case anyone wonders, is that I actually did somewhat consider beforehand to just compile my &lsquo;.ms&rsquo; source files to webpages using <code>groff</code>&rsquo;s provided &lsquo;grohtml&rsquo; driver.</span>
+				The reason I didn&rsquo;t use it however was simply due to the reduced control I had over the output.
+				<span class="sntc">Not only would it be tricky to get <code>grohtml</code> to place all the necessary <code>&lt;span&gt;</code>&rsquo;s needed for the sentence&#45;spacing effect I mentioned before; I also generally just liked the fact that I could use a small program I had written myself, and have complete control over the output it produces.</span>
+				Using a true Roff system here would yield essentially no benefits that I can think of, other than perhaps &lsquo;authenticity&rsquo;, which isn&rsquo;t really of concern for little webpages that barely anyone is even going to read in the first place!
+			</p>
+			<p>
+				I&rsquo;ll also just briefly mention the technique I used to achieve the nice sentence spacing feature with my parser in case anybody was wondering.
+				<span class="sntc">I discovered the method through an article posted in 2012 on the subject; <a href="https://hea-www.harvard.edu/~fine/Tech/html-sentences.html">here</a>.</span>
+				It&rsquo;s an interesting read and outlines many different methods of achieving it, and comparing each method to determine the best approach at the moment.
+				<span class="sntc">As I alluded to earlier, it involves separating sentences into <code>&lt;span&gt;</code>&rsquo;s within the <code>&lt;p&gt;</code> paragraph tag, and then applying certain CSS rules to both elements.</span>
+				<span class="sntc">To achieve correct spacing &#40;and for it to work properly with text justification&#41;, the sentence <code>&lt;span&gt;</code>&rsquo;s need to have their <code>word&#45;spacing</code> property set to zero, and the surrounding paragraph needs to have it&rsquo;s <code>word&#45;spacing</code> set to the amount of space you want between sentences.</span>
+				That&rsquo;s essentially all there is to it.
+				<span class="sntc">It is a bit finnicky and possibly error&#45;prone when applying this method to raw HTML by hand, as you would need to type out <code>&lt;span class&#61;"sentence"&gt;</code> literally every time you need to separate a sentence which would probably be irritating to the point where you&rsquo;d probably forget what you&rsquo;re even writing about.</span>
+				Unless of course you&rsquo;re a Vim user or something and would&rsquo;ve thought to set up some kind of mapping so that this sort of thing is all automated.
+				However, with a system that takes in source files like the one I have here, it works great and produces really nice results!
+			</p>
+			<p>
+				<span class="sntc">I&rsquo;ve made my Roff&#45;to&#45;HTML parser available on GitHub under a GPLv3 license, under the title &lsquo;<a href="https://github.com/mikejzx/broff.git">broff</a>&rsquo;, which sounded like a clever name at first, but sounds kind of stupid at the same time.</span>
+				The idea was that it was meant to be a contraction of &lsquo;blog roff&rsquo; as I guess blogging is the intended purpose of it?
+				Maybe it could also be for &lsquo;web roff&rsquo;, I&rsquo;ll let whoever happens to stumble across it decide.
+			</p>
+		]]></description>
+</item>
+<item>
+<title>Gentoo on the X205TA</title>
+<guid>https://mikejzx.github.io/blog/2021/gentoo-on-the-x205ta.html</guid>
+<link>https://mikejzx.github.io/blog/2021/gentoo-on-the-x205ta.html</link>
+<pubDate>Thu, 14 Jan 2021 00:00:00 +1100</pubDate>
+<description><![CDATA[
+			<header>
+				Gentoo on the X205TA
+				<span style="float: right">2021-01-14</span>
+			</header>
+			<p>
+				I&rsquo;ve had an ASUS X205TA for a few years now, and installed Lubuntu on it initially, as it was practically unusable with Windows&nbsp;10 after installing a few programs.
+				Lubuntu was great and all for me while I was just starting to use to Linux more often, and it worked fine for doing schoolwork.
+				Just recently I felt like it was time to do a clean install of something on there.
+				I was initially thinking of going with Arch, but I figured I&rsquo;d get a bit adventurous and try something different &#40;already running Arch on two other machines&#41;.
+				I thought, &ldquo;Maybe I should try out Gentoo!&rdquo;
+				This was my first time installing Gentoo&mdash;it was also probably the most painful Linux install I&rsquo;ve ever put myself through!
+				&#40;not because of Gentoo, but because of the device hardware&#41;.
+			</p>
+			<p>
+				If you&rsquo;ve done any searching online for guides or helpers on installing Gentoo specifically on this laptop, you&rsquo;ve probably realised already that there&rsquo;s almost no information whatsoever.
+				You can find info for other distros which doesn&rsquo;t all apply since there&rsquo;s so much manual work required in a Gentoo installation.
+				<span class="sntc">There&rsquo;s one article by <a href="https://blanktar.jp/blog/2015/02/gentoo-into-eeebook">some Japanese guy</a> which when translated has some useful stuff in it.</span>
+				The guy was close to getting it to work on his X205TA, but ran into the same issues that I did; kernel panics while booting, and an unusable keyboard when it actually did boot.
+				After hours of tweaking with the kernel configuration, I managed to get the system to run real nicely.
+				I still haven&rsquo;t run into any issues, freezes or anything, which is great!
+			</p>
+			<p>
+				I thought I&rsquo;d write this little guide to help any of the other people pulling their hair out trying to install Gentoo on this system.
+				<span class="sntc">This is not a &ldquo;full installation&rdquo; per se, but rather a set of <b>extra&#47;notable steps</b> that need to be taken on this device.</span>
+				I&rsquo;d recommend having this guide on the side as you follow the official guide.
+			</p>
+			<p>
+				Let me just warn you now&mdash;compilation of large packages on this device will usually take quite a while.
+				If I were you I&rsquo;d definitely try avoiding installing any massive desktop environments, and instead take a minimal approach, with a standalone window manager, etc.
+			</p>
+			<p>
+				Oh, and a little disclaimer: do this at your own risk.
+				I&rsquo;m not at fault if you screw up your laptop!
+			</p>
+			<h2>
+				Getting started
+			</h2>
+			<p>
+				If you&rsquo;ve installed Linux on an X205TA before, you&rsquo;re probably already aware that the device has a 64&#45;bit CPU, and must have an exclusively 32&#45;bit bootloader &#40;if you didn&rsquo;t know that before you&rsquo;re probably wondering why this is the case; the reason is actually because ASUS are a pack of idiots&#41;.
+				Gentoo&rsquo;s Live 64&#45;bit CD ISO already comes with a 32&#45;bit bootloader on it, so you&rsquo;re able to just burn it to a USB stick, plug it in, and boot right into the live environment.
+			</p>
+			<p>
+				Wi&#45;fi should work out of the box.
+				<span class="sntc">Hop into <code>wpa&#95;supplicant</code> and get yourself connected. If for whatever reason you cannot connect, try run <code>modprobe brcmfmac</code> to manually load the Wi&#45;fi module.</span>
+			</p>
+			<h2>
+				Partitioning
+			</h2>
+			<p>
+				The X205TA uses an eMMC as it&rsquo;s storage device &#40;basically an SD card&#41;.
+				<span class="sntc">Linux identifies it as <code>&#47;dev&#47;mmcblkX</code> and its partitions as <code>&#47;dev&#47;mmcblkpXpX</code>.</span>
+			</p>
+			<p>
+				<span class="sntc">I partitioned my drives as below using <code>parted</code>:</span>
+			</p>
+			<pre>
+NAME          SIZE   MOUNTPOINT
+mmcblk1
+  mmcblk1p1   130M   &#47;boot&#47;EFI
+  mmcblk1p2    29G   &#47;			</pre>
+			<p>
+				<span class="sntc">Since this is a UEFI system, we need to create an ESP &#40;EFI System Partition&#41;, which is <code>mmcblk1p1</code> in my case.</span>
+				<span class="sntc">Make sure you also <b>set the ESP to be bootable!</b></span>
+				<span class="sntc">It should have both the &rsquo;boot&rsquo; and &rsquo;esp&rsquo; flags when you run the print command in <code>parted</code>.</span>
+			</p>
+			<p>
+				<span class="sntc">If your <code>lsblk</code> output includes a bunch of other block devices, like <code>mmcblk1boot0</code> or something, just ignore them.</span>
+				I didn&rsquo;t use these at all and had no idea where they came from honestly.
+				You might be able to delete them if you want &#40;though I&rsquo;m not sure if it&rsquo;ll cause problems&#41;.
+			</p>
+			<p>
+				<span class="sntc">You can optionally create a separate <code>&#47;boot</code> partition if you want.</span>
+				I decided not to do this just to keep shit simple.
+			</p>
+			<p>
+				<span class="sntc"><b>Note</b>: the X205TA only has 2 GiB of RAM onboard.</span>
+				<span class="sntc"><b>You will need some kind of swap space on the system</b> to compile some of the larger packages or else you will run out of RAM and portage will abort the compilation process &#40;happened to me twice while compiling GCC&#41;.</span>
+				You can create a swap partition if you like.
+				I personally created a 2 GiB swapfile, however you can use as much as you like.
+			</p>
+			<p>
+				As for filesystems.
+				The ESP must also be formatted as a FAT filesystem, so:
+			</p>
+			<pre>
+mkfs.fat &#45;F 32 &#47;dev&#47;mmcblk1p1			</pre>
+			<p>
+				You can of course use EXT4 for your root partition.
+			</p>
+			<p>
+				<span class="sntc">Make sure that you mount all the partitions and <code>swapon</code> your swap space when you chroot into the system &#40;use the method provided in the install guide&#41;.</span>
+				If you&rsquo;re partitioning the same way as me, make sure you use the same mount points I specified above.
+			</p>
+			<h2>
+				Setting up the make.conf
+			</h2>
+			<p>
+				<span class="sntc">You should be able to get away with using <code>MAKEOPTS&#61;"&#45;j3"</code> for building most of the packages on the system &#40;be careful when compiling large packages like GCC though.</span>
+				If you have too many jobs then you will end up writing a lot to swap instead of RAM which will make compilation very slow&#41;.
+			</p>
+			<p>
+				Other things you will want to put in your make.conf:
+			</p>
+			<pre>
+&#35; 'synaptics' is for touchpad support
+INPUT&#95;DEVICES&#61;"libinput synaptics"
+&#35; X205TA has Intel graphics onboard
+VIDEO&#95;CARDS&#61;"intel i965"			</pre>
+			<p>
+				<span class="sntc">You can also add the following CPU flags to it, I generated these using <code>cpuid2cpuflags</code>. If you want to be absolutely certain that these are correct for your hardware, emerge <code>cpuid2cpuflags</code> and run it yourself.</span>
+			</p>
+			<pre>
+CPU&#95;FLAGS&#95;X86&#61;"aes mmx mmxext pclmul popcnt rdrand sse sse2 sse3 sse4&#95;2 ssse3"			</pre>
+			<p>
+				Finally, and this is probably one of the most important settings; like I mentioned earlier, the X205TA has an exclusively 32&#45;bit bootloader.
+				Make sure you put this in your make.conf if you want your machine to boot:
+			</p>
+			<pre>
+GRUB&#95;PLATFORMS&#61;"efi&#45;32"			</pre>
+			<h2>
+				Kernel configuration
+			</h2>
+			<p>
+				Okay.
+				This is another important part; it&rsquo;s also where it gets pretty messy.
+				There are a bunch of kernel options that must be included in order for your system to function properly. These should be all the important ones.
+				If you think anything is missing, feel free to contact me and I&rsquo;ll correct it.
+				I&rsquo;ve also probably included more options than necessary here&mdash;I don&rsquo;t really have the time to test every option individually, so I just went with whatever worked.
+				If you think any of the options are completely unnecessary, just let me know and I&rsquo;ll remove it from here.
+			</p>
+			<p>
+				<span class="sntc">If you don&rsquo;t want to configure your kernel yourself &#40;or if you can&rsquo;t get your system to work properly&#41;, you can try <a href="/files/x205ta-kernel.config.gz">using my config instead</a> &#40;no sound support&#41;, given that you are also running something around kernel 5.4.80.</span>
+			</p>
+			<h3>
+				eMMC support
+			</h3>
+			<p>
+				Make sure you&rsquo;ve got all of these in your config, or else you will get kernel panics at boot time.
+			</p>
+			<pre>
+Device Drivers
+  MMC&#47;SD&#47;SDIO card support
+    &#60;&#42;&#62; MMC block device driver
+    &#60;&#42;&#62; Secure Digital Host Controller Interface support
+    &#60;&#42;&#62;   SDHCI support on PCI bus
+    &#91;&#42;&#93;     Ricoh MMC Controller Disabler
+    &#60;&#42;&#62;   SDHCI support for ACPI enumerated SDHCI controllers
+    &#60;&#42;&#62;   SDHCI platform and OF driver helper
+    &#60;&#42;&#62; MMC&#47;SD driver for Ricoh Bay1Controllers			</pre>
+			<h3>
+				Pin Controller
+			</h3>
+			<pre>
+Device Drivers
+  Pin controllers
+    &#91;&#42;&#93; Intel Baytrail GPIO pin control
+    &#91;&#42;&#93; Intel Cherryview&#47;Braswell pinctrl and GPIO driver			</pre>
+			<h3>
+				Wi&#45;fi
+			</h3>
+			<p>
+				Thanks to the Japanese guy I mentioned earlier for mentioning these options.
+				<span class="sntc">However we also need to include the WLAN driver so we can enable the <code>wlan0</code> interface.</span>
+				&#40;Note that these are in addition to the other base options that you&rsquo;d normally use for networking&#41;.
+			</p>
+			<pre>
+Device Drivers
+  Wireless LAN
+    &#91;&#42;&#93; Broadcom devices
+    &#60;M&#62;   Broadcom 43xx wireless support &#40;mac80211 stack&#41;
+    &#91;&#42;&#93;   Broadcom 43xx SDIO device support
+    &#60;M&#62;   Broadcom FullMAC WLAN driver
+    &#91;&#42;&#93;   SDIO bus interface support for FullMAC driver
+Networking Support
+  &#60;M&#62; cfg80211 &#45; wireless configuration API
+  &#91;&#42;&#93;   enable powersave by default
+  &#91;&#42;&#93;   cfg80211 wireless extensions compatibility
+  &#60;M&#62; Generic IEEE 802.11 Networking Stack &#40;mac80211&#41;
+  &#91;&#42;&#93; Export mac80211 internals in DebugFS			</pre>
+			<h3>
+				Input
+			</h3>
+			<p>
+				The following need to be built into the kernel to get the keyboard working.
+				<span class="sntc">Thanks to <a href="https://ubuntuforums.org/showthread.php?t=2254322&p=13733677#post13733677">harryharryharry over at Ubuntu forums</a> for mentioning the I2C stuff &#40;and for all of his contributions to getting Linux working on this laptop!&#41;</span>
+			</p>
+			<pre>
+Device Drivers
+  HID support
+    I2C HID support
+      &#60;&#42;&#62; HID over I2C transport layer
+  I2C support
+    I2C Hardware Bus Support
+      &#60;&#42;&#62; Synopsys DesignWare Platform
+      &#91;&#42;&#93;   Synopsys DesignWare Slave
+      &#60;&#42;&#62; Synopsys DesignWare PCI
+      &#91;&#42;&#93; Intel Baytrail I2C semaphore support
+  Input device support
+    &#60;M&#62; Mouse interface
+    &#60;M&#62; Event interface
+    &#91;&#42;&#93; Keyboards
+    &#60;M&#62;   &#40;basically all keyboards&#41;
+    &#91;&#42;&#93; Mice
+    &#60;M&#62;   ELAN I2C Touchpad support
+    &#91;&#42;&#93;     Enable I2C support
+    &#91;&#42;&#93;     Enable SMbus support
+    &#60;&#42;&#62;   Synaptics I2C Touchpad support			</pre>
+			<h3>
+				Graphics
+			</h3>
+			<pre>
+Device Drivers
+  Graphics support
+    &#60;&#42;&#62; Intel 8xx&#47;9xx&#47;G3x&#47;G4x&#47;HD Graphics
+    &#91;&#42;&#93; Enable capturing GPU state following a hang.
+    &#91;&#42;&#93;   Compress GPU error state
+    &#91;&#42;&#93; Always enable userptr support			</pre>
+			<h3>
+				Sound
+			</h3>
+			<p>
+				I&rsquo;m adding this section after the original post date &#40;currently 2020&#45;01&#45;22&#41;.
+				I haven&rsquo;t tried getting sound working on the 5.4 kernel, as I&rsquo;m now running the latest stable 5.10.9 kernel.
+				You can try reproduce the settings below on an older kernel, I don&rsquo;t know if it&rsquo;ll work though.
+			</p>
+			<p>
+				These should be all the options you need to get the sound working decently.
+				There will be just a slight hiss in the headphone output but I&rsquo;m sure you can live with that.
+				Oh, and you will also need to manually switch the output from Headphones to Speakers and vice&#45;versa, using e.g. pavucontrol.
+				You could probably set up some kind of output&#45;toggle binding to speed up that process.
+			</p>
+			<pre>
+Device Drivers
+  &#60;&#42;&#62; Sound card support
+    &#60;&#42;&#62; ALSA
+      &#91;&#42;&#93; PCI sound devices
+      &#60;M&#62; HR&#45;timer backend support
+          HD&#45;Audio
+          &#60;M&#62; HD Audio PCI
+          &#91;&#42;&#93; Build hwdep interface for HD&#45;audio driver
+          &#91;&#42;&#93; Support initialization patch loading for HD&#45;audio
+          &#60;M&#62; Build Realtek HD&#45;audio codec support
+          &#60;M&#62; Build Analog devices HD&#45;audio codec support
+      &#40;4096&#41; Pre&#45;allocated buffer size for HD&#45;audio driver
+      &#60;&#42;&#62; ALSA for SoC audio support
+        &#91;&#42;&#93; Intel ASoC SST drivers
+        &#60;&#42;&#62;   ACPI HiFi2 &#40;Baytrail, Cherrytrail&#41; Platforms
+        &#45;&#42;&#45; Intel Machine Drivers
+          &#60;M&#62; &#40;everything&#41;
+        &#91;&#42;&#93; Sound Open Firmware Support
+          &#60;&#42;&#62; SOF ACPI enumeration support.
+          &#91;&#42;&#93; SOF support for Intel audio DSPs
+        &#60;M&#62; ASoC Simple sound card support			</pre>
+			<p>
+				I have no idea if the microphone will work with these options.
+				I don&rsquo;t really care since I don&rsquo;t use the microphone.
+			</p>
+			<p>
+				And from here all the other kernel options &#40;USB support, etc&#41; should be pretty generic and obvious.
+			</p>
+			<h3>
+				Kernel patches
+			</h3>
+			<p>
+				<span class="sntc">If you want to squeeze as much performance as possible out of your X205TA, you can apply the <a href="http://ck.kolivas.org/patches">linux&#45;ck performance patches</a> to your kernel.</span>
+				I&rsquo;m running this personally and it seems to just make the system feel a bit snappier overall.
+			</p>
+			<h2>
+				GRUB installation
+			</h2>
+			<p>
+				To install GRUB we have to run these two commands.
+				<span class="sntc">Make sure you <b>do not</b> include a partition number in the <code>grub&#45;install</code> command &#40;e.g. <b>don&rsquo;t use</b> <code>mmcblk1pX</code>&#41; or else your laptop won&rsquo;t boot &#40;at least in my testing&#41;.</span>
+				<span class="sntc">As long as the <code>&#47;boot&#47;EFI</code> directory exists &#40;and you&rsquo;ve formatted partitions the same as me&#41;, the below commands will install the bootloader just fine.</span>
+			</p>
+			<pre>
+grub&#45;install &#45;&#45;target&#61;i386&#45;efi &#47;dev&#47;mmcblk1
+grub&#45;mkconfig &#45;o &#47;boot&#47;grub&#47;grub.cfg			</pre>
+			<p>
+				<span class="sntc">Your bootloader should now appear in <code>&#47;boot&#47;EFI&#47;EFI&#47;gentoo</code>. It probably looks weird with the two EFI directories, but it seems to work perfectly like this.</span>
+			</p>
+			<p>
+				I also created an initramfs.
+				I&rsquo;d say you should probably install one of these too on your machine:
+			</p>
+			<pre>
+genkernel &#45;&#45;install &#45;&#45;kernel&#45;config&#61;&#47;usr&#47;src&#47;linux&#47;.config initramfs			</pre>
+			<h2>
+				Finishing up
+			</h2>
+			<p>
+				And that&rsquo;s about it!
+				If all went well&mdash;you followed the official install Gentoo instructions and applied the stuff from this guide, you should hopefully be able to unmount everything, reboot, and boot into a fresh Gentoo installation on your X205TA!
+				You&rsquo;re on your own from here to decide how the rest of your system will be laid out.
+			</p>
+			<p>
+				<span class="sntc">If you have any questions, comments, or problems with the information here, please feel free to e&#45;mail me via the address on my <a href="https://mikejzx.github.io">homepage</a>.</span>
+			</p>
+			<p>
+				Have fun waiting for all your packages to compile ;&#41;
+			</p>
+		]]></description>
+</item>
+<item>
+<title>On Web Browsers</title>
+<guid>https://mikejzx.github.io/blog/2020/on-web-browsers.html</guid>
+<link>https://mikejzx.github.io/blog/2020/on-web-browsers.html</link>
+<pubDate>Sat, 12 Dec 2020 00:00:00 +1100</pubDate>
+<description><![CDATA[
+			<header>
+				On Web Browsers
+				<span style="float: right">2020-12-12</span>
+			</header>
+			<p>
+				In the current day and age, there are only two main browsers that you will find on the desktop: Chromium and Firefox.
+				We&rsquo;ll ignore Safari because nobody cares about Apple.
+				According to StatCounter as of November 2020, Chrome has nearly 70&#37; of the web browser market share on desktop.
+				Add in Edge&rsquo;s 8&#37; and Opera&rsquo;s 2&#37; and you can say that about 80&#37; of desktop web browsers are Chromium&#45;based.
+			</p>
+			<p>
+				On that note, it seems like few people these days &#40;i.e. normies&#41; are aware that Chrome is a proprietary fork of the open&#45;source Chromium browser.
+				I mean, if you seriously have to use Chrome, at least switch to Chromium, or better, one of it&rsquo;s decent free and open&#45;source forks: &lsquo;ungoogled&#45;chromium&rsquo;, Brave, Bromite, Iridium, etc.
+				Nevertheless, that&rsquo;s a whole other topic.
+			</p>
+			<p>
+				What I actually wanted to discuss here is the lack of choice in web browsers we have right now.
+				If you&rsquo;re not using a Chromium&#45;based browser, you&rsquo;re most likely going to be using Mozilla&rsquo;s Firefox.
+				&#40;Yes, I know there are small free and open&#45;source alternatives, like suckless&rsquo;s &lsquo;surf&rsquo; browser, &lsquo;qutebrowser&rsquo;, etc., but these are mostly used by and intended for power users&#47;nerds running Unix&#45;like operating systems, rather than average users&#41;.
+			</p>
+			<p>
+				The thing is, Firefox is slowly turning to shit.
+				I&rsquo;ve been using it for a few years now and was initially reasonably happy with it.
+				I mean, it took some configuring to get it to behave how I wanted &#40;no history, delete cookies, and some other &ldquo;hardening&rdquo;&#41;.
+				Nevertheless, I&rsquo;ve noticed that as the years go by, Firefox just seems to get worse and worse.
+				I really don&rsquo;t know what the hell is going on over there at Mozilla, but adding useless features that nobody uses, like Pocket, and forcing a stupid expanding URL bar that nobody asked for is just a few of the many things that are slowly turning our browser into rubbish.
+				You&rsquo;ll find many people complaining online about how a feature they liked was removed, or how they can&rsquo;t stand a new feature.
+				These people will either get told to &ldquo;deal with it&rdquo;, or perform some ridiculous workaround that wouldn&rsquo;t be necessary if Mozilla had focused their effort on actually making the browser better.
+			</p>
+			<p>
+				<span class="sntc">And the funniest part is simply that Firefox is a <b>free and open&#45;source browser</b>.</span>
+				One of the few criterion for a piece of software to be free and open&#45;source is the ability for anyone to come along and modify its source code.
+				There&rsquo;s almost a joke online regarding FOSS projects&mdash;when someone says they don&rsquo;t like a particular feature in a piece of open&#45;source software, they&rsquo;ll get told, &ldquo;fork it&rdquo;.
+			</p>
+			<p>
+				<span class="sntc">Now here is the problem, and it&rsquo;s a big one; 99&#37; of the people who look at the source code of a large web browser will be <b>unable to modify it</b>, to fix the problems in the browser.</span>
+				There&rsquo;s only so many people who are willing to put the work and dedication into understanding any of a huge web browser&rsquo;s source code.
+				You&rsquo;re not going to have many hobbyists coming along and fixing the problems with Firefox just out of goodwill in their free time.
+			</p>
+			<p>
+				I should add; I am aware of Alex Kontos &#40;a.k.a. MrAlex94&#41; and his browser Waterfox, and I actually used Waterfox for most of this year.
+				<span class="sntc">Sure, he&rsquo;s done some excellent work removing Pocket &#40;thank god&#41;, telemetry, and bringing back the old plugin system, but apart from that, I feel like the browser is still <b>too similar</b> to Firefox.</span>
+				I wish that the browser would go off more on it&rsquo;s own path and do it&rsquo;s own thing.
+				But of course, I can&rsquo;t blame the dude, for reasons that I&rsquo;m going to get to.
+				I&rsquo;d imagine that him being mostly a one&#45;man&#45;army would make it incredibly difficult to do something like that too.
+			</p>
+			<p>
+				And so, the only two big browsers that are still alive today on the desktop, Chromium and Firefox, simply managed to survive today because they have companies backing them paying people to work on them.
+				These browsers are continually getting bigger, bigger, and bigger, and it has just about gotten to the point where writing a new web browser from scratch which can compete with Chromium and Firefox would demand an insane amount of resources.
+			</p>
+			<p>
+				So you might be asking yourself.
+				Well, what do we do?
+				Unfortunately, I don&rsquo;t have an answer to that.
+				But I can tell you why we&rsquo;re in this ridiculous situation:
+			</p>
+			<p>
+				The web itself has become an absolute mess.
+			</p>
+			<p>
+				Think about it.
+				The reason why our browsers are so gigantic, is because of the current state of the web.
+				We need a massive CSS engine to let developers make sites look pretty.
+				We need an equally massive JavaScript engine to implement the entire JavaScript standard.
+				We need to support all these WebSockets, other APIs, and so on.
+				In the end, after 10&#45;20 years of all of this crap being thrown into web browsers, you get the big, bloated, web browsers we have today that hog 8&#43; processes, and a few gigs of RAM.
+			</p>
+			<p>
+				<span class="sntc">The problem is that we&rsquo;ve made <b>too much</b> possible for web developers.</span>
+				There&rsquo;s a bit of a continuum actually, either:
+			</p>
+			<ul>
+			<li>
+				You give web developers the ability to do practically anything they want &#40;as is the case currently&#41;, through loads of CSS rules, and JavaScript.
+				This results in our current situation of little web browser variety, and massive bloat.
+			</li>
+			<li>
+				Alternatively, you restrict the amount of control that web developers have over their page, through some simple standard.
+				Provided that this standard is simple enough, our current situation is mitigated, as practically any average Joe can come along and write his own simple &ldquo;web browser&rdquo; if he wants.
+			</li>
+			</ul>
+			<p>
+				So again; you&rsquo;re probably asking, &ldquo;What do we do?
+				We already let the web get as complicated as it is,&rdquo; and you&rsquo;d be right.
+				I really can&rsquo;t answer the question of what we are supposed to do to fix this.
+				However I&rsquo;ll mention that there has actually been some effort to address these issues.
+				<span class="sntc">One such project I came across recently is <a href="https://gemini.circumlunar.space">Project Gemini</a> which honestly while minimal, isn&rsquo;t that bad.</span>
+				It&rsquo;s supposed to be heavier than Gopher, less complicated than the web, and not a replacement for either of them.
+				<span class="sntc">So like I said earlier, having a simple standard inevitably makes it easier to create browsers, which is shown in how there are currently eight Gemini clients listed on <a href="https://gemini.circumlunar.space/clients.html">this page</a>&mdash;impressive considering how small Gemini currently is.</span>
+			</p>
+			<p>
+				<span class="sntc">I&rsquo;m not saying that Gemini is the solution to our problem, because it is <b>very minimal</b>, being mostly text&#45;based, and I personally think it&rsquo;s impractical for <b>normal users</b> who are coming from the current web.</span>
+				They would feel like they&rsquo;re getting a downgrade, not being able to view videos or listen to music in their browser, not being able to share images practically with their friends, etc.
+				I personally don&rsquo;t think that pure text alone is the way to go.
+				Some styling is nice to have to at least make your site look somewhat pleasing to the eye.
+			</p>
+			<p>
+				I mean, I&rsquo;m sure there&rsquo;s some UNIX extremist reading this thinking, &ldquo;Do one thing and do it well!&rdquo; and suggesting that we all for example, download videos through our minimal Gemini browsers to view them in some external purpose&#45;built video player software, or that we all only chat with people using software designed for it, like IRC clients or whatever.
+				Again, this is seriously impractical for normal people who aren&rsquo;t already into all that sort of stuff &#40;i.e. basically people who use Windows or Mac&#41;.
+			</p>
+			<p>
+				Nevertheless.
+				A bit of a rant, but I guess something to think about as our web continues to become more and more bloated as it inevitably will in the years to come.
+			</p>
+		]]></description>
+</item>
+<item>
+<title>Switching to Arch</title>
+<guid>https://mikejzx.github.io/blog/2020/switching-to-arch.html</guid>
+<link>https://mikejzx.github.io/blog/2020/switching-to-arch.html</link>
+<pubDate>Fri, 04 Dec 2020 00:00:00 +1100</pubDate>
+<description><![CDATA[
+			<header>
+				Switching to Arch
+				<span style="float: right">2020-12-04</span>
+			</header>
+			<p>
+				Around this time last year &#40;a bit earlier actually&mdash;October or so&#41;, I decided to make the switch to using a Linux distribution as my daily driver &#40;while also dual&#45;booting Windows&#41;.
+				Just like everyone else, I distrohopped until I found the distro that I felt was &ldquo;just right&rdquo;.
+				I settled on Xubuntu&mdash;a nice flavour of Ubuntu that runs the good ol&rsquo; XFCE4 desktop environment.
+				It just seemed like a nice, fairly snappy operating system.
+				Below is a screenshot of what my system looked like from about April to around last week: 
+			</p>
+			<img src="/files/img/2020-04-28_xfce.webp" alt="Riced XFCE desktop"/>
+			<p>
+				It looked nice and all for a while, but recently I was getting sick of it.
+				I decided it was time to change it up a bit; I decided to try out Arch
+			</p>
+			<p>
+				I had used Arch Linux for the past year or so on an old laptop of mine &#40;this same laptop is where I had installed Ubuntu for the first time years ago!&#41;.
+				I had played around with Arch occasionally, and I thought it seemed like a really cool and extensible distribution.
+				I felt like I had loads more flexibility, and that I knew the system better because I had installed everything on it myself from the ground&#45;up.
+			</p>
+			<p>
+				So, last weekend I got my desktop prepared for a new install of Arch &#40;cleaned up file&#47;directory structure&#41; and put the ISO on a trusty USB.
+				I went ahead with the install&mdash;it took me two attempts &lsquo;till I got a functioning system.
+				It seemed like the latest 5.9 kernel just doesn&rsquo;t like my hardware or something.
+				The second time around I went with the LTS kernel, and all went well.
+			</p>
+			<p>
+				I booted into my new system, and installed whatever essential packages I needed &#40;i.e. Neovim, etc&#41;.
+				I had decided beforehand that I&rsquo;d go with Openbox as my window manager, so that&rsquo;s what I installed and ran initially.
+				I had played around with it, got the basic things configured.
+				<span class="sntc">However, I soon discovered that Openbox does not have the ability to &ldquo;hide window contents while dragging windows&rdquo; &#40;see <a href="http://www.lxle.net/forums/discussion/778/hide-window-content-while-dragging/p1">here</a>, things haven&rsquo;t changed since then apparently&#41;.</span>
+				It&rsquo;s a really small feature, but something I really wanted to have, as it just makes the system feel a lot snappier.
+				<span class="sntc">Nevertheless, I discovered quickly that the <b>Fluxbox</b> window manager actually supports this feature.</span>
+				I had basically never used Fluxbox before &#40;maybe once or twice as a test&#41;, but decided to give it a shot anyway.
+				And boy, I&rsquo;m glad I did!
+				Fluxbox&rsquo;s man pages are pretty comprehensive &#40;thankfully, as there isn&rsquo;t much online resources unfortunately&#41;, so I was able to get it configured fairly quickly.
+				I was very impressed with how customisable and simple Fluxbox actually is.
+				It was basically just what I had been looking for.
+				I was able to adjust it to suit my workflow, using some keybinds such as the following:
+			</p>
+			<pre>
+&#35; Close window
+Mod4 Q :Close
+&#35; Make window fullscreen
+Mod1 F11 :Fullscreen
+&#35; Tile window vertically to the left&#47;right.
+Mod4 Left :MacroCmd &#123;ResizeTo 50&#37; 100&#37;&#125; &#123;MoveTo 0&#37; 0&#37; TopLeft&#125;
+Mod4 Right :MacroCmd &#123;ResizeTo 50&#37; 100&#37;&#125; &#123;MoveTo 0&#37; 0&#37; TopRight&#125;
+&#35; Maximise window
+Mod4 Up :Maximize
+&#35; Restore window if maximised, minimise it if restored.
+&#35; The call to 'Maximize' here is a hack that is used to actually
+&#35; 'Restore' the maximised window, since there doesn't seem to be
+&#35; any 'Restore' command &#40;at least not in the build of Fluxbox
+&#35; that is in the Arch repos&#41;.
+Mod4 Down :If &#123;Matches &#40;Maximized&#61;yes&#41;&#125; &#123;Maximize&#125; &#123;Minimize&#125;
+&#35; Launch script that moves window to other monitor:
+&#35; See my dotfiles for the script, I can't find the original author:
+&#35; https:&#47;&#47;github.com&#47;mikejzx&#47;dotfiles
+Mod1 Shift N :Exec &#36;HOME&#47;src&#47;scripts&#47;misc&#47;move&#45;to&#45;next&#45;monitor.sh
+&#35; A pretty cool command that tiles windows in master&#47;slave format.
+Mod4 A :If &#123;Matches &#40;Layer!&#61;Desktop&#41;&#125; &#123;ArrangeWindowsStackRight &#40;Name!&#61;tint2&#41;&#125;
+&#35; Launch Rofi to search for programs.
+Mod4 S :Exec rofi &#45;show combi &#45;combi&#45;modi "drun,run" &#45;modi combi			</pre>
+			<p>
+				Those are the main window management keybinds that I&rsquo;m using, and they get the job done great.
+				I haven&rsquo;t tinkered with workspaces yet, since they seem a bit awkward to use on a dual&#45;monitor setup with a floating window manager.
+				Maybe in future I&rsquo;ll try work something out.
+			</p>
+			<p>
+				After getting Fluxbox &#40;and everything else on the system&#41; configured, it was time to theme the damn thing!
+				I had initially been using the &rsquo;bloe&rsquo; theme that came with Fluxbox, since I thought it actually looked decent, and sort of retro&#45;ey.
+				Thing is, I just wanted a dark version of it!
+			</p>
+			<p>
+				Well, I decided to go ahead and make my own dark version of it.
+				I mean, it took some tweaking, but eventually I was able to get something that I was actually pleased with.
+				I only ended up editing the pixmaps that I was actually using, so that is&mdash;close&#47;restore&#47;minimise buttons, window titlebars, etc.
+			</p>
+			<p>
+				I had to find a GTK theme that went well the Fluxbox theme.
+				Man, it was a pain in the ass, but I did eventually discover a theme called &lsquo;Vertex&rsquo;, which I think worked well with it.
+				I did just slightly modify the colours of the toolbar&#47;window menus of GTK2 windows, and also removed all &rsquo;transitions&rsquo; that I could find&mdash;since I don&rsquo;t like them very much.
+			</p>
+			<p>
+				Finally, I had to get my panel configured.
+				I had installed Tint2 pretty early on, while I was experimenting with Openbox, and yeah it&rsquo;s pretty awesome.
+				I was able to configure it pretty much just how I wanted.
+				The other day I even put this crazy gradient on it, which when paired with a blur effect &#40;thanks to Tryone144&rsquo;s fork of the Picom compositor&#41;, made it look a bit like the Windows Vista taskbar.
+				I mean, I wasn&rsquo;t trying to mimick it really, but I think it goes quite well with the rest of the theme.
+				I guess it can be considered a bit of a &ldquo;retro&rdquo; look now, since interfaces haven&rsquo;t had that sort of thing in years.
+				Here&rsquo;s the gradient I used to achieve it:
+			</p>
+			<pre>
+gradient &#61; vertical
+start&#95;color &#61; &#35;404040 55
+color&#95;stop &#61; 50.000000 &#35;4a4a4a 55
+color&#95;stop &#61; 52.000000 &#35;0c0c0c 30
+color&#95;stop &#61; 93.000000 &#35;0a0a0a 30
+color&#95;stop &#61; 94.000000 &#35;ffffff 10
+color&#95;stop &#61; 96.000000 &#35;ffffff 10
+color&#95;stop &#61; 98.000000 &#35;000000 100
+end&#95;color &#61; &#35;000000 100			</pre>
+			<p>
+				And here&rsquo;s the resulting desktop.
+				A bit of a throwback to the late 2000s days of computing I guess.
+				It definitely won&rsquo;t suit everyone&rsquo;s tastes, but it suits mine!
+				
+			</p>
+			<img src="/files/img/2020-12-04_arch_main.webp" alt="Arch desktop screenshot"/>
+			<p>
+				Oh, and I just thought this was really cool too&mdash;this is from the Tint2 panel on my left monitor.
+				Got a nice MPD status display there with a play&#47;pause icon!
+				Of course clicking it also runs &lsquo;mpc toggle&lsquo;.
+				
+			</p>
+			<img src="/files/img/2020-12-04_arch_left.webp" alt="tint2 on the other monitor"/>
+		]]></description>
+</item>
+</channel>
+</rss>

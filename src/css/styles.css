@@ -1,0 +1,131 @@
+* {
+	/* Light */
+	/*
+	--col-fg: #000;
+	--col-bg: #fcfaf3;
+	--col-title: #000;
+	--col-heading: #111;
+	--col-link: #080;
+	--col-link-hover: #040;
+	--col-code-bg: #d0d0d0;
+	--col-code-fg: #111;
+	*/
+	/* Dark */
+	--col-fg: #ddd;
+	--col-bg: #121314;
+	--col-title: #08c;
+	--col-heading: #4ef;
+	--col-link: #48f;
+	--col-link-hover: #7df;
+	--col-code-bg: #1a1c20;
+	--col-code-fg: #eee;
+}
+
+body {
+	background-color: var(--col-bg);
+	color: var(--col-fg);
+	padding: 0;
+	font-family: serif;
+	font-size: 12pt;
+	--sentence-spacing: 0.5em;
+	--line-height: 1.425em;
+	/*
+	font-family: monospace;
+	font-size: 10pt;
+	--sentence-spacing: 0.6em;
+	--line-height: 1.2em;
+	*/
+}
+
+nav a {
+	text-decoration: none;
+	display: inline-block;
+	padding: 0 0.5em 0 0.5em;
+}
+
+nav {
+	padding-top: 0.5em;
+	display: flex;
+	justify-content: center;
+}
+
+article {
+	max-width: 32rem;
+	margin: 0 auto 0 auto;
+	padding: 1rem 0 12rem 0;
+	overflow-wrap: break-word;
+	hyphens: auto;
+	text-align: justify;
+	line-height: var(--line-height);
+}
+
+.sentspc { word-spacing: var(--sentence-spacing) }
+article p {
+	text-indent: 1.75rem;
+	margin: 0;
+	padding: 0;
+}
+ul { list-style-type: disc; }
+article li {
+	margin: 0;
+	padding: 0.125rem 0.5rem;
+}
+header+p,
+h1+p,
+h2+p,
+h3+p,
+h4+p,
+h5+p,
+h6+p { text-indent: 0 }
+
+.sntc { word-spacing: 0 }
+.dropcap {
+	float: left;
+	font-size: 4.5em;
+	padding: 0.1em 0.12em 0 0;
+	line-height: 0.75em;
+}
+
+header {
+	border-bottom: 3px double var(--col-title);
+	color: var(--col-title);
+	/*margin-left: -0.5em;*/
+	margin-bottom: 1.5rem;
+}
+
+a { color: var(--col-link); }
+a:hover { color: var(--col-link-hover); }
+
+h1, h2, h3, h4, h5, h6 {
+	font-size: 1em;
+	color: var(--col-heading);
+	padding: 0;
+	margin: 0.25rem 0;
+}
+header+h1 { padding-top: 0 }
+p+h1, p+h2, p+h3, p+h4, p+h5, p+h6 {
+	padding-top: 1.25rem;
+}
+
+pre {
+	background-color: var(--col-code-bg);
+	color: var(--col-code-fg);
+	border-radius: 4px;
+	padding: 1em;
+	font-size: 9pt;
+	font-family: monospace;
+	overflow: auto;
+	line-height: 1.25em;
+}
+code {
+	font-size: 9pt;
+	font-family: monospace;
+}
+
+img {
+	max-width: 100%;
+	margin: 1.5rem 0;
+}
+dl {
+	margin: 0;
+}

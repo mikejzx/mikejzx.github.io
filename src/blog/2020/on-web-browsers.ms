@@ -1,0 +1,174 @@
+.DA 2020-12-12
+.TL
+On Web Browsers
+.
+.PP
+In the current day and age, there are only two main browsers that you will find
+on the desktop:
+Chromium and Firefox.
+We'll ignore Safari because nobody cares about Apple.
+According to StatCounter as of November 2020, Chrome has nearly 70% of the web
+browser market share on desktop.
+Add in Edge's 8% and Opera's 2% and you can say that about 80% of desktop web
+browsers are Chromium-based.
+.
+.PP
+On that note, it seems like few people these days (i.e. normies) are aware that
+Chrome is a proprietary fork of the open-source Chromium browser.
+I mean, if you seriously have to use Chrome, at least switch to Chromium, or
+better, one of it's decent free and open-source forks: `ungoogled-chromium',
+Brave, Bromite, Iridium, etc.
+Nevertheless, that's a whole other topic.
+.
+.PP
+What I actually wanted to discuss here is the lack of choice in web browsers we
+have right now.
+If you're not using a Chromium-based browser, you're most likely going to be
+using Mozilla's Firefox.
+(Yes, I know there are small free and open-source alternatives, like suckless's
+`surf' browser, `qutebrowser', etc., but these are mostly used by and intended
+for power users/nerds running Unix-like operating systems, rather than average
+users).
+.PP
+The thing is, Firefox is slowly turning to shit.
+I've been using it for a few years now and was initially reasonably happy with
+it.
+I mean, it took some configuring to get it to behave how I wanted (no history,
+delete cookies, and some other ``hardening'').
+Nevertheless, I've noticed that as the years go by, Firefox just seems to get
+worse and worse.
+I really don't know what the hell is going on over there at Mozilla, but adding
+useless features that nobody uses, like Pocket, and forcing a stupid expanding
+URL bar that nobody asked for is just a few of the many things that are slowly
+turning our browser into rubbish.
+You'll find many people complaining online about how a feature they liked was
+removed, or how they can't stand a new feature.
+These people will either get told to ``deal with it'', or perform some
+ridiculous workaround that wouldn't be necessary if Mozilla had focused their
+effort on actually making the browser better.
+.
+.PP
+And the funniest part is simply that Firefox is a
+.B "free and open-source browser" .
+One of the few criterion for a piece of software to be free and open-source is
+the ability for anyone to come along and modify its source code.
+There's almost a joke online regarding FOSS projects\(emwhen someone says they
+don't like a particular feature in a piece of open-source software, they'll get
+told, ``fork it''.
+.
+.PP
+Now here is the problem, and it's a big one; 99% of the people who look at the
+source code of a large web browser will be
+.B "unable to modify it" ,
+to fix the problems in the browser.
+There's only so many people who are willing to put the work and dedication into
+understanding any of a huge web browser's source code.
+You're not going to have many hobbyists coming along and fixing the problems
+with Firefox just out of goodwill in their free time.
+.
+.PP
+I should add;
+I am aware of Alex Kontos (a.k.a. MrAlex94) and his browser Waterfox, and I
+actually used Waterfox for most of this year.
+Sure, he's done some excellent work removing Pocket (thank god), telemetry, and
+bringing back the old plugin system, but apart from that, I feel like the
+browser is still
+.B "too similar"
+to Firefox.
+I wish that the browser would go off more on it's own path and do it's own
+thing.
+But of course, I can't blame the dude, for reasons that I'm going to get to.
+I'd imagine that him being mostly a one-man-army would make it incredibly
+difficult to do something like that too.
+.
+.PP
+And so, the only two big browsers that are still alive today on the desktop,
+Chromium and Firefox, simply managed to survive today because they have
+companies backing them paying people to work on them.
+These browsers are continually getting bigger, bigger, and bigger, and it has
+just about gotten to the point where writing a new web browser from scratch
+which can compete with Chromium and Firefox would demand an insane amount of
+resources.
+.
+.PP
+So you might be asking yourself.
+Well, what do we do?
+Unfortunately, I don't have an answer to that.
+But I can tell you why we're in this ridiculous situation:
+.
+.PP
+The web itself has become an absolute mess.
+.
+.PP
+Think about it.
+The reason why our browsers are so gigantic, is because of the current state of
+the web.
+We need a massive CSS engine to let developers make sites look pretty.
+We need an equally massive JavaScript engine to implement the entire JavaScript
+standard.
+We need to support all these WebSockets, other APIs, and so on.
+In the end, after 10-20 years of all of this crap being thrown into web
+browsers, you get the big, bloated, web browsers we have today that hog 8+
+processes, and a few gigs of RAM.
+.
+.PP
+The problem is that we've made
+.B "too much"
+possible for web developers.
+There's a bit of a continuum actually, either:
+.LI
+You give web developers the ability to do practically anything they want (as is
+the case currently), through loads of CSS rules, and JavaScript.
+This results in our current situation of little web browser variety, and
+massive bloat.
+.LI
+Alternatively, you restrict the amount of control that web developers have over
+their page, through some simple standard.
+Provided that this standard is simple enough, our current situation is
+mitigated, as practically any average Joe can come along and write his own
+simple ``web browser'' if he wants.
+.PP
+So again;
+you're probably asking, ``What do we do?
+We already let the web get as
+complicated as it is,'' and you'd be right.
+I really can't answer the question of what we are supposed to do to fix this.
+However I'll mention that there has actually been some effort to address these
+issues.
+One such project I came across recently is
+.H https://gemini.circumlunar.space "Project Gemini"
+which honestly while minimal, isn't that bad.
+It's supposed to be heavier than Gopher, less complicated than the web, and not
+a replacement for either of them.
+So like I said earlier, having a simple standard inevitably makes it easier to
+create browsers, which is shown in how there are currently eight Gemini clients
+listed on
+.H https://gemini.circumlunar.space/clients.html "this page" \(emimpressive
+considering how small Gemini currently is.
+.
+.PP
+I'm not saying that Gemini is the solution to our problem, because it is
+.B "very minimal" ,
+being mostly text-based, and I personally think it's impractical for
+.B "normal users"
+who are coming from the current web.
+They would feel like they're getting a downgrade, not being able to view videos
+or listen to music in their browser, not being able to share images practically
+with their friends, etc.
+I personally don't think that pure text alone is the way to go.
+Some styling is nice to have to at least make your site look somewhat pleasing
+to the eye.
+.
+.PP
+I mean, I'm sure there's some UNIX extremist reading this thinking, ``Do one
+thing and do it well!'' and suggesting that we all for example, download videos
+through our minimal Gemini browsers to view them in some external purpose-built
+video player software, or that we all only chat with people using software
+designed for it, like IRC clients or whatever.
+Again, this is seriously impractical for normal people who aren't already into
+all that sort of stuff (i.e. basically people who use Windows or Mac).
+.
+.PP
+Nevertheless.
+A bit of a rant, but I guess something to think about as our web continues to
+become more and more bloated as it inevitably will in the years to come.
