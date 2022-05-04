@@ -1,4 +1,4 @@
-.DA 2022-05-03
+.DA 2022-05-04
 .TL
 New Roff-based Blog System
 .PP
@@ -253,3 +253,35 @@ The idea was that it was meant to be a contraction of `blog roff' as I guess
 blogging is the intended purpose of it?
 Maybe it could also be for `web roff', I'll let whoever happens to stumble
 across it decide.
+.
+.NH 2
+Addendum
+.PP
+Not long after writing this post I discovered that there exists an additional
+method to achieve sentence spacing in HTML; that is to use the CSS
+.F white-space
+property on text to allow consecutive spaces to be preserved.
+The advantage of this approach is that it's just a simple CSS rule; no
+additional styling is needed and the HTML tags can be left alone.
+This means that it can be used to easily achieve sentence spacing with content
+converted from Markdown, or even with the
+.F grohtml
+web troff driver.
+A disadvantage of this approach though is that you can't have precise control
+over how wide the sentence space should be; you can only adjust it in terms of
+the font's space character by adding more or less spaces after sentences.
+Another problem I noticed is that there are no suitable properties for this
+rule that allow for whitespace preservation that also collapse new-lines.
+In other words, if you set e.g.,
+.F "white-space: break-spaces"
+then you will need to be mindful of any linefeed characters that you include
+within your paragraph tags as they will all be interpreted as explicit line
+breaks.
+.PP
+Despite these revelations, I am still fairly happy with the system I'm already
+using as outlined above, so I will continue to use it.
+Maybe one day I might have a play around with
+.F grohtml
+and decide whether it's worth using or not (as it stands I think it does a bit
+.I "too much"
+for my needs).

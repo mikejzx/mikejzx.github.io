@@ -11,11 +11,11 @@
 <title>New Roff-based Blog System</title>
 <guid>https://mikejzx.github.io/blog/2022/been-a-while.html</guid>
 <link>https://mikejzx.github.io/blog/2022/been-a-while.html</link>
-<pubDate>Tue, 03 May 2022 00:00:00 +1000</pubDate>
+<pubDate>Wed, 04 May 2022 00:00:00 +1000</pubDate>
 <description><![CDATA[
 			<header>
 				New Roff&#45;based Blog System
-				<span style="float: right">2022-05-03</span>
+				<span style="float: right">2022-05-04</span>
 			</header>
 			<p>
 				So, it&rsquo;s definitely been a good while since I last wrote anything here on my site.
@@ -102,6 +102,21 @@
 				<span class="sntc">I&rsquo;ve made my Roff&#45;to&#45;HTML parser available on GitHub under a GPLv3 license, under the title &lsquo;<a href="https://github.com/mikejzx/broff.git">broff</a>&rsquo;, which sounded like a clever name at first, but sounds kind of stupid at the same time.</span>
 				The idea was that it was meant to be a contraction of &lsquo;blog roff&rsquo; as I guess blogging is the intended purpose of it?
 				Maybe it could also be for &lsquo;web roff&rsquo;, I&rsquo;ll let whoever happens to stumble across it decide.
+			</p>
+			<h2>
+				Addendum
+			</h2>
+			<p>
+				<span class="sntc">Not long after writing this post I discovered that there exists an additional method to achieve sentence spacing in HTML; that is to use the CSS <code>white&#45;space</code> property on text to allow consecutive spaces to be preserved.</span>
+				The advantage of this approach is that it&rsquo;s just a simple CSS rule; no additional styling is needed and the HTML tags can be left alone.
+				<span class="sntc">This means that it can be used to easily achieve sentence spacing with content converted from Markdown, or even with the <code>grohtml</code> web troff driver.</span>
+				A disadvantage of this approach though is that you can&rsquo;t have precise control over how wide the sentence space should be; you can only adjust it in terms of the font&rsquo;s space character by adding more or less spaces after sentences.
+				Another problem I noticed is that there are no suitable properties for this rule that allow for whitespace preservation that also collapse new&#45;lines.
+				<span class="sntc">In other words, if you set e.g., <code>white&#45;space: break&#45;spaces</code> then you will need to be mindful of any linefeed characters that you include within your paragraph tags as they will all be interpreted as explicit line breaks.</span>
+			</p>
+			<p>
+				Despite these revelations, I am still fairly happy with the system I&rsquo;m already using as outlined above, so I will continue to use it.
+				<span class="sntc">Maybe one day I might have a play around with <code>grohtml</code> and decide whether it&rsquo;s worth using or not &#40;as it stands I think it does a bit <i>too much</i> for my needs&#41;.</span>
 			</p>
 		]]></description>
 </item>
