@@ -45,7 +45,7 @@ If you've got eagle eyes or if you pay particularly close attention to the
 typographic subtleties of content you read, then you may have noticed the
 specific effect I aimed for here.
 .PP
-To put it explicitly, I was aiming for proper
+Specifically, I was aiming for proper
 .I "sentence spacing"
 in my webpage.
 I developed somewhat of a habit at some point last year where I started putting
@@ -66,14 +66,17 @@ spacing, the specification does not provide any
 .F <sentence>
 tag to use for this purpose, and there seemed to be very little concern for the
 typographic implications of this at the time.
+(Edit: see
+.I Addendum
+at the bottom of the article).
 .PP
 So to implement this new feature, my first idea was to just borrow the
 convention used in Roff for sentence separation, and use it in Markdown.
 For the sake of brevity\(emfor people who haven't used a Roff typesetting system
 before (e.g. the GNU implementation,
 .F groff )\(emI'll
-simply state that in Roff, you are expected to start sentences on
-a line of their own, to indicate to the typesetter that when a line ends with
+simply state that in Roff, you are expected to start sentences on lines of
+their own, to indicate to the typesetter that when a line ends with
 sentence-ending punctuation such as a full-stop, question mark, or exclamation
 mark, it is going to be the end of a sentence (there is a workaround for
 situations where you
@@ -94,16 +97,15 @@ In Markdown, lists items can only be defined on a single line.  However, in
 Roff, a ``list item'' is actually just an indented paragraph with a bullet
 point next to it, so it doesn't suffer from this problem.
 .PP
-I feel like this cause of this issue goes back to the roots of what Markdown
+I feel like the cause of this issue goes back to the roots of what Markdown
 really was intended to be used for.
 I had read an article not long ago on the web by Adam Hyde, where he poses the
 question
 .H https://www.adamhyde.net/whats-wrong-with-markdown/ "``What's wrong with Markdown?''" ,
 and puts forth a few points.
 He expresses his view that Markdown generally has very limited use cases, and
-asserts that, ``Markdown isn't designed for creating HTML'', which is
-a somewhat exaggerated claim, as John Gruber, the actual author of Markdown,
-introduces it
+suggests that, ``Markdown isn't designed for creating HTML'', which is perhaps a
+little exaggerated, as John Gruber, the author of Markdown, introduces it
 .H https://daringfireball.net/projects/markdown/ "on his site"
 (which Hyde also links) not only as ``a text-to-HTML conversion tool for web
 writers'', but also notes that the structure of Markdown places a strong
@@ -111,7 +113,7 @@ emphasis on being ``publishable as-is, as plain text, without looking like it's
 been marked up with tags or formatting instructions'', i.e. it should be
 possible to read a Markdown document in it's
 .I verbatim
-form (as Hyde notes, though not to the extent that he suggests).
+form (as Hyde indeed notes, but not necessarily to the extent that he suggests).
 This in turn creates a format that needs to make compromises in it's ability to
 be converted to HTML, to allow for easy reading of the source content.
 This, and the lack of a proper specification, are why there are so many
@@ -122,8 +124,8 @@ it is published as-is, and hence there is more incentive to add more things that
 help in the HTML conversions, but also then create a compromise
 in the verbatim reading experience of the content (inline links being a notable
 offender here) which then defeats one of the original purposes of the format.
-This is especially a problem when ``single biggest source of inspiration for
-Markdown’s syntax is the format of plain text email.''
+This is especially problematic when ``the single biggest source of inspiration
+for Markdown’s syntax is the format of plain text e-mail.''
 .PP
 I will note, that technically it could be possible to achieve this in Markdown,
 or any markup language for that matter; and that is through some kind of
@@ -278,8 +280,9 @@ then you will need to be mindful of any linefeed characters that you include
 within your paragraph tags as they will all be interpreted as explicit line
 breaks.
 .PP
-Despite these revelations, I am still fairly happy with the system I'm already
-using as outlined above, so I will continue to use it.
+Despite these revelations, and some of the reasons for my new system having
+become less just, I am still fairly happy with the system I'm already using as
+outlined above, so I will continue to use it.
 Maybe one day I might have a play around with
 .F grohtml
 and decide whether it's worth using or not (as it stands I think it does a bit
