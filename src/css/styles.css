@@ -7,6 +7,8 @@
 	--col-heading: #111;
 	--col-link: #080;
 	--col-link-hover: #040;
+	--col-link-visited: #761;
+	--col-link-visited-hover: #440;
 	--col-code-bg: #d0d0d0;
 	--col-code-fg: #111;
 	*/
@@ -17,15 +19,30 @@
 	--col-heading: #4ef;
 	--col-link: #48f;
 	--col-link-hover: #7df;
+	--col-link-visited: #75e;
+	--col-link-visited-hover: #b5f;
 	--col-code-bg: #1a1c20;
 	--col-code-fg: #eee;
+	/* Dark - alt */
+	/*
+	--col-fg: #ddd;
+	--col-bg: #2b082b;
+	--col-title: #802050;
+	--col-heading: #a48;
+	--col-link: #d48;
+	--col-link-hover: #f8a;
+	--col-link-visited: #84a;
+	--col-link-visited-hover: #b5f;
+	--col-code-bg: #1a1c20;
+	--col-code-fg: #eee;
+	*/
 }
 
 body {
 	background-color: var(--col-bg);
 	color: var(--col-fg);
 	padding: 0;
-	font-family: serif;
+	font-family: "Linux Libertine", serif;
 	font-size: 12pt;
 	--sentence-spacing: 0.5em;
 	--line-height: 1.425em;
@@ -33,7 +50,7 @@ body {
 	font-family: monospace;
 	font-size: 10pt;
 	--sentence-spacing: 0.6em;
-	--line-height: 1.2em;
+	--line-height: 1.30em;
 	*/
 }
 
@@ -61,7 +78,7 @@ article {
 
 .sentspc { word-spacing: var(--sentence-spacing) }
 article p {
-	text-indent: 1.75rem;
+	text-indent: 2rem;
 	margin: 0;
 	padding: 0;
 }
@@ -95,6 +112,10 @@ header {
 
 a { color: var(--col-link); }
 a:hover { color: var(--col-link-hover); }
+a:hover:visited { color: var(--col-link-visited-hover); }
+a:visited { color: var(--col-link-visited); }
+nav a:hover:visited { color: var(--col-link-hover); }
+nav a:visited { color: var(--col-link); }
 
 h1, h2, h3, h4, h5, h6 {
 	font-size: 1em;

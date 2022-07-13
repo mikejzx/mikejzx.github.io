@@ -21,7 +21,7 @@ RSS=$(PREFIX)/rss.xml
 .PHONY: all clean
 
 # Directories we need under the dest directory
-SRC_DIRS=$(shell find -L src -type d | sed '/\/templates/d;/\/css/d;/\/files/d')
+SRC_DIRS=$(shell find -L src -type d | sed '/\/templates/d;/\/css/d;/\/files/d;/\/blog_wip/d')
 DIRS=$(patsubst src/%,$(PREFIX)/%,$(SRC_DIRS))
 
 all: dirs $(OUT_HTML) $(OUT_CSS) $(OUT_FILES) $(OUT_BLOG) $(RSS)
