@@ -13,6 +13,7 @@
 	--col-code-fg: #111;
 	*/
 	/* Dark */
+	/*
 	--col-fg: #ddd;
 	--col-bg: #121314;
 	--col-title: #08c;
@@ -23,26 +24,38 @@
 	--col-link-visited-hover: #b5f;
 	--col-code-bg: #1a1c20;
 	--col-code-fg: #eee;
-	/* Dark - alt */
+	*/
+	/* Dark - alt (purple) */
 	/*
 	--col-fg: #ddd;
 	--col-bg: #2b082b;
-	--col-title: #802050;
-	--col-heading: #a48;
+	--col-title: #2c99b2;
+	--col-heading: #2cc298;
 	--col-link: #d48;
 	--col-link-hover: #f8a;
-	--col-link-visited: #84a;
-	--col-link-visited-hover: #b5f;
+	--col-link-visited: #d45;
+	--col-link-visited-hover: #e56776;
 	--col-code-bg: #1a1c20;
 	--col-code-fg: #eee;
 	*/
+	/* Dark - alt (green) */
+	--col-fg: #ddd;
+	--col-bg: #08262b;
+	--col-title: #2fc;
+	--col-heading: #2cc298;
+	--col-link: #2c3;
+	--col-link-hover: #4e5;
+	--col-link-visited: #283;
+	--col-link-visited-hover: #4c5;
+	--col-code-bg: #1a1c20;
+	--col-code-fg: #eee;
 }
 
 body {
 	background-color: var(--col-bg);
 	color: var(--col-fg);
 	padding: 0;
-	font-family: "Linux Libertine", serif;
+	font-family: "Linux Biolinium", sans-serif;
 	font-size: 12pt;
 	--sentence-spacing: 0.5em;
 	--line-height: 1.425em;

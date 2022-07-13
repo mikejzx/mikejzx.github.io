@@ -8,6 +8,51 @@
 <link>https://mikejzx.github.io/rss.xml</link>
 <atom:link href="https://mikejzx.github.io/rss.xml" rel="self" type="application/atom+xml" />
 <item>
+<title>3D Anaglyph Pro for Unity Now Available</title>
+<guid>https://mikejzx.github.io/blog/2022/anaglyph.html</guid>
+<link>https://mikejzx.github.io/blog/2022/anaglyph.html</link>
+<pubDate>Wed, 13 Jul 2022 00:00:00 +1000</pubDate>
+<description><![CDATA[
+			<header>
+				3D Anaglyph Pro for Unity Now Available
+				<span style="float: right">2022-07-13</span>
+			</header>
+			<p>
+				<span class="sntc"><a href="https://assetstore.unity.com/packages/slug/222754">Get 3D Anaglyph Pro on the Unity Asset Store!</a></span>
+				
+			</p>
+			<img src="/files/img/anaglyph0.webp" alt="3D Anaglyph Pro"/>
+			<p>
+				<span class="sntc"><a href="https://assetstore.unity.com/packages/slug/222754">3D Anaglyph Pro</a> is a Unity asset that allows you to render high&#45;quality 3D anaglyphs in real&#45;time.</span>
+				<span class="sntc">I recently released this asset, after re&#45;writing my <a href="https://www.youtube.com/watch?v=4PcuNIqLdTw">old anaglyph effect</a> from scratch, focusing on making something that is more usable by people and produces more accurate anaglyphs.</span>
+				<span class="sntc">See a test video of the effect in action <a href="https://www.youtube.com/watch?v=LYmQpSpUJp8">here</a>!</span>
+			</p>
+			<p>
+				The new effect is a lot more customisable than the old one.
+				<span class="sntc">The eye separation width and convergence distance are now fully&#45;adjustable, and the effect internally uses a 3x6 matrix for determining output colours, allowing for <a href="https://www.site.uottawa.ca/~edubois/anaglyph/">Dubois anaglyphs</a> to be generated, and for maximum control over the output image.</span>
+				A number of preset schemes are provided, making common schemes &#40;red&#47;cyan, Dubois red&#47;cyan, monochrome, etc.&#41; easily&#45;accessible to the user.
+				<span class="sntc">The effect by default uses a Dubois matrix for LCD screens, proposed by Z. Zhang and D. M&#x1D9C;Allister <a href="https://web.archive.org/web/20070206033630/http://research.csc.ncsu.edu:80/stereographics/ei06.pdf">here</a>.</span>
+				The stereoscopic image pairs are now generated in a much more accurate fashion, by making use of custom projection matrices, unlike the old method which used two very basic offsetted cameras.
+				This means that the effect looks more realistic, as if you&rsquo;re really in the scene!
+				<span class="sntc">Applying the effect is also incredibly simple, and is shown <a href="https://www.youtube.com/watch?v=fQaAiNZ8Iro">here</a>.</span>
+			</p>
+			<p>
+				3D Anaglyph Pro also supports using post&#45;processing effects, in a clunky, but functional way.
+				The way this is achieved is by allowing the user to manually specify a second camera to use for the rendering of the second stereo image.
+				This gives the user full control over the effects on the second camera, allowing them to apply any post&#45;processing effects they like to it, which will usually consist of those on the main camera.
+				<span class="sntc">Setting up the effect in this way is demonstrated in <a href="https://www.youtube.com/watch?v=E_0ju-mX1hg">this guide on YouTube</a>.</span>
+			</p>
+			<p>
+				Unfortunately the effect does come with a performance cost.
+				Having to render the scene twice in full &#40;and apply post&#45;processing effects twice&#41; means that the cost of rendering is twofold, and for complex scenes on older or low&#45;end hardware the effect may be too demanding.
+				Additionally, there are bugs in Unity that can sometimes prevent the effect from operating at maximum efficiency, most notably in relation to occlusion culling.
+				<span class="sntc">Unity has been known for years to not calculate culling matrices correctly with oblique projection matrices &#40;<a href="https://forum.unity.com/threads/occlusion-matrices-computed-incorrectly-by-unity.450827/">see this forum thread</a>&#41;, and despite <a href="https://issuetracker.unity3d.com/issues/setting-the-cameras-culling-matrix-breaks-culling-for-oblique-matrices">many issues</a> being opened in the Issue Tracker on the matter, these bugs still exist in the engine today.</span>
+				As a result, occlusion culling sometimes needs to be disabled when using the anaglyph effect, to avoid artifacts caused by the improperly&#45;calculated culling matrix &#40;i.e. objects popping in and out of view constantly&#41;.
+				However, this is usually only a problem in complex scenes, and when using large eye separation widths.
+			</p>
+		]]></description>
+</item>
+<item>
 <title>New Roff-based Blog System</title>
 <guid>https://mikejzx.github.io/blog/2022/been-a-while.html</guid>
 <link>https://mikejzx.github.io/blog/2022/been-a-while.html</link>
