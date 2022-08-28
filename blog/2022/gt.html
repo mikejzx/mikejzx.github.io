@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<!-- Metadata -->
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta name="description" content="Michael Skec's Personal Webpage"/>
+		<meta name="keywords" content="mikejzx, skec, michael, mike, blog, site"/>
+		<meta name="author" content="Michael Skec"/>
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+
+		<!-- RSS feed -->
+		<link rel="alternate" type="application/atom+xml" href="/rss.xml"/>
+
+		<!-- Stylesheet -->
+		<link rel="stylesheet" href="/css/styles.css" type="text/css"/>
+
+		<!-- Page title -->
+		<title>Controller Mappings for Gran Turismo 1-4 Emulation &ndash; Mike&rsquo;s Blog</title>
+	</head>
+
+	<body>
+
+		<!-- Navbar -->
+		<nav>
+			<a href="/index.html">home</a>
+			<a href="/blog/index.html">writings</a>
+			<a href="/rss.xml">rss</a>
+		</nav>
+		<article>
+			<header>
+				<span class="sntc">Controller Mappings for Gran Turismo 1&#45;4 Emulation</span>
+				<span style="float: right">2022-08-28</span>
+			</header>
+			<p class="sentspc">
+				<span class="sntc">I&rsquo;ve always been a fan of the Gran&nbsp;Turismo series of games, and in the last year or two have been playing around with running these games in an emulator on PC.</span>
+				<span class="sntc">The classic PS1 games run flawlessly in the DuckStation emulator, and the PS2&#45;era games work well in the PCSX2 emulator.</span>
+				<span class="sntc">In general, you are able to play the games just as if you were playing on a real console &#40;although sometimes playing on the real thing just makes these games feel that extra bit more nostalgic&#41;.</span>
+			</p>
+			<p class="sentspc">
+				<span class="sntc">Playing games like this in an emulator has certain advantages.</span>
+				<span class="sntc">The resolution of the games can be adjusted &#40;if you&rsquo;re into that sort of thing; I personally prefer emulating at the native resolution&#41;, you are able to create virtual memory cards, and manage your saves in bizarre ways &#40;not to mention the ability to create save states that you can return to in the game&#41;.</span>
+			</p>
+			<p class="sentspc">
+				<span class="sntc">One advantage of playing in an emulator, that would be incredibly difficult if using real console hardware, is the ability to remap the controller&rsquo;s buttons and axes to essentially whatever you desire.</span>
+				<span class="sntc">This is especially very useful for these old racing games like Gran&nbsp;Turismo, particularly in relation to having <b>analog</b> accelerator brake inputs, which will be one of the main focuses of this article.</span>
+			</p>
+			<h2>
+				<span class="sntc">The Goal</span>
+			</h2>
+			<p class="sentspc">
+				<span class="sntc">The goal here is to remap the controller in such a way that will allow for easy modulation of the accelerator and brake inputs in the game.</span>
+				<span class="sntc">Generally, racing games that came out from the PS3&#45;era onwards would usually use the left and right analog trigger buttons &#40;L2 and R2&#41; for the brake and accelerator respectively, as this is a fairly modest scheme and is very easy to use &#40;and it quite familiar to most people, having been used in popular games such as Grand&nbsp;Theft&nbsp;Auto IV and V&#41;.</span>
+				<span class="sntc">Many players of Gran&nbsp;Turismo&nbsp;5 and 6 on the PS3 would map their controllers in this way, and I believe that later games like GT&nbsp;Sport and Gran&nbsp;Turismo&nbsp;7 use these mappings by default.</span>
+			</p>
+			<p class="sentspc">
+				<span class="sntc">Traditionally, the only way an analog throttle&#47;brake could&rsquo;ve been achieved in the PS1 games &#40;other than using a wheel with pedals, etc.&#41;, was to adjust the in&#45;game controller mapping settings to use one of the analog sticks &#40;e.g. the up&#45;down axis of the right stick&#41; to be mapped to the accelerator and brake.</span>
+				<span class="sntc">The game is playable in this way, and there are people who have played the game like this for years and never looked back.</span>
+				<span class="sntc">The DualShock&nbsp;2 controllers that were used on the PS2 were interesting in that most buttons on it were pressure&#45;sensitive; this meant that the standard Cross for accelerate, and Square for brake, worked reasonably well as the player was able to at least modulate the pressure they put on these buttons.</span>
+			</p>
+			<p class="sentspc">
+				<span class="sntc">However, the DualShock&nbsp;2&rsquo;s pressure&#45;sensitive face buttons turned out to be not much more than a mere quirk, as we would never see this feature again in later controllers like the DualShock&nbsp;3 and Xbox gamepads.</span>
+				<span class="sntc">Since these later gamepads like the DualShock&nbsp;3 &#40;that I use&#41; don&rsquo;t have pressure&#45;sensitive buttons, using them to play the PS2 Gran&nbsp;Turismo games in an emulator means that you face the same dilemma as that of the early PS1 games&mdash;if you wish to modulate the accelerator and brake, your only option is to map the analog sticks.</span>
+				<span class="sntc">One nice feature of the DualShock&nbsp;3 PS3 controllers &#40;and I believe Xbox 360 gamepads&#41; is that their trigger buttons are in fact analog and use their own axis.</span>
+				<span class="sntc">The problem here of course, is that DualShock&nbsp;2 controllers didn&rsquo;t have this axis, and therefore the games &#40;and emulators&#41; cannot take advantage of it.</span>
+			</p>
+			<p class="sentspc">
+				<span class="sntc">Thankfully, there is a workaround to this to allow us to use this extra axis for the accelerator and brake inputs in the old Gran&nbsp;Turismo games.</span>
+				<span class="sntc">The technique that will be used here will be to map the accelerator and brake to the analog sticks using the in&#45;game input mapper, and then on top of this, apply our own custom mappings to the controller itself, through the use of external tools.</span>
+				<span class="sntc">To get an idea of this more clearly; imagine that in the game, we map the accelerator and brake to the Y&#45;axis of the right analog stick.</span>
+				<span class="sntc">That is, the accelerator is pressed as the right analog stick is pushed upward, and the brake is pressed as the right&#45;analog stick is pushed downward.</span>
+				<span class="sntc">By applying our own mappings externally, we can &ldquo;hack&rdquo; this using a mapping, so that the left analog trigger of the controller is used to control &#40;virtually&#41; how much the analog stick is pushed down &#40;for brake&#41;, and the right trigger is mapped to control how much the stick is pushed up &#40;for accelerator&#41;.</span>
+				<span class="sntc">By doing this we are able to use the left&#47;right analog triggers &#40;L2 and R2&#41; of the controller to comfortably modulate the brake and accelerator inputs of the PS1 and PS2 games.</span>
+			</p>
+			<h2>
+				<span class="sntc">Achieving the External Mappings</span>
+			</h2>
+			<p class="sentspc">
+				<span class="sntc">This article is catered towards Linux users because of the totally non&#45;existent documentation of how this can be achieved easily and intuitively on these operating systems.</span>
+			</p>
+			<p class="sentspc">
+				<span class="sntc">Presumably most people who find this article will be Windows users perhaps wondering how they can achieve these sorts of mappings.</span>
+				<span class="sntc">If you are on Windows, the process of achieving this  is actually rather straight&#45;forward; all that you will need is some sort of external controller mapping utility.</span>
+				<span class="sntc">One that I have used in the past for DualShock&nbsp;3 that works perfectly is BetterDS3, however, this tool requires that you have the MotionInJoy DualShock&nbsp;3 drivers installed &#40;which is generally considered to be a very bad idea due to MotionInJoy&rsquo;s malicious software; installing the drivers &lsquo;manually&rsquo;, which is what I did, is generally considered the safest approach&#41;.</span>
+				<span class="sntc">If you using a DualShock&nbsp;4 or 5, or an Xbox gamepad, you will need to do some research of your own &#40;as I don&rsquo;t own any of these controllers&#41; to find good Windows drivers for your controller and a mapping utility.</span>
+			</p>
+			<p class="sentspc">
+				<span class="sntc">Over on Linux, SDL is very widely&#45;used as an input backend, and one that both the PCSX2 and DuckStation emulators can use &#40;you should ensure that the backends in the emulators are indeed configured so, and not to something else like &lsquo;evdev&rsquo;, or else our mappings will not take effect&#41;.</span>
+				<span class="sntc">DualShock controller support is also available directly in the Linux kernel.</span>
+				<span class="sntc">If you too are a Gentoo user then you will need to <a href="https://wiki.gentoo.org/wiki/Sony_DualShock">build your kernel with the DualShock drivers included</a>.</span>
+				<span class="sntc">Other other distributions &#40;Debian, Arch Linux, etc.&#41; will almost always ship their kernels with this built in already for you.</span>
+				<span class="sntc">We will take advantage of SDL&rsquo;s controller mapping ability, which, while it is somewhat difficult to understand at first &#40;and frankly quite scary to look at&#41;, it does get the job done.</span>
+				<span class="sntc">The mappings I will show will be for DualShock&nbsp;3 controllers.</span>
+				<span class="sntc">If you are not using a DualShock&nbsp;3 controller, you will need to find a base mapping for your controller to work off of, which you can find in the <a href="https://github.com/gabomdq/SDL_GameControllerDB">SDL GameControllerDB list</a> online.</span>
+				<span class="sntc">You can also find a default mapping for your controller by using one of the mapping tools linked on that page; which should be able to generate one for you.</span>
+				<span class="sntc">Once you have a mapping for your controller, you should be able to apply the techniques described here to create your own mappings.</span>
+			</p>
+			<h2>
+				<span class="sntc">How SDL Controller Mapping Strings Work</span>
+			</h2>
+			<p class="sentspc">
+				<span class="sntc">Windows users who already have their controller mapping method worked out can skip this part.</span>
+				<span class="sntc">Linux users who don&rsquo;t happen to be using the exact same DualShock&nbsp;3 controller as me will have to read on to understand how to map their own controller.</span>
+			</p>
+			<p class="sentspc">
+				<span class="sntc">An SDL controller mapping string appears like follows:</span>
+			</p>
+			<pre>
+030000004c0500006802000011810000,PS3 Controller,a:b0,b:b1,back:b8,dpdown:b14,dpleft:b15,dpright:b16,dpup:b13,guide:b10,leftshoulder:b4,leftstick:b11,lefttrigger:a2,leftx:a0,lefty:a1,rightshoulder:b5,rightstick:b12,righttrigger:a5,rightx:a3,righty:a4,start:b9,x:b3,y:b2,			</pre>
+			<p class="sentspc noindent">
+				<span class="sntc">This is the base mapping that I use for my DualShock&nbsp;3 controller, and that I work from to remap things to what I need.</span>
+				<span class="sntc">The first section &#40;the controller&rsquo;s GUID&#41;, and the &ldquo;PS3 Controller&rdquo; part can be ignored for now.</span>
+				<span class="sntc">The most important thing here is the comma&#45;separated list of &lsquo;key:value&rsquo; pairs, which define how the controller is mapped.</span>
+				<span class="sntc">The important thing to understand is that the &lsquo;key&rsquo; in these pairs refers to the abstract button&#47;axis input on the gamepad that will be sent to the game &#40;with abstract names such as &lsquo;leftx&rsquo;, &lsquo;righty&rsquo;, which refer to the left stick X&#45;axis and right stick Y&#45;axis respectively&#41;.</span>
+				<span class="sntc">The &lsquo;value&rsquo; part &#40;the <code>a0</code>, <code>b1</code>, <code>b8</code>, etc.&#41; are the identifiers of each button&#47;axis on the controller, as identified by the kernel driver.</span>
+			</p>
+			<h3>
+				<span class="sntc">Applying the Mapping</span>
+			</h3>
+			<p class="sentspc">
+				<span class="sntc">In order to actually apply a controller mapping to our emulator; we should first ensure that the emulator is in fact using SDL as the input backend.</span>
+				<span class="sntc">PCSX2 seems to use SDL by default.</span>
+				<span class="sntc">In DuckStation we can check by going to the &lsquo;General Settings&rsquo; and ensuring that the &lsquo;Controller Backend&rsquo; is set to SDL.</span>
+			</p>
+			<p class="sentspc">
+				<span class="sntc">Next, we should ensure that the emulator is not trying to do any unusual mapping of it&rsquo;s own.</span>
+				<span class="sntc">This is because we don&rsquo;t want the emulator mess up any of our manually&#45;specified mappings.</span>
+				<span class="sntc">This is only an issue for DuckStation, as PCSX2 doesn&rsquo;t really allow you to modify the mappings.</span>
+				<span class="sntc">The reader might be asking why we wouldn&rsquo;t just use the emulator&rsquo;s own mapping options to achieve what we want; but at least in the case of DuckStation, the functionality of mapping the positive&#47;negative sides of a controller axis is completely missing; therefore we need to resort to manually mapping with SDL.</span>
+			</p>
+			<p class="sentspc">
+				<span class="sntc">Once we&rsquo;ve ensured that the emulator is not trying to remap anything, we need to start the emulator with the <code>SDL&#95;GAMECONTROLLERCONFIG</code> environment variable set to the mapping string.</span>
+				<span class="sntc">For example, to start PCSX2 with a custom SDL mapping, something along the lines of the following commands should be used:</span>
+			</p>
+			<pre>
+SDL&#95;GAMECONTROLLERCONFIG&#61;"&#60;mapping string&#62;" pcsx2
+&#35; Or alternatively:
+export SDL&#95;GAMECONTROLLERCONFIG&#61;"&#60;mapping string&#62;" &#38;&#38; pcsx2			</pre>
+			<p class="sentspc noindent">
+				<span class="sntc">PCSX2 should now be started with the custom mapping in <code>&lt;mapping string&gt;</code> loaded.</span>
+				<span class="sntc">You may wish to write some simple shell scripts that allow you to easily launch your emulated games with these controller mappings automatically applied.</span>
+			</p>
+			<p class="sentspc">
+				<span class="sntc">If you provide your base mapping in the <code>&lt;mapping string&gt;</code> part of that command, then you should be able to play games as normal.</span>
+				<span class="sntc">To test that the mappings are being applied, you can use a mapping string like the following, where every button and axis is unbound; you should not be able to provide any input to the game.</span>
+				<span class="sntc">You may need to replace the GUID and &lsquo;PS3 Controller&rsquo; part with that of your own controller:</span>
+			</p>
+			<pre>
+030000004c0500006802000011810000,PS3 Controller,a:,b:,back:,dpdown:,dpleft:,dpright:,dpup:,guide:,leftshoulder:,leftstick:,lefttrigger:,leftx:,lefty:,rightshoulder:,rightstick:,righttrigger:,rightx:,righty:,start:,x:,y:,			</pre>
+			<p class="sentspc noindent">
+			</p>
+			<h3>
+				<span class="sntc">An Example Mapping</span>
+			</h3>
+			<p class="sentspc">
+				<span class="sntc">The important thing to note is what buttons and axes we actually want to map.</span>
+				<span class="sntc">Consider the example used earlier of mapping the right stick &#40;which should in the game be set to control the accelerator and brake&#41; to the left&#47;right trigger buttons.</span>
+				<span class="sntc">The abstract &lsquo;key&rsquo; we want to change, is the &lsquo;righty&rsquo; one &#40;pronounced &lsquo;Right Y&rsquo;, not &lsquo;Righty&rsquo;!&#41;.</span>
+				<span class="sntc">As an example, if we modify the above mapping so that the &lsquo;righty&rsquo; is not mapped to any axis, like this:</span>
+			</p>
+			<pre>
+righty:			</pre>
+			<p class="sentspc noindent">
+				<span class="sntc">then we will be unable to accelerate or brake in the game &#40;if the accelerator and brake is mapped to the right Y axis&#41;.</span>
+				<span class="sntc">This is the simplest mapping possible.</span>
+			</p>
+			<p class="sentspc">
+				<span class="sntc">Now, let&rsquo;s say that we want to map our left and right triggers &#40;L1&#47;L2&#41; to the &lsquo;righty&rsquo; axis.</span>
+				<span class="sntc">Readers who ate their Weet&#45;Bix for breakfast this morning may have already noticed that the left and right triggers have two different identifiers &#40;<code>a2</code> and <code>a5</code>&#41;, indicating that they are in fact treated as two different axes:</span>
+			</p>
+			<pre>
+lefttrigger:a2,righttrigger:a5,			</pre>
+			<p class="sentspc noindent">
+				<span class="sntc">For months I would think that this was the fatal flaw in the mapping syntax that would make achieving the goal mapping essentially impossible.</span>
+				<span class="sntc">The difficult question here is of course, how can we map the single &lsquo;righty&rsquo;</span>
+				<span class="sntc">analog axis to both the <code>a2</code> and <code>a5</code> trigger axes at the same time?</span>
+				<span class="sntc">Thankfully, I recently turned out to be wrong when I, at last, stumbled upon the following GitHub issue: <a href="https://github.com/libsdl-org/SDL/issues/1166">&#35;1166</a>.</span>
+				<span class="sntc">This issue includes quotes from the SDL mailing list, which properly describe and document an extended syntax of the SDL mapping strings &#40;at the bottom of the linked page&#41;.</span>
+				<span class="sntc">This documentation was incredibly difficult to find, but using it we are able to finally map the individual positive&#47;negative halves of the analog stick to the left and right triggers the way we want, using this extended syntax:</span>
+			</p>
+			<pre>
+&#45;righty:a2,&#43;righty:a5			</pre>
+			<p class="sentspc noindent">
+				<span class="sntc">where <code>a2</code> is the identifier of the left&#45;side trigger axis on the controller &#40;in this case a DualShock&nbsp;3&#41;, and <code>a5</code> is the right&#45;side trigger axis.</span>
+				<span class="sntc">This isn&rsquo;t the full string though, as for this to work, we must also unmap the left and right trigger buttons themselves &#40;or else SDL will confused because the <code>a2</code> and <code>a5</code> identifiers cannot appear in multiple places at once&#41;:</span>
+			</p>
+			<pre>
+lefttrigger:,righttrigger:,&#45;righty:a2,&#43;righty:a5			</pre>
+			<p class="sentspc noindent">
+				<span class="sntc">Of course, this means that whatever the left&#47;right trigger buttons are mapped to in the game, will become unusable &#40;which isn&rsquo;t really a problem for most cases&#41;.</span>
+				<span class="sntc">If you for whatever reason have a need for what the left&#47;right trigger buttons are originally mapped to; your only option is to map them to something else on the controller.</span>
+			</p>
+			<p class="sentspc">
+				<span class="sntc">This sort of format for the mapping strings will be used for our mappings for each of the games, and Gran&nbsp;Turismo 1, 2, and 4 will each have very similar mappings.</span>
+				<span class="sntc">There is a better mapping for Gran&nbsp;Turismo&nbsp;3 that we can create because of it&rsquo;s more versatile in&#45;game mapping system that the other games don&rsquo;t have.</span>
+			</p>
+			<p class="sentspc">
+				<span class="sntc">The following sections will describe the mappings that can be used for each of the games.</span>
+				<span class="sntc">Please also remember that for each of the mappings shown, the left trigger and right trigger axes are identified as <code>a2</code> and <code>a5</code> respectively, which may or may not be the same for your controller.</span>
+				<span class="sntc">It is good to become familiar with what identifiers correspond to what on your controller to make producing your own mappings easier.</span>
+			</p>
+			<h2>
+				<span class="sntc">Gran&nbsp;Turismo&nbsp;1 &amp; 2</span>
+			</h2>
+			<p class="sentspc">
+				<span class="sntc">Both the first and second installments of Gran&nbsp;Turismo use the same input mapping system in the game.</span>
+				<span class="sntc">The following images show how the controller should be configured inside of both Gran&nbsp;Turismo&nbsp;1 and 2 in their options menus: </span>
+			</p>
+			<img src="/files/img/gt_mapping_1.jpg" alt="Gran Turismo 1 in-game mapping"/>
+				<span class="sntc"></span>
+			<img src="/files/img/gt_mapping_2.jpg" alt="Gran Turismo 2 in-game mapping"/>
+			<p class="sentspc">
+				<span class="sntc">The next thing to do is formulate a mapping that considers the fact that our right stick now is acting as the accelerator and brake input.</span>
+				<span class="sntc">The mapping should map the left trigger to the downward direction &#40;&#43;Y&#41; of the right analog stick &#40;for brake&#41;, and map the right trigger to the upward direction &#40;&#45;Y&#41; of the stick &#40;for accelerator&#41;.</span>
+			</p>
+			<p class="sentspc">
+				<span class="sntc">The modified parts of my SDL mapping is the following, where <code>a2</code> and <code>a5</code> are the identifiers of the L2 and R2 axes respectively:</span>
+			</p>
+			<pre>
+lefttrigger:,righttrigger:,&#45;righty:a5,&#43;righty:a2,			</pre>
+			<p class="sentspc noindent">
+				<span class="sntc">And the final full mapping for Gran&nbsp;Turismo&nbsp;1 &amp; 2 for my controller:</span>
+			</p>
+			<pre>
+030000004c0500006802000011810000,PS3 Controller,a:b0,b:b1,back:b8,dpdown:b14,dpleft:b15,dpright:b16,dpup:b13,guide:b10,leftshoulder:b4,leftstick:b11,lefttrigger:,leftx:a0,lefty:a1,rightshoulder:b5,rightstick:b12,righttrigger:,rightx:a3,&#45;righty:a5,&#43;righty:a2,start:b9,x:b3,y:b2,			</pre>
+			<p class="sentspc noindent">
+			</p>
+			<h2>
+				<span class="sntc">Gran&nbsp;Turismo&nbsp;4</span>
+			</h2>
+			<p class="sentspc">
+				<span class="sntc">Gran&nbsp;Turismo&nbsp;4 can be mapped just as easily as 1 and 2.</span>
+				<span class="sntc">The only different thing here is that the game only allows us to use the left stick for acceleration and brake, rather than the right like we used in the other games.</span>
+				<span class="sntc">The following screenshot shows the in&#45;game mapping that should be used: </span>
+			</p>
+			<img src="/files/img/gt_mapping_4.jpg" alt="Gran Turismo 4 in-game mapping"/>
+				<span class="sntc">Now, we need to map the left trigger to the downward direction &#40;&#43;Y&#41; of the left analog stick &#40;for brake&#41;, and the right trigger to the upward direction &#40;&#45;Y&#41; of the same analog stick &#40;for accelerator&#41;.</span>
+			<p class="sentspc">
+				<span class="sntc">The modified parts of my SDL mapping are the following:</span>
+			</p>
+			<pre>
+lefttrigger:,&#43;lefty:a2,&#45;lefty:a5,righttrigger:,			</pre>
+			<p class="sentspc noindent">
+				<span class="sntc">And the final mapping for Gran&nbsp;Turismo&nbsp;4:</span>
+			</p>
+			<pre>
+030000004c0500006802000011810000,PS3 Controller,a:b0,b:b1,back:b8,dpdown:b14,dpleft:b15,dpright:b16,dpup:b13,guide:b10,leftshoulder:b4,leftstick:b11,lefttrigger:,leftx:a0,&#43;lefty:a2,&#45;lefty:a5,rightshoulder:b5,rightstick:b12,righttrigger:,rightx:a3,righty:a4,start:b9,x:b3,y:b2,			</pre>
+			<p class="sentspc noindent">
+			</p>
+			<h2>
+				<span class="sntc">Gran&nbsp;Turismo&nbsp;3: A&#45;Spec</span>
+			</h2>
+			<p class="sentspc">
+				<span class="sntc">Gran&nbsp;Turismo&nbsp;3 allows us more flexibility with the controller mappings; as it allows us to actually map the accelerator and brake inputs to totally seperate analog sticks and axes.</span>
+				<span class="sntc">We can take advantage of this, and create a mapping that allows us to press the brake and accelerator simultaneously &#40;unlike in the other games, where the accelerator and brake are locked to the same axis&#41;.</span>
+			</p>
+			<p class="sentspc">
+				<span class="sntc">The in&#45;game mapping that I use is shown below: </span>
+			</p>
+			<img src="/files/img/gt_mapping_3.jpg" alt="Gran Turismo 3 in-game mapping"/>
+			<p class="sentspc noindent">
+				<span class="sntc">To map the controller correctly, as this configuration would be hilariously uncomfortable to play with without a custom mapping, we need to map the left trigger to the downward &#40;&#43;Y&#41; direction of the right stick for braking input, and map the right trigger to the rightward direction &#40;&#43;X&#41; of the right stick for accelerator input.</span>
+			</p>
+			<p class="sentspc">
+				<span class="sntc">The modified parts of my SDL mapping are as follows:</span>
+			</p>
+			<pre>
+lefttrigger:,righttrigger:,&#43;rightx:a5,&#43;righty:a2,			</pre>
+			<p class="sentspc noindent">
+				<span class="sntc">The final mapping I use for Gran&nbsp;Turismo&nbsp;3: A&#45;Spec, is:</span>
+			</p>
+			<pre>
+030000004c0500006802000011810000,PS3 Controller,a:b0,b:b1,back:b8,dpdown:b14,dpleft:b15,dpright:b16,dpup:b13,guide:b10,leftshoulder:b4,leftstick:b11,lefttrigger:,leftx:a0,lefty:a1,rightshoulder:b5,rightstick:b12,righttrigger:,&#43;rightx:a5,&#43;righty:a2,start:b9,x:b3,y:b2,			</pre>
+			<p class="sentspc noindent">
+			</p>
+			<h2>
+				<span class="sntc">Potential Issues</span>
+			</h2>
+			<p class="sentspc">
+				<span class="sntc">Because of these crazy mappings, it&rsquo;s possible that some parts of the games would be unusable while these mappings are applied.</span>
+				<span class="sntc">For example, the Data Logger in Gran&nbsp;Turismo&nbsp;3 allows you to use the right stick to move around; which isn&rsquo;t really possible because of the wacky controller mapping that is applied.</span>
+				<span class="sntc">I assume that the other games would have other things that would be unusable with these mappings.</span>
+				<span class="sntc">If you wish to access these unusable sections of the games, the obvious way to do it is to just set the controller to use a normal mapping &#40;e.g. via the <code>SDL&#95;GAMECONTROLLERCONFIG</code> environment variable&#41;.</span>
+			</p>
+		</article>
+	</body>
+</html>
