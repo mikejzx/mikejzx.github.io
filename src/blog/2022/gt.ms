@@ -227,7 +227,7 @@ then we will be unable to accelerate or brake in the game (if the
 accelerator and brake is mapped to the right Y axis).
 This is the simplest mapping possible.
 .PP
-Now, let's say that we want to map our left and right triggers (L1/L2) to the
+Now, let's say that we want to map our left and right triggers (L2/R2) to the
 `righty' axis.
 Readers who ate their Weet-Bix for breakfast this morning may have already
 noticed that the left and right triggers have two different identifiers
