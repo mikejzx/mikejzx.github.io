@@ -110,8 +110,8 @@ like `evdev', or else our mappings will not take effect).
 DualShock controller support is also available directly in the Linux kernel.
 If you too are a Gentoo user then you will need to
 .H https://wiki.gentoo.org/wiki/Sony_DualShock "build your kernel with the DualShock drivers included" "."
-Other other distributions (Debian, Arch Linux, etc.) will almost always ship
-their kernels with this built in already for you.
+Other distributions (Debian, Arch Linux, etc.) will almost always ship their
+kernels with this built in already for you.
 .
 We will take advantage of SDL's controller mapping ability, which, while it is
 somewhat difficult to understand at first (and frankly quite scary to look at),
